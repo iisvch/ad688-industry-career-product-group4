@@ -1,0 +1,24 @@
+variable,description
+job_id,Unique MET job posting identifier.
+posted_at,Job posting publication date/time.
+title,Original job posting title.
+normalized_title,MET-normalized job title.
+company_name,Employer name.
+location_text,Job location text.
+city,Job city/location.
+state,Job state or region.
+remote_status,"Remote, hybrid, onsite, or unknown."
+employment_type,Employment type when available.
+annual_salary_min,Minimum annual salary.
+annual_salary_max,Maximum annual salary.
+hourly_salary_min,Minimum hourly salary.
+hourly_salary_max,Maximum hourly salary.
+soc_code,SOC occupation code.
+soc_name,SOC occupation name.
+occupation_family,Occupation family.
+naics_code,NAICS industry code.
+naics_name,NAICS industry name.
+onet_code,O*NET occupation code.
+onet_name,O*NET occupation name.
+skills,Skills associated with the posting.
+description,Job posting description.
