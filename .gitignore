@@ -1,8 +1,0 @@
-.env
-.venv/
-.quarto/
-**/*.quarto_ipynb
-__pycache__/
-*.pyc
-
-data/raw_naics_523000.json
