@@ -1,0 +1,161 @@
+cat > data_preparation.qmd <<'EOF'
+---
+title: "Data Preparation"
+subtitle: "Step 2 — Data Preparation and Career-Market Scope"
+---
+
+## Step 2 Objective
+
+This step prepares the career-market data used to evaluate opportunities for Data Analysts in financial services. The analysis is anchored to the project's selected industry and career pathway:
+
+- **Target career:** Data Analyst / Data Analytics
+- **NAICS:** 523000
+- **Industry:** Securities, Commodity Contracts, and Other Financial Investments and Related Activities
+
+The goal is to create a reproducible dataset that can be used to examine job availability, compensation, location, work arrangements, and employer characteristics.
+
+## Data Source
+
+The project uses the **MET Career Compass Employability API**. The API provides job-posting information including job titles, employers, locations, salary fields, remote status, occupation classifications, NAICS classifications, skills, and job descriptions.
+
+The API data used for this analysis was retrieved on **October 5, 2026**. The API reported a latest data refresh date of **October 3, 2026** and identified the dataset as `met-career-pathways-jobs`.
+
+## Industry Filter
+
+The first stage of the data preparation process restricted the job postings to:
+
+**NAICS 523000 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities**
+
+The API returned 400 records matching this NAICS code before subsequent pagination requests timed out. All 400 retrieved records were verified to contain NAICS code 523000.
+
+This industry restriction was retained throughout the analysis so that the project remained focused on financial-services employment opportunities rather than the overall labor market.
+
+## Career Filter
+
+The target career pathway for Group 4 is **Data Analyst / Data Analytics**.
+
+Several possible approaches were evaluated using the available occupation and job-title fields.
+
+### Occupation Classification Review
+
+The MET data includes SOC and O*NET occupation classifications. SOC 15-2051 was initially considered because it is labeled **Data Scientists**.
+
+However, the first 400 NAICS 523000 records demonstrated that this classification was too broad for the project's specific Data Analyst pathway. For example, records classified under SOC 15-2051 included Android developers, iOS developers, mobile application developers, mobile engineers, and other roles that do not represent the target Data Analyst career.
+
+Therefore, SOC 15-2051 was **not used as a direct proxy for Data Analyst jobs**.
+
+### Title-Based Career Filter
+
+The final target-career filter uses explicit Data Analyst/Data & Insights Analyst terminology in the job title.
+
+The inclusion logic identifies titles containing:
+
+- `Data Analyst`
+- `Data & Insights Analyst`
+
+This approach was selected because it provides a more direct connection to the team's stated career pathway than the broader occupation classifications observed in the data.
+
+The resulting target-career dataset contains **2 postings**:
+
+| Job | Employer | Location |
+|---|---|---|
+| Data & Insights Analyst (EMEA) | Greenparkcontent | London, United Kingdom |
+| Advanced Data & Insights Analyst - Deposits Line of Business | U.S. Bank | Charlotte, North Carolina |
+
+## Data Retrieval Limitation
+
+The MET API successfully returned the first 400 records for NAICS 523000. Requests beginning at offset 400 consistently timed out, including requests for a single record.
+
+Because the additional records could not be retrieved reliably, the project does **not** claim that the 400 records represent the complete NAICS 523000 labor market.
+
+Instead, the retrieved records are treated as an accessible analytical sample from the MET Career Compass dataset.
+
+This limitation is important when interpreting market-level results.
+
+## Cleaning Decisions
+
+### Duplicate Records
+
+Job postings were checked using the MET `job_id` field.
+
+No duplicate job IDs were identified among the 400 retrieved records.
+
+### NAICS
+
+The `naics_code` field was converted to text and stripped of leading/trailing whitespace. Records were retained only when the resulting value equaled `523000`.
+
+All 400 retrieved records passed this verification.
+
+### Dates
+
+Posting and expiration dates were converted to datetime values where available. Invalid or unavailable dates were treated as missing.
+
+### Salary
+
+Annual and hourly salary fields were converted to numeric values. Missing salary values were retained as missing rather than being replaced with zero.
+
+A missing salary does not imply that the position is unpaid; it indicates that a usable salary value was not available in the retrieved posting data.
+
+### Location
+
+Location, city, state, and state-code fields were converted to consistent text values. Missing location fields were retained as missing.
+
+### Remote Status
+
+Remote-status values were standardized to text categories such as remote, hybrid, onsite, or unknown. Missing or unavailable classifications were retained as unknown rather than inferred from the job description.
+
+### Skills
+
+The API's skills information was retained because skills will be used in later stages of the project to evaluate the capabilities associated with the target career pathway.
+
+### Occupation Fields
+
+SOC, O*NET, and occupation-family fields were retained for comparison and validation. However, the analysis does not assume that a broad occupation classification is equivalent to the team's specific Data Analyst career pathway.
+
+## Output Dataset
+
+The cleaned target-career dataset is:
+
+`data/career_market_panel.csv`
+
+The dataset contains the two postings that directly match the project's Data Analyst/Data & Insights Analyst title criteria.
+
+A broader raw industry dataset is retained as:
+
+`data/raw_naics_523000.json`
+
+This raw dataset contains the 400 retrieved NAICS 523000 postings and provides the source data for industry-level exploration.
+
+A variable-level data dictionary is available at:
+
+`data/data_dictionary.csv`
+
+## Data Preparation Summary
+
+The Step 2 preparation process can be summarized as:
+
+1. Retrieve MET Career Compass job data.
+2. Restrict records to **NAICS 523000**.
+3. Verify the NAICS classification.
+4. Review occupation classifications and job titles.
+5. Reject SOC 15-2051 as a direct Data Analyst proxy because of substantial classification noise.
+6. Apply a direct Data Analyst/Data & Insights Analyst title filter.
+7. Remove duplicate job IDs.
+8. Standardize dates, salary, location, remote-status, and occupation fields.
+9. Export the cleaned target-career dataset.
+10. Retain the broader NAICS dataset for market-level exploratory analysis.
+
+## Step 2 Limitations
+
+The primary limitation is API pagination. The API returned 400 NAICS 523000 records, but requests beginning at offset 400 repeatedly timed out.
+
+A second limitation is the small number of direct Data Analyst/Data & Insights Analyst postings within the accessible sample. Therefore, salary, remote-work, and other target-career statistics should be interpreted cautiously rather than generalized to the entire Data Analyst labor market.
+
+The broader 400-record NAICS 523000 sample will provide additional industry context for the market-baseline analysis.
+
+## Conclusion
+
+The data-preparation stage establishes a reproducible industry and career scope for the project. The analysis remains anchored to **NAICS 523000** and the team's **Data Analyst/Data Analytics** pathway.
+
+The resulting datasets provide the foundation for the next stage: exploratory analysis of the financial-services market and evaluation of the skills, compensation, locations, and employment patterns relevant to aspiring Data Analysts.
+EOF
