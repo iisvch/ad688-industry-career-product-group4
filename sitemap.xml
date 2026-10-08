@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://iisvch.github.io/ad688-industry-career-product-group4/career_plan.html</loc>
+    <lastmod>2026-10-08T18:59:12.332Z</lastmod>
+  </url>
+  <url>
     <loc>https://iisvch.github.io/ad688-industry-career-product-group4/about.html</loc>
-    <lastmod>2026-10-08T18:58:33.513Z</lastmod>
+    <lastmod>2026-10-08T18:59:12.332Z</lastmod>
   </url>
   <url>
     <loc>https://iisvch.github.io/ad688-industry-career-product-group4/skill_gap_analysis.html</loc>
-    <lastmod>2026-10-08T18:58:33.516Z</lastmod>
+    <lastmod>2026-10-08T18:59:12.335Z</lastmod>
   </url>
   <url>
     <loc>https://iisvch.github.io/ad688-industry-career-product-group4/data_preparation.html</loc>
-    <lastmod>2026-10-08T18:58:33.514Z</lastmod>
+    <lastmod>2026-10-08T18:59:12.332Z</lastmod>
   </url>
   <url>
     <loc>https://iisvch.github.io/ad688-industry-career-product-group4/introduction.html</loc>
-    <lastmod>2026-10-08T18:58:33.516Z</lastmod>
+    <lastmod>2026-10-08T18:59:12.335Z</lastmod>
+  </url>
+  <url>
+    <loc>https://iisvch.github.io/ad688-industry-career-product-group4/data_cleaning.html</loc>
+    <lastmod>2026-10-08T18:59:12.332Z</lastmod>
+  </url>
+  <url>
+    <loc>https://iisvch.github.io/ad688-industry-career-product-group4/ml_methods.html</loc>
+    <lastmod>2026-10-08T18:59:12.335Z</lastmod>
   </url>
   <url>
     <loc>https://iisvch.github.io/ad688-industry-career-product-group4/index.html</loc>
-    <lastmod>2026-10-08T18:58:33.516Z</lastmod>
+    <lastmod>2026-10-08T18:59:12.335Z</lastmod>
   </url>
   <url>
     <loc>https://iisvch.github.io/ad688-industry-career-product-group4/final_recommendations.html</loc>
-    <lastmod>2026-10-08T18:58:33.516Z</lastmod>
+    <lastmod>2026-10-08T18:59:12.334Z</lastmod>
   </url>
   <url>
     <loc>https://iisvch.github.io/ad688-industry-career-product-group4/career_evaluation.html</loc>
-    <lastmod>2026-10-08T18:58:33.513Z</lastmod>
+    <lastmod>2026-10-08T18:59:12.332Z</lastmod>
   </url>
   <url>
     <loc>https://iisvch.github.io/ad688-industry-career-product-group4/market_baseline.html</loc>
-    <lastmod>2026-10-08T18:58:33.516Z</lastmod>
+    <lastmod>2026-10-08T18:59:12.335Z</lastmod>
+  </url>
+  <url>
+    <loc>https://iisvch.github.io/ad688-industry-career-product-group4/eda.html</loc>
+    <lastmod>2026-10-08T18:59:12.332Z</lastmod>
   </url>
 </urlset>
