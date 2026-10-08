@@ -101,19 +101,35 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./introduction.html" aria-current="page"> 
-<span class="menu-text">Introduction</span></a>
+<span class="menu-text">Project Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data_preparation.html"> 
+    <a class="nav-link" href="./data_cleaning.qmd"> 
 <span class="menu-text">Data Preparation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./market_baseline.html"> 
-<span class="menu-text">Market Baseline</span></a>
+    <a class="nav-link" href="./eda.qmd"> 
+<span class="menu-text">Exploratory Analysis</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./skill_gap_analysis.html"> 
 <span class="menu-text">Skill Gap Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ml_methods.qmd"> 
+<span class="menu-text">Predictive Modeling</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./career_plan.qmd"> 
+<span class="menu-text">Career Strategy</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data_preparation.html"> 
+<span class="menu-text">(old)Data Preparation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./market_baseline.html"> 
+<span class="menu-text">Market Baseline</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./career_evaluation.html"> 
@@ -220,7 +236,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/iisvch\.github\.io\/ad688-career-evaluation-group4\/");
+        var filterRegex = new RegExp("https:\/\/iisvch\.github\.io\/ad688-industry-career-product-group4\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
