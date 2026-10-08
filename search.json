@@ -1,5 +1,47 @@
 [
   {
+    "objectID": "introduction.html",
+    "href": "introduction.html",
+    "title": "Research introduction",
+    "section": "",
+    "text": "Students preparing for Data Analyst careers must connect their current capabilities to the requirements of actual employers. A job title alone does not explain which skills a position requires, how much experience is expected, whether compensation is disclosed, or whether the work arrangement fits a job seeker’s circumstances. This project develops a career evaluation prototype for students and aspiring Data Analysts considering securities, investments, and related financial activities.\nThe target user is a student or early-career job seeker pursuing a Data Analyst / Data Analytics pathway. The primary focus is skill and career readiness. Salary, experience, location, and employment patterns provide supporting evidence for deciding where to apply and what to learn next. This framing follows the AD688 running case, which asks teams to connect an industry-scoped dataset to practical job-seeker decisions [@ad688case].\nReliable industry labels are important because an incorrectly classified employer can distort a sector-specific career benchmark. Chern et al. investigate employer-industry errors arising from employer identification and industry attributes, using posting-derived signals to help detect them [@chern2018]. For this project, the implication is to document how industry membership is selected and to treat potentially inconsistent employer labels as a data-quality limitation.\nThe selected industry provides a setting in which to examine whether technical tools, analytical methods, and business knowledge appear together in Data Analyst postings. Which skills recur most often, and whether they are associated with particular salary or experience bands, are questions for the analysis rather than established findings.\n\n\n\n\n\nFinancial Services – Data Analytics\n\n\n\n\n\n\n\nScope component\nSelected scope\n\n\n\n\nTarget career pathway\nData Analyst / Data Analytics\n\n\nNAICS classification revision\n2022\n\n\nSelected dataset code\n523\n\n\nClassification level\nThree-digit subsector within sector 52, Finance and Insurance\n\n\nIndustry label\nSecurities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nPrimary analytical focus\nSkill and career readiness\n\n\nSupporting dimensions\nSalary, experience, geography, remote work, and employment type\n\n\n\nNAICS 523 covers securities and commodity intermediation, exchanges, and other investment-related services. It is narrower than the full Finance and Insurance sector and does not represent all financial-services employment. NAICS describes the economic activity of an establishment; it does not identify an employee’s occupation [@naics2022]. A Data Analyst title and an employer’s industry code therefore serve different purposes in the cohort definition.\nThe course guide prefers four- or six-digit industry codes where possible [@ad688case]. Group 4 uses the selected three-digit subsector to examine Data Analyst opportunities across related investment activities, while retaining more detailed codes for within-scope comparisons. The report should acknowledge the wider scope and avoid treating its subindustries as interchangeable.\nThe primary industry filter is naics_2022_3 = '523'. The group notes also use the notation 523000; this project uses 523 consistently for the three-digit scope. A six-digit dataset value beginning with 523 can support a cross-check, but should not be assumed to provide an identical cohort when fields are incomplete or inconsistent.\nReference: NAICS 523 industry description.\n\n\n\n\nWhat skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in securities, investments, and related financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?\n\n\n\n\n\nRQ1 — Skills and requirements: Which technical, software, business, and specialized skills recur in the selected postings, and how do stated education and experience requirements vary?\nRQ2 — Opportunity patterns: How do disclosed salary ranges, locations, remote-work arrangements, and employment types vary within the selected industry-career cohort?\nRQ3 — Career readiness: How do the observed skill requirements compare with the team’s self-assessed capabilities, and which learning priorities follow from a transparent comparison?\n\nThe career cohort will require both the industry filter and a documented title match in title_raw or title_clean. The current title rule recognizes Data Analyst and selected explicit variants, including Data & Insights Analyst, Data Analytics Analyst, and Analyst – Data Analysis. It can retain senior titles and can miss roles expressed differently. Experience and seniority must therefore be assessed separately; the cohort should not automatically be described as entry-level.\n\n\n\n\nFive sources support the project’s scope, data-quality approach, and interpretation. This is a focused narrative review rather than a systematic review.\nEmployer-industry classification. Goindani et al. examine employer-industry classification using job postings [@goindani2017]. The study provides a methodological reference for using recruitment records to examine employer classification. Its relevance here is to make industry selection explicit and review questionable labels. Classification research provides context for cohort quality; it does not establish skill demand or salary levels in this project’s NAICS 523 sample.\nIndustry-label error detection. Chern et al. use employer names, employer descriptions, job titles, and job descriptions to identify possible industry-classification errors, comparing support vector machine and random forest approaches [@chern2018]. Their findings motivate checking employer and posting information when industry membership is uncertain. The paper’s predictive results concern its own dataset and are not evidence of this project’s accuracy or a requirement to reproduce its models.\nRepresentativeness of online postings. Tsvetkova et al. compare Lightcast vacancies with official sources in Australia, Canada, the United Kingdom, and the United States [@tsvetkova2024]. They identify variation in representativeness across geography, occupation, and industry. This supports reporting the observed posting sample and its coverage rather than equating posting counts with all vacancies or employment. Their results do not provide a correction factor for the MET Career Compass dataset.\nIndustry definition and analytical boundaries. The 2022 NAICS manual supplies the classification framework used to define the selected subsector [@naics2022]. It supports keeping employer industry distinct from career pathway and retaining detailed industry labels for interpretation. This prevents a financial-services label from being used as a substitute for a Data Analyst title filter.\nReproducible analytical implementation. Pedregosa et al. describe scikit-learn as a general-purpose Python machine-learning library [@pedregosa2011]. The source is relevant if the final project uses a Python predictive or segmentation model. In that case, package versions, preprocessing, evaluation, and parameter choices must be documented separately. The software paper does not establish which skills financial employers require or validate a career-readiness scorecard.\nTogether, these sources support an industry-scoped, reproducible career benchmark with explicit limits. The proposed contribution is to turn posting evidence and self-assessed skills into interpretable learning and application priorities. The project does not claim to improve a proprietary classification system or demonstrate that acquiring a particular skill causes employment.\n\n\n\nThe project will explore whether the selected postings reveal recurring combinations of technical tools, business capabilities, and experience requirements. SQL, Python, Excel, visualization tools, statistics, and business analysis are candidate skill categories to examine; their relative importance must be established from the selected records.\nThe analysis will also examine whether disclosed compensation and remote-work patterns vary with experience, location, or detailed industry group. Such comparisons describe associations within the sample. Missing salary information, unequal subgroup sizes, and inconsistent labels may restrict which comparisons are useful.\nA career evaluation component will compare posting-derived skill demand with the team’s existing self-assessments. Any scorecard will explain its dimensions, scaling, and weighting choices. A self-rating and a skill’s posting frequency measure different things, so they should not be subtracted directly without a defined conversion rule. Rankings should be checked for sensitivity to reasonable changes in weights.\nThese are exploratory expectations, not reported results. This document does not establish a sample size, collection period, salary median, top-skill ranking, or model performance. Those findings must come from the cleaned project dataset and documented analysis. The running case’s title retains “2024,” while the working dataset is named Jobs_2026; the final report should state the actual observed posting dates and snapshot provenance [@ad688case; @careercompass2026].\n\n\n\n\n\nThe following fields are drawn from the supplied project filtering code. Their presence and types should be checked against the loaded Parquet schema before analysis. An API response should be mapped separately rather than assumed to have identical fields [@careercompass2026].\n\n\n\n\n\n\n\n\nPurpose\nFields\nIntended use and interpretation control\n\n\n\n\nRecord identity, dates, and duplicates\nid, posted, is_duplicate, duplicate_of_id\nDocument the posting window; check ID uniqueness; report duplicate exclusions and unknown duplicate status.\n\n\nIndustry scope\nnaics_2022_3, naics_2022_3_name, naics_2022_4, naics_2022_4_name, naics_2022_5, naics_2022_5_name, naics_2022_6, naics_2022_6_name\nFilter the three-digit code to 523; retain detailed classifications for within-scope comparisons and consistency checks.\n\n\nCareer selection and occupation context\ntitle_raw, title_clean, soc_2021_5, soc_2021_5_name, onet, onet_name\nApply the declared title rule; review occupation labels and ambiguous matches; distinguish role from employer industry.\n\n\nEmployer context and source evidence\ncompany_name, company_is_staffing, url, body\nInspect employer and staffing flags; retain posting evidence for reviewing unexpected industry or title matches.\n\n\nSkills\nskills_name, software_skills_name, specialized_skills_name\nDecode and standardize skill lists; count each skill once per posting; avoid double counting overlapping skill fields.\n\n\nEducation, experience, and credentials\nmin_years_experience, max_years_experience, education_levels_name, certifications_name\nBuild interpretable requirement groups; preserve unknown values; do not assume a missing experience requirement means zero.\n\n\nCompensation\ntext_salary_from, text_salary_to, text_pay_frequency, text_pay_currency, normalized_salary_from, normalized_salary_to, salary_normalization_status\nVerify currency, pay period, normalization, and valid ranges; report salary coverage and both bounds.\n\n\nEmployment and location\nremote_type_name, employment_type_name, city_name, state_name, parsed_country_iso_abbr\nDefine geographic scope; compare stated arrangements and employment types; show missing or unknown categories.\n\n\nDerived audit fields\ncareer_match_reason, analysis_include\nExplain which title matched and which rows enter the analysis.\n\n\n\nThe supplied filtering code includes rows in the analytical subset only when is_duplicate is explicitly false. True and null values are excluded from that subset. This rule uses the dataset’s flag and does not independently resolve all repeated postings or employer aliases. The number excluded for each reason should be reported.\nReferences"
+  },
+  {
+    "objectID": "introduction.html#research-rationale",
+    "href": "introduction.html#research-rationale",
+    "title": "Research introduction",
+    "section": "",
+    "text": "Students preparing for Data Analyst careers must connect their current capabilities to the requirements of actual employers. A job title alone does not explain which skills a position requires, how much experience is expected, whether compensation is disclosed, or whether the work arrangement fits a job seeker’s circumstances. This project develops a career evaluation prototype for students and aspiring Data Analysts considering securities, investments, and related financial activities.\nThe target user is a student or early-career job seeker pursuing a Data Analyst / Data Analytics pathway. The primary focus is skill and career readiness. Salary, experience, location, and employment patterns provide supporting evidence for deciding where to apply and what to learn next. This framing follows the AD688 running case, which asks teams to connect an industry-scoped dataset to practical job-seeker decisions [@ad688case].\nReliable industry labels are important because an incorrectly classified employer can distort a sector-specific career benchmark. Chern et al. investigate employer-industry errors arising from employer identification and industry attributes, using posting-derived signals to help detect them [@chern2018]. For this project, the implication is to document how industry membership is selected and to treat potentially inconsistent employer labels as a data-quality limitation.\nThe selected industry provides a setting in which to examine whether technical tools, analytical methods, and business knowledge appear together in Data Analyst postings. Which skills recur most often, and whether they are associated with particular salary or experience bands, are questions for the analysis rather than established findings."
+  },
+  {
+    "objectID": "introduction.html#scope-and-research-questions",
+    "href": "introduction.html#scope-and-research-questions",
+    "title": "Research introduction",
+    "section": "",
+    "text": "Financial Services – Data Analytics\n\n\n\n\n\n\n\nScope component\nSelected scope\n\n\n\n\nTarget career pathway\nData Analyst / Data Analytics\n\n\nNAICS classification revision\n2022\n\n\nSelected dataset code\n523\n\n\nClassification level\nThree-digit subsector within sector 52, Finance and Insurance\n\n\nIndustry label\nSecurities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nPrimary analytical focus\nSkill and career readiness\n\n\nSupporting dimensions\nSalary, experience, geography, remote work, and employment type\n\n\n\nNAICS 523 covers securities and commodity intermediation, exchanges, and other investment-related services. It is narrower than the full Finance and Insurance sector and does not represent all financial-services employment. NAICS describes the economic activity of an establishment; it does not identify an employee’s occupation [@naics2022]. A Data Analyst title and an employer’s industry code therefore serve different purposes in the cohort definition.\nThe course guide prefers four- or six-digit industry codes where possible [@ad688case]. Group 4 uses the selected three-digit subsector to examine Data Analyst opportunities across related investment activities, while retaining more detailed codes for within-scope comparisons. The report should acknowledge the wider scope and avoid treating its subindustries as interchangeable.\nThe primary industry filter is naics_2022_3 = '523'. The group notes also use the notation 523000; this project uses 523 consistently for the three-digit scope. A six-digit dataset value beginning with 523 can support a cross-check, but should not be assumed to provide an identical cohort when fields are incomplete or inconsistent.\nReference: NAICS 523 industry description.\n\n\n\n\nWhat skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in securities, investments, and related financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?\n\n\n\n\n\nRQ1 — Skills and requirements: Which technical, software, business, and specialized skills recur in the selected postings, and how do stated education and experience requirements vary?\nRQ2 — Opportunity patterns: How do disclosed salary ranges, locations, remote-work arrangements, and employment types vary within the selected industry-career cohort?\nRQ3 — Career readiness: How do the observed skill requirements compare with the team’s self-assessed capabilities, and which learning priorities follow from a transparent comparison?\n\nThe career cohort will require both the industry filter and a documented title match in title_raw or title_clean. The current title rule recognizes Data Analyst and selected explicit variants, including Data & Insights Analyst, Data Analytics Analyst, and Analyst – Data Analysis. It can retain senior titles and can miss roles expressed differently. Experience and seniority must therefore be assessed separately; the cohort should not automatically be described as entry-level."
+  },
+  {
+    "objectID": "introduction.html#short-literature-review",
+    "href": "introduction.html#short-literature-review",
+    "title": "Research introduction",
+    "section": "",
+    "text": "Five sources support the project’s scope, data-quality approach, and interpretation. This is a focused narrative review rather than a systematic review.\nEmployer-industry classification. Goindani et al. examine employer-industry classification using job postings [@goindani2017]. The study provides a methodological reference for using recruitment records to examine employer classification. Its relevance here is to make industry selection explicit and review questionable labels. Classification research provides context for cohort quality; it does not establish skill demand or salary levels in this project’s NAICS 523 sample.\nIndustry-label error detection. Chern et al. use employer names, employer descriptions, job titles, and job descriptions to identify possible industry-classification errors, comparing support vector machine and random forest approaches [@chern2018]. Their findings motivate checking employer and posting information when industry membership is uncertain. The paper’s predictive results concern its own dataset and are not evidence of this project’s accuracy or a requirement to reproduce its models.\nRepresentativeness of online postings. Tsvetkova et al. compare Lightcast vacancies with official sources in Australia, Canada, the United Kingdom, and the United States [@tsvetkova2024]. They identify variation in representativeness across geography, occupation, and industry. This supports reporting the observed posting sample and its coverage rather than equating posting counts with all vacancies or employment. Their results do not provide a correction factor for the MET Career Compass dataset.\nIndustry definition and analytical boundaries. The 2022 NAICS manual supplies the classification framework used to define the selected subsector [@naics2022]. It supports keeping employer industry distinct from career pathway and retaining detailed industry labels for interpretation. This prevents a financial-services label from being used as a substitute for a Data Analyst title filter.\nReproducible analytical implementation. Pedregosa et al. describe scikit-learn as a general-purpose Python machine-learning library [@pedregosa2011]. The source is relevant if the final project uses a Python predictive or segmentation model. In that case, package versions, preprocessing, evaluation, and parameter choices must be documented separately. The software paper does not establish which skills financial employers require or validate a career-readiness scorecard.\nTogether, these sources support an industry-scoped, reproducible career benchmark with explicit limits. The proposed contribution is to turn posting evidence and self-assessed skills into interpretable learning and application priorities. The project does not claim to improve a proprietary classification system or demonstrate that acquiring a particular skill causes employment."
+  },
+  {
+    "objectID": "introduction.html#analytical-expectations-and-design-status",
+    "href": "introduction.html#analytical-expectations-and-design-status",
+    "title": "Research introduction",
+    "section": "",
+    "text": "The project will explore whether the selected postings reveal recurring combinations of technical tools, business capabilities, and experience requirements. SQL, Python, Excel, visualization tools, statistics, and business analysis are candidate skill categories to examine; their relative importance must be established from the selected records.\nThe analysis will also examine whether disclosed compensation and remote-work patterns vary with experience, location, or detailed industry group. Such comparisons describe associations within the sample. Missing salary information, unequal subgroup sizes, and inconsistent labels may restrict which comparisons are useful.\nA career evaluation component will compare posting-derived skill demand with the team’s existing self-assessments. Any scorecard will explain its dimensions, scaling, and weighting choices. A self-rating and a skill’s posting frequency measure different things, so they should not be subtracted directly without a defined conversion rule. Rankings should be checked for sensitivity to reasonable changes in weights.\nThese are exploratory expectations, not reported results. This document does not establish a sample size, collection period, salary median, top-skill ranking, or model performance. Those findings must come from the cleaned project dataset and documented analysis. The running case’s title retains “2024,” while the working dataset is named Jobs_2026; the final report should state the actual observed posting dates and snapshot provenance [@ad688case; @careercompass2026]."
+  },
+  {
+    "objectID": "introduction.html#data-fields-and-intended-use",
+    "href": "introduction.html#data-fields-and-intended-use",
+    "title": "Research introduction",
+    "section": "",
+    "text": "The following fields are drawn from the supplied project filtering code. Their presence and types should be checked against the loaded Parquet schema before analysis. An API response should be mapped separately rather than assumed to have identical fields [@careercompass2026].\n\n\n\n\n\n\n\n\nPurpose\nFields\nIntended use and interpretation control\n\n\n\n\nRecord identity, dates, and duplicates\nid, posted, is_duplicate, duplicate_of_id\nDocument the posting window; check ID uniqueness; report duplicate exclusions and unknown duplicate status.\n\n\nIndustry scope\nnaics_2022_3, naics_2022_3_name, naics_2022_4, naics_2022_4_name, naics_2022_5, naics_2022_5_name, naics_2022_6, naics_2022_6_name\nFilter the three-digit code to 523; retain detailed classifications for within-scope comparisons and consistency checks.\n\n\nCareer selection and occupation context\ntitle_raw, title_clean, soc_2021_5, soc_2021_5_name, onet, onet_name\nApply the declared title rule; review occupation labels and ambiguous matches; distinguish role from employer industry.\n\n\nEmployer context and source evidence\ncompany_name, company_is_staffing, url, body\nInspect employer and staffing flags; retain posting evidence for reviewing unexpected industry or title matches.\n\n\nSkills\nskills_name, software_skills_name, specialized_skills_name\nDecode and standardize skill lists; count each skill once per posting; avoid double counting overlapping skill fields.\n\n\nEducation, experience, and credentials\nmin_years_experience, max_years_experience, education_levels_name, certifications_name\nBuild interpretable requirement groups; preserve unknown values; do not assume a missing experience requirement means zero.\n\n\nCompensation\ntext_salary_from, text_salary_to, text_pay_frequency, text_pay_currency, normalized_salary_from, normalized_salary_to, salary_normalization_status\nVerify currency, pay period, normalization, and valid ranges; report salary coverage and both bounds.\n\n\nEmployment and location\nremote_type_name, employment_type_name, city_name, state_name, parsed_country_iso_abbr\nDefine geographic scope; compare stated arrangements and employment types; show missing or unknown categories.\n\n\nDerived audit fields\ncareer_match_reason, analysis_include\nExplain which title matched and which rows enter the analysis.\n\n\n\nThe supplied filtering code includes rows in the analytical subset only when is_duplicate is explicitly false. True and null values are excluded from that subset. This rule uses the dataset’s flag and does not independently resolve all repeated postings or employer aliases. The number excluded for each reason should be reported.\nReferences"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -7,95 +49,25 @@
     "text": "About this site"
   },
   {
-    "objectID": "data_preparation.html",
-    "href": "data_preparation.html",
-    "title": "Data Preparation",
-    "section": "",
-    "text": "title: “Data Preparation” subtitle: “Step 2 — Data Preparation and Career-Market Scope” —"
-  },
-  {
-    "objectID": "data_preparation.html#cat-data_preparation.qmd-eof",
-    "href": "data_preparation.html#cat-data_preparation.qmd-eof",
-    "title": "Data Preparation",
-    "section": "",
-    "text": "title: “Data Preparation” subtitle: “Step 2 — Data Preparation and Career-Market Scope” —"
-  },
-  {
-    "objectID": "data_preparation.html#step-2-objective",
-    "href": "data_preparation.html#step-2-objective",
-    "title": "Data Preparation",
-    "section": "Step 2 Objective",
-    "text": "Step 2 Objective\nThis step prepares the career-market data used to evaluate opportunities for Data Analysts in financial services. The analysis is anchored to the project’s selected industry and career pathway:\n\nTarget career: Data Analyst / Data Analytics\nNAICS: 523000\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe goal is to create a reproducible dataset that can be used to examine job availability, compensation, location, work arrangements, and employer characteristics."
-  },
-  {
-    "objectID": "data_preparation.html#data-source",
-    "href": "data_preparation.html#data-source",
-    "title": "Data Preparation",
-    "section": "Data Source",
-    "text": "Data Source\nThe project uses the MET Career Compass Employability API. The API provides job-posting information including job titles, employers, locations, salary fields, remote status, occupation classifications, NAICS classifications, skills, and job descriptions.\nThe API data used for this analysis was retrieved on October 5, 2026. The API reported a latest data refresh date of October 3, 2026 and identified the dataset as met-career-pathways-jobs."
-  },
-  {
-    "objectID": "data_preparation.html#industry-filter",
-    "href": "data_preparation.html#industry-filter",
-    "title": "Data Preparation",
-    "section": "Industry Filter",
-    "text": "Industry Filter\nThe first stage of the data preparation process restricted the job postings to:\nNAICS 523000 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities\nThe API returned 400 records matching this NAICS code before subsequent pagination requests timed out. All 400 retrieved records were verified to contain NAICS code 523000.\nThis industry restriction was retained throughout the analysis so that the project remained focused on financial-services employment opportunities rather than the overall labor market."
-  },
-  {
-    "objectID": "data_preparation.html#career-filter",
-    "href": "data_preparation.html#career-filter",
-    "title": "Data Preparation",
-    "section": "Career Filter",
-    "text": "Career Filter\nThe target career pathway for Group 4 is Data Analyst / Data Analytics.\nSeveral possible approaches were evaluated using the available occupation and job-title fields.\n\nOccupation Classification Review\nThe MET data includes SOC and O*NET occupation classifications. SOC 15-2051 was initially considered because it is labeled Data Scientists.\nHowever, the first 400 NAICS 523000 records demonstrated that this classification was too broad for the project’s specific Data Analyst pathway. For example, records classified under SOC 15-2051 included Android developers, iOS developers, mobile application developers, mobile engineers, and other roles that do not represent the target Data Analyst career.\nTherefore, SOC 15-2051 was not used as a direct proxy for Data Analyst jobs.\n\n\nTitle-Based Career Filter\nThe final target-career filter uses explicit Data Analyst/Data & Insights Analyst terminology in the job title.\nThe inclusion logic identifies titles containing:\n\nData Analyst\nData & Insights Analyst\n\nThis approach was selected because it provides a more direct connection to the team’s stated career pathway than the broader occupation classifications observed in the data.\nThe resulting target-career dataset contains 2 postings:\n\n\n\n\n\n\n\n\nJob\nEmployer\nLocation\n\n\n\n\nData & Insights Analyst (EMEA)\nGreenparkcontent\nLondon, United Kingdom\n\n\nAdvanced Data & Insights Analyst - Deposits Line of Business\nU.S. Bank\nCharlotte, North Carolina"
-  },
-  {
-    "objectID": "data_preparation.html#data-retrieval-limitation",
-    "href": "data_preparation.html#data-retrieval-limitation",
-    "title": "Data Preparation",
-    "section": "Data Retrieval Limitation",
-    "text": "Data Retrieval Limitation\nThe MET API successfully returned the first 400 records for NAICS 523000. Requests beginning at offset 400 consistently timed out, including requests for a single record.\nBecause the additional records could not be retrieved reliably, the project does not claim that the 400 records represent the complete NAICS 523000 labor market.\nInstead, the retrieved records are treated as an accessible analytical sample from the MET Career Compass dataset.\nThis limitation is important when interpreting market-level results."
-  },
-  {
-    "objectID": "data_preparation.html#cleaning-decisions",
-    "href": "data_preparation.html#cleaning-decisions",
-    "title": "Data Preparation",
-    "section": "Cleaning Decisions",
-    "text": "Cleaning Decisions\n\nDuplicate Records\nJob postings were checked using the MET job_id field.\nNo duplicate job IDs were identified among the 400 retrieved records.\n\n\nNAICS\nThe naics_code field was converted to text and stripped of leading/trailing whitespace. Records were retained only when the resulting value equaled 523000.\nAll 400 retrieved records passed this verification.\n\n\nDates\nPosting and expiration dates were converted to datetime values where available. Invalid or unavailable dates were treated as missing.\n\n\nSalary\nAnnual and hourly salary fields were converted to numeric values. Missing salary values were retained as missing rather than being replaced with zero.\nA missing salary does not imply that the position is unpaid; it indicates that a usable salary value was not available in the retrieved posting data.\n\n\nLocation\nLocation, city, state, and state-code fields were converted to consistent text values. Missing location fields were retained as missing.\n\n\nRemote Status\nRemote-status values were standardized to text categories such as remote, hybrid, onsite, or unknown. Missing or unavailable classifications were retained as unknown rather than inferred from the job description.\n\n\nSkills\nThe API’s skills information was retained because skills will be used in later stages of the project to evaluate the capabilities associated with the target career pathway.\n\n\nOccupation Fields\nSOC, O*NET, and occupation-family fields were retained for comparison and validation. However, the analysis does not assume that a broad occupation classification is equivalent to the team’s specific Data Analyst career pathway."
-  },
-  {
-    "objectID": "data_preparation.html#output-dataset",
-    "href": "data_preparation.html#output-dataset",
-    "title": "Data Preparation",
-    "section": "Output Dataset",
-    "text": "Output Dataset\nThe cleaned target-career dataset is:\ndata/career_market_panel.csv\nThe dataset contains the two postings that directly match the project’s Data Analyst/Data & Insights Analyst title criteria.\nA broader raw industry dataset is retained as:\ndata/raw_naics_523000.json\nThis raw dataset contains the 400 retrieved NAICS 523000 postings and provides the source data for industry-level exploration.\nA variable-level data dictionary is available at:\ndata/data_dictionary.csv"
-  },
-  {
-    "objectID": "data_preparation.html#data-preparation-summary",
-    "href": "data_preparation.html#data-preparation-summary",
-    "title": "Data Preparation",
-    "section": "Data Preparation Summary",
-    "text": "Data Preparation Summary\nThe Step 2 preparation process can be summarized as:\n\nRetrieve MET Career Compass job data.\nRestrict records to NAICS 523000.\nVerify the NAICS classification.\nReview occupation classifications and job titles.\nReject SOC 15-2051 as a direct Data Analyst proxy because of substantial classification noise.\nApply a direct Data Analyst/Data & Insights Analyst title filter.\nRemove duplicate job IDs.\nStandardize dates, salary, location, remote-status, and occupation fields.\nExport the cleaned target-career dataset.\nRetain the broader NAICS dataset for market-level exploratory analysis."
-  },
-  {
-    "objectID": "data_preparation.html#step-2-limitations",
-    "href": "data_preparation.html#step-2-limitations",
-    "title": "Data Preparation",
-    "section": "Step 2 Limitations",
-    "text": "Step 2 Limitations\nThe primary limitation is API pagination. The API returned 400 NAICS 523000 records, but requests beginning at offset 400 repeatedly timed out.\nA second limitation is the small number of direct Data Analyst/Data & Insights Analyst postings within the accessible sample. Therefore, salary, remote-work, and other target-career statistics should be interpreted cautiously rather than generalized to the entire Data Analyst labor market.\nThe broader 400-record NAICS 523000 sample will provide additional industry context for the market-baseline analysis."
-  },
-  {
-    "objectID": "data_preparation.html#conclusion",
-    "href": "data_preparation.html#conclusion",
-    "title": "Data Preparation",
-    "section": "Conclusion",
-    "text": "Conclusion\nThe data-preparation stage establishes a reproducible industry and career scope for the project. The analysis remains anchored to NAICS 523000 and the team’s Data Analyst/Data Analytics pathway.\nThe resulting datasets provide the foundation for the next stage: exploratory analysis of the financial-services market and evaluation of the skills, compensation, locations, and employment patterns relevant to aspiring Data Analysts. EOF"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Data Analytics Careers in Financial Services",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "What skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?\nNAICS 2022: 523\nTarget career pathway: Data Analyst / Data Analytics\nhttps://www.naics.com/naics-code-description/?code=523\nIndustry label: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\nThis industry includes organizations involved in securities, investments, financial markets, and related financial activities. It provides a useful setting for evaluating Data Analyst careers because the dataset contains analytics-related positions that can be analyzed across salary, required skills, experience, location, and other career factors."
+  },
+  {
+    "objectID": "index.html#research-and-product-question",
+    "href": "index.html#research-and-product-question",
+    "title": "Data Analytics Careers in Financial Services",
+    "section": "",
+    "text": "What skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?\nNAICS 2022: 523\nTarget career pathway: Data Analyst / Data Analytics\nhttps://www.naics.com/naics-code-description/?code=523\nIndustry label: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\nThis industry includes organizations involved in securities, investments, financial markets, and related financial activities. It provides a useful setting for evaluating Data Analyst careers because the dataset contains analytics-related positions that can be analyzed across salary, required skills, experience, location, and other career factors."
+  },
+  {
+    "objectID": "index.html#read-the-study",
+    "href": "index.html#read-the-study",
+    "title": "Data Analytics Careers in Financial Services",
+    "section": "Read the study",
+    "text": "Read the study\n\nProject Overview: rationale, research questions and industry scope.\nData preparation: data sources, cleaning, and preparation for analysis.\nMarket Baseline: current state of the financial services job market.\nSkill-gap analysis: analysis of skills, experience, and salary gaps for Data Analysts in financial services.\nCareer Evaluation: analysis of career paths and opportunities in the industry.\nFinal recommendations"
   },
   {
     "objectID": "market_baseline.html",
@@ -180,5 +152,89 @@
     "title": "Market Baseline",
     "section": "Step 2 Takeaway",
     "text": "Step 2 Takeaway\nThe accessible NAICS 523000 sample provides a useful starting point for understanding financial-services job-market characteristics, but it also demonstrates the importance of careful career filtering and data-quality checks.\nFor this project, Data Analyst/Data & Insights Analyst titles are treated as the target career subset, while the broader NAICS 523000 records provide industry context."
+  },
+  {
+    "objectID": "old_data_preparation.html",
+    "href": "old_data_preparation.html",
+    "title": "Data Preparation",
+    "section": "",
+    "text": "title: “Data Preparation” subtitle: “Step 2 — Data Preparation and Career-Market Scope” —"
+  },
+  {
+    "objectID": "old_data_preparation.html#cat-data_preparation.qmd-eof",
+    "href": "old_data_preparation.html#cat-data_preparation.qmd-eof",
+    "title": "Data Preparation",
+    "section": "",
+    "text": "title: “Data Preparation” subtitle: “Step 2 — Data Preparation and Career-Market Scope” —"
+  },
+  {
+    "objectID": "old_data_preparation.html#step-2-objective",
+    "href": "old_data_preparation.html#step-2-objective",
+    "title": "Data Preparation",
+    "section": "Step 2 Objective",
+    "text": "Step 2 Objective\nThis step prepares the career-market data used to evaluate opportunities for Data Analysts in financial services. The analysis is anchored to the project’s selected industry and career pathway:\n\nTarget career: Data Analyst / Data Analytics\nNAICS: 523000\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe goal is to create a reproducible dataset that can be used to examine job availability, compensation, location, work arrangements, and employer characteristics."
+  },
+  {
+    "objectID": "old_data_preparation.html#data-source",
+    "href": "old_data_preparation.html#data-source",
+    "title": "Data Preparation",
+    "section": "Data Source",
+    "text": "Data Source\nThe project uses the MET Career Compass Employability API. The API provides job-posting information including job titles, employers, locations, salary fields, remote status, occupation classifications, NAICS classifications, skills, and job descriptions.\nThe API data used for this analysis was retrieved on October 5, 2026. The API reported a latest data refresh date of October 3, 2026 and identified the dataset as met-career-pathways-jobs."
+  },
+  {
+    "objectID": "old_data_preparation.html#industry-filter",
+    "href": "old_data_preparation.html#industry-filter",
+    "title": "Data Preparation",
+    "section": "Industry Filter",
+    "text": "Industry Filter\nThe first stage of the data preparation process restricted the job postings to:\nNAICS 523000 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities\nThe API returned 400 records matching this NAICS code before subsequent pagination requests timed out. All 400 retrieved records were verified to contain NAICS code 523000.\nThis industry restriction was retained throughout the analysis so that the project remained focused on financial-services employment opportunities rather than the overall labor market."
+  },
+  {
+    "objectID": "old_data_preparation.html#career-filter",
+    "href": "old_data_preparation.html#career-filter",
+    "title": "Data Preparation",
+    "section": "Career Filter",
+    "text": "Career Filter\nThe target career pathway for Group 4 is Data Analyst / Data Analytics.\nSeveral possible approaches were evaluated using the available occupation and job-title fields.\n\nOccupation Classification Review\nThe MET data includes SOC and O*NET occupation classifications. SOC 15-2051 was initially considered because it is labeled Data Scientists.\nHowever, the first 400 NAICS 523000 records demonstrated that this classification was too broad for the project’s specific Data Analyst pathway. For example, records classified under SOC 15-2051 included Android developers, iOS developers, mobile application developers, mobile engineers, and other roles that do not represent the target Data Analyst career.\nTherefore, SOC 15-2051 was not used as a direct proxy for Data Analyst jobs.\n\n\nTitle-Based Career Filter\nThe final target-career filter uses explicit Data Analyst/Data & Insights Analyst terminology in the job title.\nThe inclusion logic identifies titles containing:\n\nData Analyst\nData & Insights Analyst\n\nThis approach was selected because it provides a more direct connection to the team’s stated career pathway than the broader occupation classifications observed in the data.\nThe resulting target-career dataset contains 2 postings:\n\n\n\n\n\n\n\n\nJob\nEmployer\nLocation\n\n\n\n\nData & Insights Analyst (EMEA)\nGreenparkcontent\nLondon, United Kingdom\n\n\nAdvanced Data & Insights Analyst - Deposits Line of Business\nU.S. Bank\nCharlotte, North Carolina"
+  },
+  {
+    "objectID": "old_data_preparation.html#data-retrieval-limitation",
+    "href": "old_data_preparation.html#data-retrieval-limitation",
+    "title": "Data Preparation",
+    "section": "Data Retrieval Limitation",
+    "text": "Data Retrieval Limitation\nThe MET API successfully returned the first 400 records for NAICS 523000. Requests beginning at offset 400 consistently timed out, including requests for a single record.\nBecause the additional records could not be retrieved reliably, the project does not claim that the 400 records represent the complete NAICS 523000 labor market.\nInstead, the retrieved records are treated as an accessible analytical sample from the MET Career Compass dataset.\nThis limitation is important when interpreting market-level results."
+  },
+  {
+    "objectID": "old_data_preparation.html#cleaning-decisions",
+    "href": "old_data_preparation.html#cleaning-decisions",
+    "title": "Data Preparation",
+    "section": "Cleaning Decisions",
+    "text": "Cleaning Decisions\n\nDuplicate Records\nJob postings were checked using the MET job_id field.\nNo duplicate job IDs were identified among the 400 retrieved records.\n\n\nNAICS\nThe naics_code field was converted to text and stripped of leading/trailing whitespace. Records were retained only when the resulting value equaled 523000.\nAll 400 retrieved records passed this verification.\n\n\nDates\nPosting and expiration dates were converted to datetime values where available. Invalid or unavailable dates were treated as missing.\n\n\nSalary\nAnnual and hourly salary fields were converted to numeric values. Missing salary values were retained as missing rather than being replaced with zero.\nA missing salary does not imply that the position is unpaid; it indicates that a usable salary value was not available in the retrieved posting data.\n\n\nLocation\nLocation, city, state, and state-code fields were converted to consistent text values. Missing location fields were retained as missing.\n\n\nRemote Status\nRemote-status values were standardized to text categories such as remote, hybrid, onsite, or unknown. Missing or unavailable classifications were retained as unknown rather than inferred from the job description.\n\n\nSkills\nThe API’s skills information was retained because skills will be used in later stages of the project to evaluate the capabilities associated with the target career pathway.\n\n\nOccupation Fields\nSOC, O*NET, and occupation-family fields were retained for comparison and validation. However, the analysis does not assume that a broad occupation classification is equivalent to the team’s specific Data Analyst career pathway."
+  },
+  {
+    "objectID": "old_data_preparation.html#output-dataset",
+    "href": "old_data_preparation.html#output-dataset",
+    "title": "Data Preparation",
+    "section": "Output Dataset",
+    "text": "Output Dataset\nThe cleaned target-career dataset is:\ndata/career_market_panel.csv\nThe dataset contains the two postings that directly match the project’s Data Analyst/Data & Insights Analyst title criteria.\nA broader raw industry dataset is retained as:\ndata/raw_naics_523000.json\nThis raw dataset contains the 400 retrieved NAICS 523000 postings and provides the source data for industry-level exploration.\nA variable-level data dictionary is available at:\ndata/data_dictionary.csv"
+  },
+  {
+    "objectID": "old_data_preparation.html#data-preparation-summary",
+    "href": "old_data_preparation.html#data-preparation-summary",
+    "title": "Data Preparation",
+    "section": "Data Preparation Summary",
+    "text": "Data Preparation Summary\nThe Step 2 preparation process can be summarized as:\n\nRetrieve MET Career Compass job data.\nRestrict records to NAICS 523000.\nVerify the NAICS classification.\nReview occupation classifications and job titles.\nReject SOC 15-2051 as a direct Data Analyst proxy because of substantial classification noise.\nApply a direct Data Analyst/Data & Insights Analyst title filter.\nRemove duplicate job IDs.\nStandardize dates, salary, location, remote-status, and occupation fields.\nExport the cleaned target-career dataset.\nRetain the broader NAICS dataset for market-level exploratory analysis."
+  },
+  {
+    "objectID": "old_data_preparation.html#step-2-limitations",
+    "href": "old_data_preparation.html#step-2-limitations",
+    "title": "Data Preparation",
+    "section": "Step 2 Limitations",
+    "text": "Step 2 Limitations\nThe primary limitation is API pagination. The API returned 400 NAICS 523000 records, but requests beginning at offset 400 repeatedly timed out.\nA second limitation is the small number of direct Data Analyst/Data & Insights Analyst postings within the accessible sample. Therefore, salary, remote-work, and other target-career statistics should be interpreted cautiously rather than generalized to the entire Data Analyst labor market.\nThe broader 400-record NAICS 523000 sample will provide additional industry context for the market-baseline analysis."
+  },
+  {
+    "objectID": "old_data_preparation.html#conclusion",
+    "href": "old_data_preparation.html#conclusion",
+    "title": "Data Preparation",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe data-preparation stage establishes a reproducible industry and career scope for the project. The analysis remains anchored to NAICS 523000 and the team’s Data Analyst/Data Analytics pathway.\nThe resulting datasets provide the foundation for the next stage: exploratory analysis of the financial-services market and evaluation of the skills, compensation, locations, and employment patterns relevant to aspiring Data Analysts. EOF"
   }
 ]

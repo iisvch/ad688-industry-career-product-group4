@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>data_cleaning – Data Analytics Careers in Financial Services</title>
+<title>Data Preparation – Data Analytics Careers in Financial Services</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -97,35 +97,11 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
+<span class="menu-text">Data Analytics Careers in Financial Services</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./introduction.html"> 
 <span class="menu-text">Project Overview</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./data_cleaning.html" aria-current="page"> 
-<span class="menu-text">Data Preparation</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./eda.html"> 
-<span class="menu-text">Exploratory Analysis</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./skill_gap_analysis.html"> 
-<span class="menu-text">Skill Gap Analysis</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./ml_methods.html"> 
-<span class="menu-text">Predictive Modeling</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./career_plan.html"> 
-<span class="menu-text">Career Strategy</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./data_preparation.html"> 
-<span class="menu-text">(old)Data Preparation</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./market_baseline.html"> 
@@ -134,10 +110,6 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="./career_evaluation.html"> 
 <span class="menu-text">Career Evaluation</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./final_recommendations.html"> 
-<span class="menu-text">Recommendations</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -150,17 +122,221 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#cat-data_preparation.qmd-eof" id="toc-cat-data_preparation.qmd-eof" class="nav-link active" data-scroll-target="#cat-data_preparation.qmd-eof">cat &gt; data_preparation.qmd &lt;&lt;‘EOF’</a></li>
+  <li><a href="#step-2-objective" id="toc-step-2-objective" class="nav-link" data-scroll-target="#step-2-objective">Step 2 Objective</a></li>
+  <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source">Data Source</a></li>
+  <li><a href="#industry-filter" id="toc-industry-filter" class="nav-link" data-scroll-target="#industry-filter">Industry Filter</a></li>
+  <li><a href="#career-filter" id="toc-career-filter" class="nav-link" data-scroll-target="#career-filter">Career Filter</a>
+  <ul class="collapse">
+  <li><a href="#occupation-classification-review" id="toc-occupation-classification-review" class="nav-link" data-scroll-target="#occupation-classification-review">Occupation Classification Review</a></li>
+  <li><a href="#title-based-career-filter" id="toc-title-based-career-filter" class="nav-link" data-scroll-target="#title-based-career-filter">Title-Based Career Filter</a></li>
+  </ul></li>
+  <li><a href="#data-retrieval-limitation" id="toc-data-retrieval-limitation" class="nav-link" data-scroll-target="#data-retrieval-limitation">Data Retrieval Limitation</a></li>
+  <li><a href="#cleaning-decisions" id="toc-cleaning-decisions" class="nav-link" data-scroll-target="#cleaning-decisions">Cleaning Decisions</a>
+  <ul class="collapse">
+  <li><a href="#duplicate-records" id="toc-duplicate-records" class="nav-link" data-scroll-target="#duplicate-records">Duplicate Records</a></li>
+  <li><a href="#naics" id="toc-naics" class="nav-link" data-scroll-target="#naics">NAICS</a></li>
+  <li><a href="#dates" id="toc-dates" class="nav-link" data-scroll-target="#dates">Dates</a></li>
+  <li><a href="#salary" id="toc-salary" class="nav-link" data-scroll-target="#salary">Salary</a></li>
+  <li><a href="#location" id="toc-location" class="nav-link" data-scroll-target="#location">Location</a></li>
+  <li><a href="#remote-status" id="toc-remote-status" class="nav-link" data-scroll-target="#remote-status">Remote Status</a></li>
+  <li><a href="#skills" id="toc-skills" class="nav-link" data-scroll-target="#skills">Skills</a></li>
+  <li><a href="#occupation-fields" id="toc-occupation-fields" class="nav-link" data-scroll-target="#occupation-fields">Occupation Fields</a></li>
+  </ul></li>
+  <li><a href="#output-dataset" id="toc-output-dataset" class="nav-link" data-scroll-target="#output-dataset">Output Dataset</a></li>
+  <li><a href="#data-preparation-summary" id="toc-data-preparation-summary" class="nav-link" data-scroll-target="#data-preparation-summary">Data Preparation Summary</a></li>
+  <li><a href="#step-2-limitations" id="toc-step-2-limitations" class="nav-link" data-scroll-target="#step-2-limitations">Step 2 Limitations</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Preparation</h1>
+<p class="subtitle lead">Step 2 — Data Preparation and Career-Market Scope</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="cat-data_preparation.qmd-eof" class="level2">
+<h2 class="anchored" data-anchor-id="cat-data_preparation.qmd-eof">cat &gt; data_preparation.qmd &lt;&lt;‘EOF’</h2>
+<p>title: “Data Preparation” subtitle: “Step 2 — Data Preparation and Career-Market Scope” —</p>
+</section>
+<section id="step-2-objective" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-objective">Step 2 Objective</h2>
+<p>This step prepares the career-market data used to evaluate opportunities for Data Analysts in financial services. The analysis is anchored to the project’s selected industry and career pathway:</p>
+<ul>
+<li><strong>Target career:</strong> Data Analyst / Data Analytics</li>
+<li><strong>NAICS:</strong> 523000</li>
+<li><strong>Industry:</strong> Securities, Commodity Contracts, and Other Financial Investments and Related Activities</li>
+</ul>
+<p>The goal is to create a reproducible dataset that can be used to examine job availability, compensation, location, work arrangements, and employer characteristics.</p>
+</section>
+<section id="data-source" class="level2">
+<h2 class="anchored" data-anchor-id="data-source">Data Source</h2>
+<p>The project uses the <strong>MET Career Compass Employability API</strong>. The API provides job-posting information including job titles, employers, locations, salary fields, remote status, occupation classifications, NAICS classifications, skills, and job descriptions.</p>
+<p>The API data used for this analysis was retrieved on <strong>October 5, 2026</strong>. The API reported a latest data refresh date of <strong>October 3, 2026</strong> and identified the dataset as <code>met-career-pathways-jobs</code>.</p>
+</section>
+<section id="industry-filter" class="level2">
+<h2 class="anchored" data-anchor-id="industry-filter">Industry Filter</h2>
+<p>The first stage of the data preparation process restricted the job postings to:</p>
+<p><strong>NAICS 523000 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities</strong></p>
+<p>The API returned 400 records matching this NAICS code before subsequent pagination requests timed out. All 400 retrieved records were verified to contain NAICS code 523000.</p>
+<p>This industry restriction was retained throughout the analysis so that the project remained focused on financial-services employment opportunities rather than the overall labor market.</p>
+</section>
+<section id="career-filter" class="level2">
+<h2 class="anchored" data-anchor-id="career-filter">Career Filter</h2>
+<p>The target career pathway for Group 4 is <strong>Data Analyst / Data Analytics</strong>.</p>
+<p>Several possible approaches were evaluated using the available occupation and job-title fields.</p>
+<section id="occupation-classification-review" class="level3">
+<h3 class="anchored" data-anchor-id="occupation-classification-review">Occupation Classification Review</h3>
+<p>The MET data includes SOC and O*NET occupation classifications. SOC 15-2051 was initially considered because it is labeled <strong>Data Scientists</strong>.</p>
+<p>However, the first 400 NAICS 523000 records demonstrated that this classification was too broad for the project’s specific Data Analyst pathway. For example, records classified under SOC 15-2051 included Android developers, iOS developers, mobile application developers, mobile engineers, and other roles that do not represent the target Data Analyst career.</p>
+<p>Therefore, SOC 15-2051 was <strong>not used as a direct proxy for Data Analyst jobs</strong>.</p>
+</section>
+<section id="title-based-career-filter" class="level3">
+<h3 class="anchored" data-anchor-id="title-based-career-filter">Title-Based Career Filter</h3>
+<p>The final target-career filter uses explicit Data Analyst/Data &amp; Insights Analyst terminology in the job title.</p>
+<p>The inclusion logic identifies titles containing:</p>
+<ul>
+<li><code>Data Analyst</code></li>
+<li><code>Data &amp; Insights Analyst</code></li>
+</ul>
+<p>This approach was selected because it provides a more direct connection to the team’s stated career pathway than the broader occupation classifications observed in the data.</p>
+<p>The resulting target-career dataset contains <strong>2 postings</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Job</th>
+<th>Employer</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data &amp; Insights Analyst (EMEA)</td>
+<td>Greenparkcontent</td>
+<td>London, United Kingdom</td>
+</tr>
+<tr class="even">
+<td>Advanced Data &amp; Insights Analyst - Deposits Line of Business</td>
+<td>U.S. Bank</td>
+<td>Charlotte, North Carolina</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="data-retrieval-limitation" class="level2">
+<h2 class="anchored" data-anchor-id="data-retrieval-limitation">Data Retrieval Limitation</h2>
+<p>The MET API successfully returned the first 400 records for NAICS 523000. Requests beginning at offset 400 consistently timed out, including requests for a single record.</p>
+<p>Because the additional records could not be retrieved reliably, the project does <strong>not</strong> claim that the 400 records represent the complete NAICS 523000 labor market.</p>
+<p>Instead, the retrieved records are treated as an accessible analytical sample from the MET Career Compass dataset.</p>
+<p>This limitation is important when interpreting market-level results.</p>
+</section>
+<section id="cleaning-decisions" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-decisions">Cleaning Decisions</h2>
+<section id="duplicate-records" class="level3">
+<h3 class="anchored" data-anchor-id="duplicate-records">Duplicate Records</h3>
+<p>Job postings were checked using the MET <code>job_id</code> field.</p>
+<p>No duplicate job IDs were identified among the 400 retrieved records.</p>
+</section>
+<section id="naics" class="level3">
+<h3 class="anchored" data-anchor-id="naics">NAICS</h3>
+<p>The <code>naics_code</code> field was converted to text and stripped of leading/trailing whitespace. Records were retained only when the resulting value equaled <code>523000</code>.</p>
+<p>All 400 retrieved records passed this verification.</p>
+</section>
+<section id="dates" class="level3">
+<h3 class="anchored" data-anchor-id="dates">Dates</h3>
+<p>Posting and expiration dates were converted to datetime values where available. Invalid or unavailable dates were treated as missing.</p>
+</section>
+<section id="salary" class="level3">
+<h3 class="anchored" data-anchor-id="salary">Salary</h3>
+<p>Annual and hourly salary fields were converted to numeric values. Missing salary values were retained as missing rather than being replaced with zero.</p>
+<p>A missing salary does not imply that the position is unpaid; it indicates that a usable salary value was not available in the retrieved posting data.</p>
+</section>
+<section id="location" class="level3">
+<h3 class="anchored" data-anchor-id="location">Location</h3>
+<p>Location, city, state, and state-code fields were converted to consistent text values. Missing location fields were retained as missing.</p>
+</section>
+<section id="remote-status" class="level3">
+<h3 class="anchored" data-anchor-id="remote-status">Remote Status</h3>
+<p>Remote-status values were standardized to text categories such as remote, hybrid, onsite, or unknown. Missing or unavailable classifications were retained as unknown rather than inferred from the job description.</p>
+</section>
+<section id="skills" class="level3">
+<h3 class="anchored" data-anchor-id="skills">Skills</h3>
+<p>The API’s skills information was retained because skills will be used in later stages of the project to evaluate the capabilities associated with the target career pathway.</p>
+</section>
+<section id="occupation-fields" class="level3">
+<h3 class="anchored" data-anchor-id="occupation-fields">Occupation Fields</h3>
+<p>SOC, O*NET, and occupation-family fields were retained for comparison and validation. However, the analysis does not assume that a broad occupation classification is equivalent to the team’s specific Data Analyst career pathway.</p>
+</section>
+</section>
+<section id="output-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="output-dataset">Output Dataset</h2>
+<p>The cleaned target-career dataset is:</p>
+<p><code>data/career_market_panel.csv</code></p>
+<p>The dataset contains the two postings that directly match the project’s Data Analyst/Data &amp; Insights Analyst title criteria.</p>
+<p>A broader raw industry dataset is retained as:</p>
+<p><code>data/raw_naics_523000.json</code></p>
+<p>This raw dataset contains the 400 retrieved NAICS 523000 postings and provides the source data for industry-level exploration.</p>
+<p>A variable-level data dictionary is available at:</p>
+<p><code>data/data_dictionary.csv</code></p>
+</section>
+<section id="data-preparation-summary" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation-summary">Data Preparation Summary</h2>
+<p>The Step 2 preparation process can be summarized as:</p>
+<ol type="1">
+<li>Retrieve MET Career Compass job data.</li>
+<li>Restrict records to <strong>NAICS 523000</strong>.</li>
+<li>Verify the NAICS classification.</li>
+<li>Review occupation classifications and job titles.</li>
+<li>Reject SOC 15-2051 as a direct Data Analyst proxy because of substantial classification noise.</li>
+<li>Apply a direct Data Analyst/Data &amp; Insights Analyst title filter.</li>
+<li>Remove duplicate job IDs.</li>
+<li>Standardize dates, salary, location, remote-status, and occupation fields.</li>
+<li>Export the cleaned target-career dataset.</li>
+<li>Retain the broader NAICS dataset for market-level exploratory analysis.</li>
+</ol>
+</section>
+<section id="step-2-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-limitations">Step 2 Limitations</h2>
+<p>The primary limitation is API pagination. The API returned 400 NAICS 523000 records, but requests beginning at offset 400 repeatedly timed out.</p>
+<p>A second limitation is the small number of direct Data Analyst/Data &amp; Insights Analyst postings within the accessible sample. Therefore, salary, remote-work, and other target-career statistics should be interpreted cautiously rather than generalized to the entire Data Analyst labor market.</p>
+<p>The broader 400-record NAICS 523000 sample will provide additional industry context for the market-baseline analysis.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The data-preparation stage establishes a reproducible industry and career scope for the project. The analysis remains anchored to <strong>NAICS 523000</strong> and the team’s <strong>Data Analyst/Data Analytics</strong> pathway.</p>
+<p>The resulting datasets provide the foundation for the next stage: exploratory analysis of the financial-services market and evaluation of the skills, compensation, locations, and employment patterns relevant to aspiring Data Analysts. EOF</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
