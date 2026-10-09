@@ -8,3 +8,17 @@ __pycache__/
 data/raw_naics_523000.json
 data/data2
 
+
+/.quarto/
+
+# Local raw Lightcast dataset
+lightcast_job_postings.csv
+
+# Local Step 2 working files
+data/career_market_panel_new.csv
+data/career_market_panel_old.csv
+data/data_dictionary_old.csv
+check_career_filter.py
+clean_step2.py
+make_data_dictionary.py
+make_revised_figures.py

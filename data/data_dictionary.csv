@@ -1,24 +1,43 @@
-variable,description
-job_id,Unique MET job posting identifier.
-posted_at,Job posting publication date/time.
-title,Original job posting title.
-normalized_title,MET-normalized job title.
-company_name,Employer name.
-location_text,Job location text.
-city,Job city/location.
-state,Job state or region.
-remote_status,"Remote, hybrid, onsite, or unknown."
-employment_type,Employment type when available.
-annual_salary_min,Minimum annual salary.
-annual_salary_max,Maximum annual salary.
-hourly_salary_min,Minimum hourly salary.
-hourly_salary_max,Maximum hourly salary.
-soc_code,SOC occupation code.
-soc_name,SOC occupation name.
-occupation_family,Occupation family.
-naics_code,NAICS industry code.
-naics_name,NAICS industry name.
-onet_code,O*NET occupation code.
-onet_name,O*NET occupation name.
-skills,Skills associated with the posting.
-description,Job posting description.
+variable,description,data_type,missing_count,non_missing_count
+ID,Unique Lightcast job-posting identifier.,object,0,140
+LAST_UPDATED_DATE,Date the job posting record was last updated.,object,0,140
+POSTED,Date the job posting was posted.,object,0,140
+EXPIRED,"Date the job posting expired, when available.",object,13,127
+TITLE_RAW,Original job title from the Lightcast posting.,object,0,140
+BODY,Job-posting description text.,object,0,140
+COMPANY_NAME,Employer name.,object,0,140
+EDUCATION_LEVELS_NAME,Education-level information associated with the posting.,object,0,140
+MIN_YEARS_EXPERIENCE,"Minimum years of experience required, when available.",float64,28,112
+MAX_YEARS_EXPERIENCE,"Maximum years of experience required, when available.",float64,123,17
+SALARY,Original salary field.,float64,58,82
+REMOTE_TYPE,Lightcast remote-work classification code.,float64,0,140
+REMOTE_TYPE_NAME,Readable remote-work classification.,object,0,140
+ORIGINAL_PAY_PERIOD,Original salary pay-period information.,object,54,86
+SALARY_TO,Upper bound of reported salary range.,float64,54,86
+SALARY_FROM,Lower bound of reported salary range.,float64,54,86
+LOCATION,Original job location field.,object,0,140
+CITY_NAME,City associated with the posting.,object,0,140
+STATE_NAME,State associated with the posting.,object,0,140
+NAICS3,Three-digit NAICS industry subsector code.,float64,0,140
+NAICS3_NAME,Name of the three-digit NAICS industry subsector.,object,0,140
+TITLE,Standardized Lightcast job title.,object,0,140
+TITLE_NAME,Named occupational/job-title classification.,object,0,140
+TITLE_CLEAN,Cleaned job title field.,object,0,140
+SKILLS,Lightcast coded skills associated with the posting.,object,0,140
+SKILLS_NAME,Readable skill names.,object,0,140
+SPECIALIZED_SKILLS,Lightcast specialized skill codes.,object,0,140
+SPECIALIZED_SKILLS_NAME,Readable specialized skill names.,object,0,140
+COMMON_SKILLS,Lightcast common skill codes.,object,0,140
+COMMON_SKILLS_NAME,Readable common skill names.,object,0,140
+SOFTWARE_SKILLS,Lightcast software skill codes.,object,0,140
+SOFTWARE_SKILLS_NAME,Readable software skill names.,object,0,140
+ONET,O*NET occupation code.,object,0,140
+ONET_NAME,O*NET occupation name.,object,0,140
+SOC_2021_5,Five-digit SOC 2021 occupation code.,object,0,140
+SOC_2021_5_NAME,Name of the five-digit SOC 2021 occupation classification.,object,0,140
+remote_status,Cleaned remote-work classification; missing classifications are labeled Unknown.,object,0,140
+city_clean,Cleaned city field.,object,0,140
+state_clean,Cleaned state field.,object,0,140
+salary_midpoint,Midpoint of the reported salary range when both salary endpoints are available.,float64,54,86
+industry_scope,"Analysis industry scope, defined as NAICS 523.",object,0,140
+career_scope,Career filter used for the revised core Data Analyst sample.,object,0,140
