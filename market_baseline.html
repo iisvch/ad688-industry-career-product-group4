@@ -128,16 +128,15 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#market-baseline" id="toc-market-baseline" class="nav-link active" data-scroll-target="#market-baseline">Market Baseline</a></li>
+  <li><a href="#industry-scope" id="toc-industry-scope" class="nav-link" data-scroll-target="#industry-scope">Industry Scope</a></li>
   <li><a href="#job-volume-by-title" id="toc-job-volume-by-title" class="nav-link" data-scroll-target="#job-volume-by-title">Job Volume by Title</a></li>
-  <li><a href="#work-arrangement" id="toc-work-arrangement" class="nav-link" data-scroll-target="#work-arrangement">Work Arrangement</a></li>
+  <li><a href="#top-employers" id="toc-top-employers" class="nav-link" data-scroll-target="#top-employers">Top Employers</a></li>
   <li><a href="#hiring-locations" id="toc-hiring-locations" class="nav-link" data-scroll-target="#hiring-locations">Hiring Locations</a></li>
-  <li><a href="#salary-information" id="toc-salary-information" class="nav-link" data-scroll-target="#salary-information">Salary Information</a></li>
-  <li><a href="#annual-salary-distribution" id="toc-annual-salary-distribution" class="nav-link" data-scroll-target="#annual-salary-distribution">Annual Salary Distribution</a></li>
+  <li><a href="#remote-work" id="toc-remote-work" class="nav-link" data-scroll-target="#remote-work">Remote Work</a></li>
+  <li><a href="#salary-distribution" id="toc-salary-distribution" class="nav-link" data-scroll-target="#salary-distribution">Salary Distribution</a></li>
   <li><a href="#experience-requirements" id="toc-experience-requirements" class="nav-link" data-scroll-target="#experience-requirements">Experience Requirements</a></li>
-  <li><a href="#target-career-context" id="toc-target-career-context" class="nav-link" data-scroll-target="#target-career-context">Target Career Context</a></li>
-  <li><a href="#key-baseline-findings" id="toc-key-baseline-findings" class="nav-link" data-scroll-target="#key-baseline-findings">Key Baseline Findings</a></li>
-  <li><a href="#interpretation-and-limitations" id="toc-interpretation-and-limitations" class="nav-link" data-scroll-target="#interpretation-and-limitations">Interpretation and Limitations</a></li>
-  <li><a href="#step-2-takeaway" id="toc-step-2-takeaway" class="nav-link" data-scroll-target="#step-2-takeaway">Step 2 Takeaway</a></li>
+  <li><a href="#data-quality-and-limitations" id="toc-data-quality-and-limitations" class="nav-link" data-scroll-target="#data-quality-and-limitations">Data Quality and Limitations</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -166,118 +165,116 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="market-baseline" class="level2">
 <h2 class="anchored" data-anchor-id="market-baseline">Market Baseline</h2>
-<p>This page provides an exploratory baseline of the accessible job-posting sample for <strong>NAICS 523000 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities</strong>.</p>
-<p>The analysis uses the 400 NAICS 523000 postings successfully retrieved from the MET Career Compass API. The API returned 400 records before requests beginning at offset 400 consistently timed out.</p>
-<p>The baseline therefore describes the <strong>accessible sample</strong>, not the complete financial-services labor market.</p>
+<p>This page provides an exploratory baseline of the career market for Data Analyst roles within <strong>NAICS 523 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities</strong>.</p>
+<p>The revised analysis uses the professor-approved Lightcast job-postings dataset and includes postings classified within the NAICS 523 subsector.</p>
+</section>
+<section id="industry-scope" class="level2">
+<h2 class="anchored" data-anchor-id="industry-scope">Industry Scope</h2>
+<p>The analysis is restricted to:</p>
+<ul>
+<li><strong>NAICS:</strong> 523</li>
+<li><strong>Industry:</strong> Securities, Commodity Contracts, and Other Financial Investments and Related Activities</li>
+<li><strong>Career pathway:</strong> Data Analyst / Data Analytics</li>
+</ul>
+<p>The revised dataset contains <strong>140 postings</strong> after applying the career-title filter and excluding clearly unrelated roles.</p>
 </section>
 <section id="job-volume-by-title" class="level2">
 <h2 class="anchored" data-anchor-id="job-volume-by-title">Job Volume by Title</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/job_volume_by_title.png" class="img-fluid figure-img"></p>
-<figcaption>Top job titles in the accessible NAICS 523000 sample</figcaption>
+<p><img src="figures/revised/job_volume_by_title.png" class="img-fluid figure-img"></p>
+<figcaption>Job volume by title</figcaption>
 </figure>
 </div>
-<p>The job-title distribution is concentrated among several repeated postings. The most frequent titles include Android Software Engineer, Android Developer, iOS Developer, Mobile Application Developer, and Mobile Engineer.</p>
-<p>This concentration demonstrates why job-title frequency should be interpreted carefully. Repeated postings can represent a small number of hiring campaigns rather than independent labor-market demand across many employers.</p>
-<p>The target Data Analyst pathway is therefore evaluated separately using the direct Data Analyst/Data &amp; Insights Analyst title filter described on the Data Preparation page.</p>
+<p>The Data Analyst sample contains a range of analyst titles, including Product Data Analyst, Data Analyst, Data Analyst II, Senior Data Analyst, and other specialized analyst positions.</p>
+<p>Product Data Analyst is the most frequent title in the revised sample.</p>
 </section>
-<section id="work-arrangement" class="level2">
-<h2 class="anchored" data-anchor-id="work-arrangement">Work Arrangement</h2>
+<section id="top-employers" class="level2">
+<h2 class="anchored" data-anchor-id="top-employers">Top Employers</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/remote_status.png" class="img-fluid figure-img"></p>
-<figcaption>Remote, hybrid, onsite, and unknown work arrangements</figcaption>
+<p><img src="figures/revised/top_employers.png" class="img-fluid figure-img"></p>
+<figcaption>Top employers</figcaption>
 </figure>
 </div>
-<p>Remote work is the most common classified arrangement in the accessible sample.</p>
-<p>The 400 records contain:</p>
-<ul>
-<li><strong>174 remote</strong></li>
-<li><strong>56 hybrid</strong></li>
-<li><strong>11 onsite</strong></li>
-<li><strong>159 unknown</strong></li>
-</ul>
-<p>Approximately 40% of the postings have an unknown remote-status classification. Consequently, the observed remote-work pattern should be interpreted as a description of the available classifications rather than a complete estimate of remote-work availability.</p>
+<p>The largest employer represented in the revised sample is <strong>Lincoln Financial Group</strong>, followed by <strong>The Vanguard Group</strong> and <strong>Fidelity Investments</strong>.</p>
+<p>This concentration indicates that some employers contribute substantially more postings than others and should be considered when interpreting overall market demand.</p>
 </section>
 <section id="hiring-locations" class="level2">
 <h2 class="anchored" data-anchor-id="hiring-locations">Hiring Locations</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/top_locations.png" class="img-fluid figure-img"></p>
-<figcaption>Top hiring locations in the accessible NAICS 523000 sample</figcaption>
+<p><img src="figures/revised/top_locations.png" class="img-fluid figure-img"></p>
+<figcaption>Top hiring locations</figcaption>
 </figure>
 </div>
-<p>Location information is geographically diverse in the accessible sample.</p>
-<p>The largest category is <strong>Unknown</strong>, with 116 postings. Among identified locations, China and Malaysia each account for 14 postings, followed by Hong Kong with 11 postings. Australia, Indonesia, Singapore, the United Kingdom, Taiwan, and Thailand each account for 10 postings.</p>
-<p>The geographic distribution should therefore be interpreted cautiously because a substantial share of records does not contain a usable state or regional value.</p>
+<p>The revised sample is geographically distributed across multiple states.</p>
+<p>The largest state concentrations are Massachusetts, North Carolina, Pennsylvania, Texas, and Arizona.</p>
 </section>
-<section id="salary-information" class="level2">
-<h2 class="anchored" data-anchor-id="salary-information">Salary Information</h2>
+<section id="remote-work" class="level2">
+<h2 class="anchored" data-anchor-id="remote-work">Remote Work</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/salary_availability.png" class="img-fluid figure-img"></p>
-<figcaption>Availability of salary information</figcaption>
+<p><img src="figures/revised/remote_status.png" class="img-fluid figure-img"></p>
+<figcaption>Remote work status</figcaption>
 </figure>
 </div>
-<p>Salary information is not consistently reported across the accessible postings.</p>
-<p>Missing salary values were retained as missing rather than converted to zero. This distinction is important because an unavailable salary does not indicate that a position is unpaid.</p>
-<p>Only postings containing usable annual salary minimum and maximum values were included in the salary distribution.</p>
+<p>The revised sample contains:</p>
+<ul>
+<li><strong>54 Remote</strong></li>
+<li><strong>12 Hybrid Remote</strong></li>
+<li><strong>3 Not Remote</strong></li>
+<li><strong>71 Unknown</strong></li>
+</ul>
+<p>Because more than half of the postings have an unknown remote classification, the results should not be interpreted as a complete estimate of remote-work availability.</p>
 </section>
-<section id="annual-salary-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="annual-salary-distribution">Annual Salary Distribution</h2>
+<section id="salary-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="salary-distribution">Salary Distribution</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/salary_distribution.png" class="img-fluid figure-img"></p>
-<figcaption>Annual salary midpoint distribution</figcaption>
+<p><img src="figures/revised/salary_distribution.png" class="img-fluid figure-img"></p>
+<figcaption>Salary distribution</figcaption>
 </figure>
 </div>
-<p>The salary distribution shows the range of annual salary midpoint values available in the retrieved postings.</p>
-<p>Because salary reporting is incomplete, this visualization should be treated as descriptive rather than representative of all financial-services positions.</p>
-<p>Salary comparisons for the specific Data Analyst pathway should also be interpreted cautiously because the direct target-career subset contains only two qualifying postings.</p>
+<p>A usable salary midpoint could be calculated for <strong>86 of the 140 postings</strong>.</p>
+<p>The salary midpoint distribution has:</p>
+<ul>
+<li><strong>Mean:</strong> $90,860.55</li>
+<li><strong>Median:</strong> $93,850</li>
+<li><strong>Minimum:</strong> $24,960</li>
+<li><strong>Maximum:</strong> $160,000</li>
+</ul>
+<p>Salary information was retained as missing when salary endpoints were unavailable rather than treating missing salary as zero.</p>
 </section>
 <section id="experience-requirements" class="level2">
 <h2 class="anchored" data-anchor-id="experience-requirements">Experience Requirements</h2>
-<p>The retrieved records did not contain a dedicated experience-requirement field that could be reliably analyzed.</p>
-<p>Rather than infer experience requirements from job descriptions, the project leaves this variable unreported in the baseline analysis.</p>
-<p>This is an example of a data-quality limitation identified during Step 2 preparation.</p>
-</section>
-<section id="target-career-context" class="level2">
-<h2 class="anchored" data-anchor-id="target-career-context">Target Career Context</h2>
-<p>The project focuses specifically on <strong>Data Analyst / Data Analytics</strong> careers.</p>
-<p>Within the 400 accessible NAICS 523000 records, two postings directly matched the project’s title-based Data Analyst filter:</p>
-<ol type="1">
-<li><strong>Data &amp; Insights Analyst (EMEA)</strong> — Greenparkcontent — London, United Kingdom</li>
-<li><strong>Advanced Data &amp; Insights Analyst - Deposits Line of Business</strong> — U.S. Bank — Charlotte, North Carolina</li>
-</ol>
-<p>These postings are retained as the target-career subset.</p>
-<p>Other analyst titles were reviewed but excluded when their primary function appeared to be financial analysis, marketing, cybersecurity, compliance, strategy, engineering, or another specialized occupation.</p>
-</section>
-<section id="key-baseline-findings" class="level2">
-<h2 class="anchored" data-anchor-id="key-baseline-findings">Key Baseline Findings</h2>
-<p>The accessible NAICS 523000 sample indicates several important characteristics:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/revised/experience_requirements.png" class="img-fluid figure-img"></p>
+<figcaption>Experience requirements</figcaption>
+</figure>
+</div>
+<p>Minimum experience information was available for <strong>112 postings</strong>.</p>
+<p>Among postings with a reported minimum experience requirement:</p>
 <ul>
-<li>The market contains a wide variety of occupations beyond Data Analyst roles.</li>
-<li>Remote work is common among postings with a classified work arrangement.</li>
-<li>Geographic information is incomplete for a substantial portion of records.</li>
-<li>Salary information is not consistently reported.</li>
-<li>Repeated job postings can have a substantial effect on title-level counts.</li>
-<li>The available data does not provide a reliable dedicated experience field.</li>
-<li>Only two postings in the accessible sample directly matched the project’s Data Analyst/Data &amp; Insights Analyst criteria.</li>
+<li><strong>Mean:</strong> 4.11 years</li>
+<li><strong>Median:</strong> 5 years</li>
+<li><strong>Minimum:</strong> 0 years</li>
+<li><strong>Maximum:</strong> 12 years</li>
 </ul>
+<p>Maximum experience requirements were frequently missing, so the analysis focuses on the minimum experience field.</p>
 </section>
-<section id="interpretation-and-limitations" class="level2">
-<h2 class="anchored" data-anchor-id="interpretation-and-limitations">Interpretation and Limitations</h2>
-<p>The market baseline should be viewed as an <strong>exploratory industry baseline</strong>, not a complete census of financial-services employment.</p>
-<p>The primary limitation is API pagination. The MET Career Compass API successfully returned the first 400 NAICS 523000 records, but requests beginning at offset 400 repeatedly timed out, including requests for a single record.</p>
-<p>A second limitation is the small number of direct Data Analyst/Data &amp; Insights Analyst postings in the accessible sample.</p>
-<p>These limitations are important because they prevent the project from making strong claims about the complete Data Analyst labor market, salary levels, or remote-work prevalence.</p>
-<p>The results are therefore used to establish the available market context and identify data-quality issues that should be considered in later career evaluation and recommendations.</p>
+<section id="data-quality-and-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="data-quality-and-limitations">Data Quality and Limitations</h2>
+<p>The revised analysis provides a substantially larger career-specific sample than the original MET API analysis.</p>
+<p>The original Step 2 analysis was limited to 400 retrieved NAICS 523000 records and identified only two direct Data Analyst matches. The revised analysis uses the Lightcast dataset approved for the project and the three-digit NAICS 523 subsector.</p>
+<p>The career filter was intentionally expanded to capture relevant Data Analyst titles while excluding clearly unrelated categories such as maintenance, cybersecurity, academic roles, internships, and other specialized positions that did not fit the project’s intended career pathway.</p>
+<p>Missing salary, experience, and remote-work information was retained and explicitly reported rather than being converted into misleading values.</p>
 </section>
-<section id="step-2-takeaway" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-takeaway">Step 2 Takeaway</h2>
-<p>The accessible NAICS 523000 sample provides a useful starting point for understanding financial-services job-market characteristics, but it also demonstrates the importance of careful career filtering and data-quality checks.</p>
-<p>For this project, <strong>Data Analyst/Data &amp; Insights Analyst titles are treated as the target career subset</strong>, while the broader NAICS 523000 records provide industry context.</p>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>The revised baseline provides a broader view of Data Analyst opportunities within financial services. The market includes multiple employers, geographic locations, salary ranges, experience requirements, and work arrangements.</p>
+<p>These results provide the foundation for the next stage of the project: <strong>Step 3 skill-gap analysis and expanded EDA</strong>.</p>
 
 
 </section>

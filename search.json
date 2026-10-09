@@ -49,6 +49,62 @@
     "text": "About this site"
   },
   {
+    "objectID": "data_preparation.html",
+    "href": "data_preparation.html",
+    "title": "Data Preparation",
+    "section": "",
+    "text": "This step prepares the career-market data used to evaluate opportunities for Data Analyst careers within the selected financial-services industry.\nThe analysis is anchored to:\n\nCareer pathway: Data Analyst / Data Analytics\nNAICS: 523\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe objective is to create a cleaned, reproducible dataset that can be used to evaluate job availability, compensation, experience requirements, work arrangements, geography, employers, and skills."
+  },
+  {
+    "objectID": "data_preparation.html#step-2-objective",
+    "href": "data_preparation.html#step-2-objective",
+    "title": "Data Preparation",
+    "section": "",
+    "text": "This step prepares the career-market data used to evaluate opportunities for Data Analyst careers within the selected financial-services industry.\nThe analysis is anchored to:\n\nCareer pathway: Data Analyst / Data Analytics\nNAICS: 523\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe objective is to create a cleaned, reproducible dataset that can be used to evaluate job availability, compensation, experience requirements, work arrangements, geography, employers, and skills."
+  },
+  {
+    "objectID": "data_preparation.html#data-source",
+    "href": "data_preparation.html#data-source",
+    "title": "Data Preparation",
+    "section": "Data Source",
+    "text": "Data Source\nThe analysis uses the professor-approved Lightcast job-postings dataset provided through the team’s Google Drive dataset.\nThe dataset contains job-posting information including job titles, employers, locations, salary information, experience requirements, education, remote-work classifications, skills, occupation classifications, and NAICS industry classifications."
+  },
+  {
+    "objectID": "data_preparation.html#industry-filter",
+    "href": "data_preparation.html#industry-filter",
+    "title": "Data Preparation",
+    "section": "Industry Filter",
+    "text": "Industry Filter\nThe analysis is restricted to NAICS 523, the three-digit NAICS subsector:\n\nSecurities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe Lightcast dataset contains 942 job postings classified under NAICS 523.\nUsing the three-digit NAICS3 field ensures that the analysis covers the full selected NAICS subsector rather than treating 523000 as a separate six-digit industry code."
+  },
+  {
+    "objectID": "data_preparation.html#career-filter",
+    "href": "data_preparation.html#career-filter",
+    "title": "Data Preparation",
+    "section": "Career Filter",
+    "text": "Career Filter\nThe career pathway is Data Analyst / Data Analytics.\nA title-based filter was used to identify postings containing Data Analyst terminology. Clearly unrelated specialized categories were excluded when the title indicated a maintenance, cybersecurity, academic, internship, platform-services, CV-22, or SC2 role.\nThe resulting core career-market dataset contains 140 postings.\nThis core dataset is used as the baseline for Step 2. Closely related analytics roles may be incorporated into the broader Step 3 skill-gap analysis where appropriate."
+  },
+  {
+    "objectID": "data_preparation.html#cleaning-decisions",
+    "href": "data_preparation.html#cleaning-decisions",
+    "title": "Data Preparation",
+    "section": "Cleaning Decisions",
+    "text": "Cleaning Decisions\n\nDuplicate Records\nPostings were checked using the Lightcast ID field. No duplicate IDs were removed from the 140-posting analytical dataset.\n\n\nSalary\nSalary fields were converted to numeric values where possible.\nMissing salary values were retained as missing rather than converted to zero.\nA salary midpoint was calculated when both the lower and upper salary values were available:\n\\[\nSalary\\ Midpoint =\n\\frac{Salary\\ From + Salary\\ To}{2}\n\\]\nThere were 86 postings with a usable salary midpoint.\nThe observed salary midpoint ranged from $24,960 to $160,000, with a median of $93,850.\nBecause salary information is not available for every posting, these figures describe the subset of postings reporting usable salary ranges.\n\n\nExperience\nMinimum and maximum experience requirements were retained separately.\nNegative or invalid experience values were treated as missing.\nA minimum experience requirement was available for 112 of the 140 postings.\nAmong postings with reported minimum experience, the median requirement was 5 years, with an average of approximately 4.1 years.\nMaximum experience was substantially less complete and was therefore not imputed.\n\n\nRemote Work\nRemote-work classifications were retained from the Lightcast data.\nThe cleaned categories are:\n\nRemote\nHybrid Remote\nNot Remote\nUnknown\n\nOf the 140 postings:\n\n54 were classified as Remote\n12 were classified as Hybrid Remote\n3 were classified as Not Remote\n71 had an unknown classification\n\nUnknown values were retained because an unavailable classification does not necessarily mean that the position is onsite.\n\n\nLocation\nCity and state information were retained for geographic analysis.\nNo postings were missing the cleaned city or state fields in the analytical dataset.\nThe location data were used to identify the leading hiring states and locations represented in the sample.\n\n\nEducation and Skills\nEducation and skill fields were retained from the Lightcast dataset.\nMissing values were not converted into assumptions about required education or skills.\nThese fields provide the foundation for the later skill-gap analysis."
+  },
+  {
+    "objectID": "data_preparation.html#final-analytical-dataset",
+    "href": "data_preparation.html#final-analytical-dataset",
+    "title": "Data Preparation",
+    "section": "Final Analytical Dataset",
+    "text": "Final Analytical Dataset\nThe cleaned Step 2 dataset contains:\n\n140 job postings\n52 employers\n62 distinct job titles\n36 original analytical variables\nAdditional cleaned variables for remote status, location, salary midpoint, industry scope, and career scope\n\nThe cleaned dataset is stored as:\ndata/career_market_panel.csv\nThe corresponding variable documentation is stored as:\ndata/data_dictionary.csv"
+  },
+  {
+    "objectID": "data_preparation.html#step-2-limitations",
+    "href": "data_preparation.html#step-2-limitations",
+    "title": "Data Preparation",
+    "section": "Step 2 Limitations",
+    "text": "Step 2 Limitations\nSeveral data-quality limitations should be considered when interpreting the results.\nFirst, salary information is unavailable for 54 of the 140 postings.\nSecond, minimum experience is unavailable for 28 postings, while maximum experience is unavailable for most postings.\nThird, 71 postings do not have a classified remote-work arrangement.\nFinally, the dataset represents job postings rather than unique underlying job openings or hiring demand. Multiple postings may represent similar positions or repeated recruiting activity.\nThese limitations are documented rather than addressed through aggressive imputation so that the baseline remains transparent and reproducible."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Data Analytics Careers in Financial Services",
@@ -74,84 +130,77 @@
     "href": "market_baseline.html",
     "title": "Market Baseline",
     "section": "",
-    "text": "This page provides an exploratory baseline of the accessible job-posting sample for NAICS 523000 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities.\nThe analysis uses the 400 NAICS 523000 postings successfully retrieved from the MET Career Compass API. The API returned 400 records before requests beginning at offset 400 consistently timed out.\nThe baseline therefore describes the accessible sample, not the complete financial-services labor market."
+    "text": "This page provides an exploratory baseline of the career market for Data Analyst roles within NAICS 523 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities.\nThe revised analysis uses the professor-approved Lightcast job-postings dataset and includes postings classified within the NAICS 523 subsector."
   },
   {
     "objectID": "market_baseline.html#market-baseline",
     "href": "market_baseline.html#market-baseline",
     "title": "Market Baseline",
     "section": "",
-    "text": "This page provides an exploratory baseline of the accessible job-posting sample for NAICS 523000 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities.\nThe analysis uses the 400 NAICS 523000 postings successfully retrieved from the MET Career Compass API. The API returned 400 records before requests beginning at offset 400 consistently timed out.\nThe baseline therefore describes the accessible sample, not the complete financial-services labor market."
+    "text": "This page provides an exploratory baseline of the career market for Data Analyst roles within NAICS 523 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities.\nThe revised analysis uses the professor-approved Lightcast job-postings dataset and includes postings classified within the NAICS 523 subsector."
+  },
+  {
+    "objectID": "market_baseline.html#industry-scope",
+    "href": "market_baseline.html#industry-scope",
+    "title": "Market Baseline",
+    "section": "Industry Scope",
+    "text": "Industry Scope\nThe analysis is restricted to:\n\nNAICS: 523\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\nCareer pathway: Data Analyst / Data Analytics\n\nThe revised dataset contains 140 postings after applying the career-title filter and excluding clearly unrelated roles."
   },
   {
     "objectID": "market_baseline.html#job-volume-by-title",
     "href": "market_baseline.html#job-volume-by-title",
     "title": "Market Baseline",
     "section": "Job Volume by Title",
-    "text": "Job Volume by Title\n\n\n\nTop job titles in the accessible NAICS 523000 sample\n\n\nThe job-title distribution is concentrated among several repeated postings. The most frequent titles include Android Software Engineer, Android Developer, iOS Developer, Mobile Application Developer, and Mobile Engineer.\nThis concentration demonstrates why job-title frequency should be interpreted carefully. Repeated postings can represent a small number of hiring campaigns rather than independent labor-market demand across many employers.\nThe target Data Analyst pathway is therefore evaluated separately using the direct Data Analyst/Data & Insights Analyst title filter described on the Data Preparation page."
+    "text": "Job Volume by Title\n\n\n\nJob volume by title\n\n\nThe Data Analyst sample contains a range of analyst titles, including Product Data Analyst, Data Analyst, Data Analyst II, Senior Data Analyst, and other specialized analyst positions.\nProduct Data Analyst is the most frequent title in the revised sample."
   },
   {
-    "objectID": "market_baseline.html#work-arrangement",
-    "href": "market_baseline.html#work-arrangement",
+    "objectID": "market_baseline.html#top-employers",
+    "href": "market_baseline.html#top-employers",
     "title": "Market Baseline",
-    "section": "Work Arrangement",
-    "text": "Work Arrangement\n\n\n\nRemote, hybrid, onsite, and unknown work arrangements\n\n\nRemote work is the most common classified arrangement in the accessible sample.\nThe 400 records contain:\n\n174 remote\n56 hybrid\n11 onsite\n159 unknown\n\nApproximately 40% of the postings have an unknown remote-status classification. Consequently, the observed remote-work pattern should be interpreted as a description of the available classifications rather than a complete estimate of remote-work availability."
+    "section": "Top Employers",
+    "text": "Top Employers\n\n\n\nTop employers\n\n\nThe largest employer represented in the revised sample is Lincoln Financial Group, followed by The Vanguard Group and Fidelity Investments.\nThis concentration indicates that some employers contribute substantially more postings than others and should be considered when interpreting overall market demand."
   },
   {
     "objectID": "market_baseline.html#hiring-locations",
     "href": "market_baseline.html#hiring-locations",
     "title": "Market Baseline",
     "section": "Hiring Locations",
-    "text": "Hiring Locations\n\n\n\nTop hiring locations in the accessible NAICS 523000 sample\n\n\nLocation information is geographically diverse in the accessible sample.\nThe largest category is Unknown, with 116 postings. Among identified locations, China and Malaysia each account for 14 postings, followed by Hong Kong with 11 postings. Australia, Indonesia, Singapore, the United Kingdom, Taiwan, and Thailand each account for 10 postings.\nThe geographic distribution should therefore be interpreted cautiously because a substantial share of records does not contain a usable state or regional value."
+    "text": "Hiring Locations\n\n\n\nTop hiring locations\n\n\nThe revised sample is geographically distributed across multiple states.\nThe largest state concentrations are Massachusetts, North Carolina, Pennsylvania, Texas, and Arizona."
   },
   {
-    "objectID": "market_baseline.html#salary-information",
-    "href": "market_baseline.html#salary-information",
+    "objectID": "market_baseline.html#remote-work",
+    "href": "market_baseline.html#remote-work",
     "title": "Market Baseline",
-    "section": "Salary Information",
-    "text": "Salary Information\n\n\n\nAvailability of salary information\n\n\nSalary information is not consistently reported across the accessible postings.\nMissing salary values were retained as missing rather than converted to zero. This distinction is important because an unavailable salary does not indicate that a position is unpaid.\nOnly postings containing usable annual salary minimum and maximum values were included in the salary distribution."
+    "section": "Remote Work",
+    "text": "Remote Work\n\n\n\nRemote work status\n\n\nThe revised sample contains:\n\n54 Remote\n12 Hybrid Remote\n3 Not Remote\n71 Unknown\n\nBecause more than half of the postings have an unknown remote classification, the results should not be interpreted as a complete estimate of remote-work availability."
   },
   {
-    "objectID": "market_baseline.html#annual-salary-distribution",
-    "href": "market_baseline.html#annual-salary-distribution",
+    "objectID": "market_baseline.html#salary-distribution",
+    "href": "market_baseline.html#salary-distribution",
     "title": "Market Baseline",
-    "section": "Annual Salary Distribution",
-    "text": "Annual Salary Distribution\n\n\n\nAnnual salary midpoint distribution\n\n\nThe salary distribution shows the range of annual salary midpoint values available in the retrieved postings.\nBecause salary reporting is incomplete, this visualization should be treated as descriptive rather than representative of all financial-services positions.\nSalary comparisons for the specific Data Analyst pathway should also be interpreted cautiously because the direct target-career subset contains only two qualifying postings."
+    "section": "Salary Distribution",
+    "text": "Salary Distribution\n\n\n\nSalary distribution\n\n\nA usable salary midpoint could be calculated for 86 of the 140 postings.\nThe salary midpoint distribution has:\n\nMean: $90,860.55\nMedian: $93,850\nMinimum: $24,960\nMaximum: $160,000\n\nSalary information was retained as missing when salary endpoints were unavailable rather than treating missing salary as zero."
   },
   {
     "objectID": "market_baseline.html#experience-requirements",
     "href": "market_baseline.html#experience-requirements",
     "title": "Market Baseline",
     "section": "Experience Requirements",
-    "text": "Experience Requirements\nThe retrieved records did not contain a dedicated experience-requirement field that could be reliably analyzed.\nRather than infer experience requirements from job descriptions, the project leaves this variable unreported in the baseline analysis.\nThis is an example of a data-quality limitation identified during Step 2 preparation."
+    "text": "Experience Requirements\n\n\n\nExperience requirements\n\n\nMinimum experience information was available for 112 postings.\nAmong postings with a reported minimum experience requirement:\n\nMean: 4.11 years\nMedian: 5 years\nMinimum: 0 years\nMaximum: 12 years\n\nMaximum experience requirements were frequently missing, so the analysis focuses on the minimum experience field."
   },
   {
-    "objectID": "market_baseline.html#target-career-context",
-    "href": "market_baseline.html#target-career-context",
+    "objectID": "market_baseline.html#data-quality-and-limitations",
+    "href": "market_baseline.html#data-quality-and-limitations",
     "title": "Market Baseline",
-    "section": "Target Career Context",
-    "text": "Target Career Context\nThe project focuses specifically on Data Analyst / Data Analytics careers.\nWithin the 400 accessible NAICS 523000 records, two postings directly matched the project’s title-based Data Analyst filter:\n\nData & Insights Analyst (EMEA) — Greenparkcontent — London, United Kingdom\nAdvanced Data & Insights Analyst - Deposits Line of Business — U.S. Bank — Charlotte, North Carolina\n\nThese postings are retained as the target-career subset.\nOther analyst titles were reviewed but excluded when their primary function appeared to be financial analysis, marketing, cybersecurity, compliance, strategy, engineering, or another specialized occupation."
+    "section": "Data Quality and Limitations",
+    "text": "Data Quality and Limitations\nThe revised analysis provides a substantially larger career-specific sample than the original MET API analysis.\nThe original Step 2 analysis was limited to 400 retrieved NAICS 523000 records and identified only two direct Data Analyst matches. The revised analysis uses the Lightcast dataset approved for the project and the three-digit NAICS 523 subsector.\nThe career filter was intentionally expanded to capture relevant Data Analyst titles while excluding clearly unrelated categories such as maintenance, cybersecurity, academic roles, internships, and other specialized positions that did not fit the project’s intended career pathway.\nMissing salary, experience, and remote-work information was retained and explicitly reported rather than being converted into misleading values."
   },
   {
-    "objectID": "market_baseline.html#key-baseline-findings",
-    "href": "market_baseline.html#key-baseline-findings",
+    "objectID": "market_baseline.html#summary",
+    "href": "market_baseline.html#summary",
     "title": "Market Baseline",
-    "section": "Key Baseline Findings",
-    "text": "Key Baseline Findings\nThe accessible NAICS 523000 sample indicates several important characteristics:\n\nThe market contains a wide variety of occupations beyond Data Analyst roles.\nRemote work is common among postings with a classified work arrangement.\nGeographic information is incomplete for a substantial portion of records.\nSalary information is not consistently reported.\nRepeated job postings can have a substantial effect on title-level counts.\nThe available data does not provide a reliable dedicated experience field.\nOnly two postings in the accessible sample directly matched the project’s Data Analyst/Data & Insights Analyst criteria."
-  },
-  {
-    "objectID": "market_baseline.html#interpretation-and-limitations",
-    "href": "market_baseline.html#interpretation-and-limitations",
-    "title": "Market Baseline",
-    "section": "Interpretation and Limitations",
-    "text": "Interpretation and Limitations\nThe market baseline should be viewed as an exploratory industry baseline, not a complete census of financial-services employment.\nThe primary limitation is API pagination. The MET Career Compass API successfully returned the first 400 NAICS 523000 records, but requests beginning at offset 400 repeatedly timed out, including requests for a single record.\nA second limitation is the small number of direct Data Analyst/Data & Insights Analyst postings in the accessible sample.\nThese limitations are important because they prevent the project from making strong claims about the complete Data Analyst labor market, salary levels, or remote-work prevalence.\nThe results are therefore used to establish the available market context and identify data-quality issues that should be considered in later career evaluation and recommendations."
-  },
-  {
-    "objectID": "market_baseline.html#step-2-takeaway",
-    "href": "market_baseline.html#step-2-takeaway",
-    "title": "Market Baseline",
-    "section": "Step 2 Takeaway",
-    "text": "Step 2 Takeaway\nThe accessible NAICS 523000 sample provides a useful starting point for understanding financial-services job-market characteristics, but it also demonstrates the importance of careful career filtering and data-quality checks.\nFor this project, Data Analyst/Data & Insights Analyst titles are treated as the target career subset, while the broader NAICS 523000 records provide industry context."
+    "section": "Summary",
+    "text": "Summary\nThe revised baseline provides a broader view of Data Analyst opportunities within financial services. The market includes multiple employers, geographic locations, salary ranges, experience requirements, and work arrangements.\nThese results provide the foundation for the next stage of the project: Step 3 skill-gap analysis and expanded EDA."
   },
   {
     "objectID": "old_data_preparation.html",

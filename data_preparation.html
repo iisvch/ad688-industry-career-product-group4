@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>data_preparation – Data Analytics Careers in Financial Services</title>
+<title>Data Preparation – Data Analytics Careers in Financial Services</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -74,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -122,17 +151,169 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#step-2-objective" id="toc-step-2-objective" class="nav-link active" data-scroll-target="#step-2-objective">Step 2 Objective</a></li>
+  <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source">Data Source</a></li>
+  <li><a href="#industry-filter" id="toc-industry-filter" class="nav-link" data-scroll-target="#industry-filter">Industry Filter</a></li>
+  <li><a href="#career-filter" id="toc-career-filter" class="nav-link" data-scroll-target="#career-filter">Career Filter</a></li>
+  <li><a href="#cleaning-decisions" id="toc-cleaning-decisions" class="nav-link" data-scroll-target="#cleaning-decisions">Cleaning Decisions</a>
+  <ul class="collapse">
+  <li><a href="#duplicate-records" id="toc-duplicate-records" class="nav-link" data-scroll-target="#duplicate-records">Duplicate Records</a></li>
+  <li><a href="#salary" id="toc-salary" class="nav-link" data-scroll-target="#salary">Salary</a></li>
+  <li><a href="#experience" id="toc-experience" class="nav-link" data-scroll-target="#experience">Experience</a></li>
+  <li><a href="#remote-work" id="toc-remote-work" class="nav-link" data-scroll-target="#remote-work">Remote Work</a></li>
+  <li><a href="#location" id="toc-location" class="nav-link" data-scroll-target="#location">Location</a></li>
+  <li><a href="#education-and-skills" id="toc-education-and-skills" class="nav-link" data-scroll-target="#education-and-skills">Education and Skills</a></li>
+  </ul></li>
+  <li><a href="#final-analytical-dataset" id="toc-final-analytical-dataset" class="nav-link" data-scroll-target="#final-analytical-dataset">Final Analytical Dataset</a></li>
+  <li><a href="#step-2-limitations" id="toc-step-2-limitations" class="nav-link" data-scroll-target="#step-2-limitations">Step 2 Limitations</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Preparation</h1>
+<p class="subtitle lead">Step 2 — Data Preparation and Career-Market Scope</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="step-2-objective" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-objective">Step 2 Objective</h2>
+<p>This step prepares the career-market data used to evaluate opportunities for Data Analyst careers within the selected financial-services industry.</p>
+<p>The analysis is anchored to:</p>
+<ul>
+<li><strong>Career pathway:</strong> Data Analyst / Data Analytics</li>
+<li><strong>NAICS:</strong> 523</li>
+<li><strong>Industry:</strong> Securities, Commodity Contracts, and Other Financial Investments and Related Activities</li>
+</ul>
+<p>The objective is to create a cleaned, reproducible dataset that can be used to evaluate job availability, compensation, experience requirements, work arrangements, geography, employers, and skills.</p>
+</section>
+<section id="data-source" class="level2">
+<h2 class="anchored" data-anchor-id="data-source">Data Source</h2>
+<p>The analysis uses the professor-approved Lightcast job-postings dataset provided through the team’s Google Drive dataset.</p>
+<p>The dataset contains job-posting information including job titles, employers, locations, salary information, experience requirements, education, remote-work classifications, skills, occupation classifications, and NAICS industry classifications.</p>
+</section>
+<section id="industry-filter" class="level2">
+<h2 class="anchored" data-anchor-id="industry-filter">Industry Filter</h2>
+<p>The analysis is restricted to <strong>NAICS 523</strong>, the three-digit NAICS subsector:</p>
+<blockquote class="blockquote">
+<p>Securities, Commodity Contracts, and Other Financial Investments and Related Activities</p>
+</blockquote>
+<p>The Lightcast dataset contains <strong>942 job postings</strong> classified under NAICS 523.</p>
+<p>Using the three-digit <code>NAICS3</code> field ensures that the analysis covers the full selected NAICS subsector rather than treating <code>523000</code> as a separate six-digit industry code.</p>
+</section>
+<section id="career-filter" class="level2">
+<h2 class="anchored" data-anchor-id="career-filter">Career Filter</h2>
+<p>The career pathway is <strong>Data Analyst / Data Analytics</strong>.</p>
+<p>A title-based filter was used to identify postings containing Data Analyst terminology. Clearly unrelated specialized categories were excluded when the title indicated a maintenance, cybersecurity, academic, internship, platform-services, CV-22, or SC2 role.</p>
+<p>The resulting core career-market dataset contains <strong>140 postings</strong>.</p>
+<p>This core dataset is used as the baseline for Step 2. Closely related analytics roles may be incorporated into the broader Step 3 skill-gap analysis where appropriate.</p>
+</section>
+<section id="cleaning-decisions" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-decisions">Cleaning Decisions</h2>
+<section id="duplicate-records" class="level3">
+<h3 class="anchored" data-anchor-id="duplicate-records">Duplicate Records</h3>
+<p>Postings were checked using the Lightcast <code>ID</code> field. No duplicate IDs were removed from the 140-posting analytical dataset.</p>
+</section>
+<section id="salary" class="level3">
+<h3 class="anchored" data-anchor-id="salary">Salary</h3>
+<p>Salary fields were converted to numeric values where possible.</p>
+<p>Missing salary values were retained as missing rather than converted to zero.</p>
+<p>A salary midpoint was calculated when both the lower and upper salary values were available:</p>
+<p><span class="math display">\[
+Salary\ Midpoint =
+\frac{Salary\ From + Salary\ To}{2}
+\]</span></p>
+<p>There were <strong>86 postings with a usable salary midpoint</strong>.</p>
+<p>The observed salary midpoint ranged from <strong>$24,960 to $160,000</strong>, with a median of <strong>$93,850</strong>.</p>
+<p>Because salary information is not available for every posting, these figures describe the subset of postings reporting usable salary ranges.</p>
+</section>
+<section id="experience" class="level3">
+<h3 class="anchored" data-anchor-id="experience">Experience</h3>
+<p>Minimum and maximum experience requirements were retained separately.</p>
+<p>Negative or invalid experience values were treated as missing.</p>
+<p>A minimum experience requirement was available for <strong>112 of the 140 postings</strong>.</p>
+<p>Among postings with reported minimum experience, the median requirement was <strong>5 years</strong>, with an average of approximately <strong>4.1 years</strong>.</p>
+<p>Maximum experience was substantially less complete and was therefore not imputed.</p>
+</section>
+<section id="remote-work" class="level3">
+<h3 class="anchored" data-anchor-id="remote-work">Remote Work</h3>
+<p>Remote-work classifications were retained from the Lightcast data.</p>
+<p>The cleaned categories are:</p>
+<ul>
+<li>Remote</li>
+<li>Hybrid Remote</li>
+<li>Not Remote</li>
+<li>Unknown</li>
+</ul>
+<p>Of the 140 postings:</p>
+<ul>
+<li><strong>54</strong> were classified as Remote</li>
+<li><strong>12</strong> were classified as Hybrid Remote</li>
+<li><strong>3</strong> were classified as Not Remote</li>
+<li><strong>71</strong> had an unknown classification</li>
+</ul>
+<p>Unknown values were retained because an unavailable classification does not necessarily mean that the position is onsite.</p>
+</section>
+<section id="location" class="level3">
+<h3 class="anchored" data-anchor-id="location">Location</h3>
+<p>City and state information were retained for geographic analysis.</p>
+<p>No postings were missing the cleaned city or state fields in the analytical dataset.</p>
+<p>The location data were used to identify the leading hiring states and locations represented in the sample.</p>
+</section>
+<section id="education-and-skills" class="level3">
+<h3 class="anchored" data-anchor-id="education-and-skills">Education and Skills</h3>
+<p>Education and skill fields were retained from the Lightcast dataset.</p>
+<p>Missing values were not converted into assumptions about required education or skills.</p>
+<p>These fields provide the foundation for the later skill-gap analysis.</p>
+</section>
+</section>
+<section id="final-analytical-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="final-analytical-dataset">Final Analytical Dataset</h2>
+<p>The cleaned Step 2 dataset contains:</p>
+<ul>
+<li><strong>140 job postings</strong></li>
+<li><strong>52 employers</strong></li>
+<li><strong>62 distinct job titles</strong></li>
+<li><strong>36 original analytical variables</strong></li>
+<li>Additional cleaned variables for remote status, location, salary midpoint, industry scope, and career scope</li>
+</ul>
+<p>The cleaned dataset is stored as:</p>
+<p><code>data/career_market_panel.csv</code></p>
+<p>The corresponding variable documentation is stored as:</p>
+<p><code>data/data_dictionary.csv</code></p>
+</section>
+<section id="step-2-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-limitations">Step 2 Limitations</h2>
+<p>Several data-quality limitations should be considered when interpreting the results.</p>
+<p>First, salary information is unavailable for 54 of the 140 postings.</p>
+<p>Second, minimum experience is unavailable for 28 postings, while maximum experience is unavailable for most postings.</p>
+<p>Third, 71 postings do not have a classified remote-work arrangement.</p>
+<p>Finally, the dataset represents job postings rather than unique underlying job openings or hiring demand. Multiple postings may represent similar positions or repeated recruiting activity.</p>
+<p>These limitations are documented rather than addressed through aggressive imputation so that the baseline remains transparent and reproducible.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
