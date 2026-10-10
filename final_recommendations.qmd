@@ -1,0 +1,6 @@
+---
+title: "Career Recommendations"
+subtitle: "Step 5 — Turn the Evidence into a Learning and Job-Search Plan"
+---
+
+{{< include _content/final-recommendations.md >}}

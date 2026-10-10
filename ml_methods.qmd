@@ -1,0 +1,6 @@
+---
+title: "Salary Analysis and ML Methods"
+subtitle: "Step 4 — What the Salary Data Can Tell a Job Seeker"
+---
+
+{{< include _content/ml-methods.md >}}

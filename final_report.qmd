@@ -1,0 +1,46 @@
+---
+title: "Data Analyst Careers in Financial Services"
+subtitle: "Group 4 | BU MET AD688 | Career readiness in NAICS 523"
+bibliography: references.bib
+link-citations: true
+format:
+  html:
+    toc: true
+    number-sections: true
+  docx:
+    toc: true
+    number-sections: true
+---
+
+# Product Framing {#sec-product-framing}
+
+{{< include _content/research-rationale.md >}}
+
+# Scope and Data {#sec-scope-data}
+
+{{< include _content/data-preparation.md >}}
+
+# Market Baseline {#sec-market-baseline}
+
+{{< include _content/market-baseline.md >}}
+
+# Skill-Gap Analysis {#sec-skill-gap}
+
+{{< include _content/skill-gap-analysis.md >}}
+
+# Final Analytics {#sec-final-analytics}
+
+{{< include _content/ml-methods.md >}}
+
+# Recommendations {#sec-recommendations}
+
+{{< include _content/final-recommendations.md >}}
+
+# Limitations {#sec-limitations}
+
+{{< include _content/limitations.md >}}
+
+# References {.unnumbered}
+
+::: {#refs}
+:::

@@ -1,16 +1,14 @@
-# DRAFT — WIP
-
-## 1 Research rationale
+## Research rationale
 
 Students preparing for Data Analyst careers must connect their current capabilities to the requirements of actual employers. A job title alone does not explain which skills a position requires, how much experience is expected, whether compensation is disclosed, or whether the work arrangement fits a job seeker's circumstances. This project develops a career evaluation prototype for students and aspiring Data Analysts considering securities, investments, and related financial activities.
 
-The target user is a student or early-career job seeker pursuing a **Data Analyst / Data Analytics** pathway. The primary focus is **skill and career readiness**. Salary, experience, location, and employment patterns provide supporting evidence for deciding where to apply and what to learn next. This framing follows the AD688 running case, which asks teams to connect an industry-scoped dataset to practical job-seeker decisions [@ad688case].
+The target user is a student or early-career job seeker pursuing a **Data Analyst / Data Analytics** pathway. The primary focus is **skill and career readiness**. Salary, experience, location, and employment patterns provide supporting evidence for deciding where to apply and what to learn next. This framing follows the AD688 running case, which asks teams to connect an industry-scoped dataset to practical job-seeker decisions.
 
 Reliable industry labels are important because an incorrectly classified employer can distort a sector-specific career benchmark. Chern et al. investigate employer-industry errors arising from employer identification and industry attributes, using posting-derived signals to help detect them [@chern2018]. For this project, the implication is to document how industry membership is selected and to treat potentially inconsistent employer labels as a data-quality limitation.
 
-The selected industry provides a setting in which to examine whether technical tools, analytical methods, and business knowledge appear together in Data Analyst postings. Which skills recur most often, and whether they are associated with particular salary or experience bands, are questions for the analysis rather than established findings.
+The completed study uses **140 Lightcast postings from May–September 2024**, representing **102 distinct employer/title/description profiles**. It moves from data preparation and the market baseline to skill gaps, salary analysis and practical career recommendations. Salary is available for **86 postings**, representing **48 distinct profiles**; the remaining postings still inform the wider market and skill analysis.
 
-## 2 Scope and research questions
+## Scope and research questions
 
 ### Industry and career scope selection
 
@@ -21,16 +19,13 @@ The selected industry provides a setting in which to examine whether technical t
 | Target career pathway         | Data Analyst / Data Analytics                                                           |
 | NAICS classification revision | 2022                                                                                    |
 | Selected dataset code         | `523`                                                                                 |
-| Classification level          | Three-digit subsector within sector `52`, Finance and Insurance                       |
 | Industry label                | Securities, Commodity Contracts, and Other Financial Investments and Related Activities |
 | Primary analytical focus      | Skill and career readiness                                                              |
-| Supporting dimensions         | Salary, experience, geography, remote work, and employment type                         |
+| Supporting dimensions         | Salary, experience, geography, remote work, and employers                               |
 
 NAICS 523 covers securities and commodity intermediation, exchanges, and other investment-related services. It is narrower than the full Finance and Insurance sector and does not represent all financial-services employment. NAICS describes the economic activity of an establishment; it does not identify an employee's occupation [@naics2022]. A Data Analyst title and an employer's industry code therefore serve different purposes in the cohort definition.
 
-The course guide prefers four- or six-digit industry codes where possible [@ad688case]. Group 4 uses the selected three-digit subsector to examine Data Analyst opportunities across related investment activities, while retaining more detailed codes for within-scope comparisons. The report should acknowledge the wider scope and avoid treating its subindustries as interchangeable.
-
-The primary industry filter is `naics_2022_3 = '523'`. The group notes also use the notation `523000`; this project uses `523` consistently for the three-digit scope. A six-digit dataset value beginning with `523` can support a cross-check, but should not be assumed to provide an identical cohort when fields are incomplete or inconsistent.
+Group 4 uses the three-digit subsector to examine Data Analyst opportunities across related investment activities. The findings apply to this selected cohort, rather than all financial-services employment. A separate career-title filter identifies the Data Analyst roles within the industry.
 
 Reference: [NAICS 523 industry description](https://www.naics.com/naics-code-description/?code=523).
 
@@ -38,15 +33,14 @@ Reference: [NAICS 523 industry description](https://www.naics.com/naics-code-des
 
 > What skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in securities, investments, and related financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?
 
-### Supporting research questions
+### Job-seeker decisions
 
-1. **RQ1 — Skills and requirements:** Which technical, software, business, and specialized skills recur in the selected postings, and how do stated education and experience requirements vary?
-2. **RQ2 — Opportunity patterns:** How do disclosed salary ranges, locations, remote-work arrangements, and employment types vary within the selected industry-career cohort?
-3. **RQ3 — Career readiness:** How do the observed skill requirements compare with the team's self-assessed capabilities, and which learning priorities follow from a transparent comparison?
+- **Skills:** Which tools should I strengthen and demonstrate in a portfolio?
+- **Experience:** Which roles match my background and stated requirements?
+- **Compensation:** What salary benchmark can help me compare similar roles?
+- **Search priorities:** Which employers, locations and work arrangements should I investigate?
 
-The career cohort will require both the industry filter and a documented title match in `title_raw` or `title_clean`. The current title rule recognizes Data Analyst and selected explicit variants, including Data & Insights Analyst, Data Analytics Analyst, and Analyst – Data Analysis. It can retain senior titles and can miss roles expressed differently. Experience and seniority must therefore be assessed separately; the cohort should not automatically be described as entry-level.
-
-## 3 Short literature review
+## Short literature review
 
 Five sources support the project's scope, data-quality approach, and interpretation. This is a focused narrative review rather than a systematic review.
 
@@ -58,41 +52,58 @@ Five sources support the project's scope, data-quality approach, and interpretat
 
 **Industry definition and analytical boundaries.** The 2022 NAICS manual supplies the classification framework used to define the selected subsector [@naics2022]. It supports keeping employer industry distinct from career pathway and retaining detailed industry labels for interpretation. This prevents a financial-services label from being used as a substitute for a Data Analyst title filter.
 
-**Reproducible analytical implementation.** Pedregosa et al. describe scikit-learn as a general-purpose Python machine-learning library [@pedregosa2011]. The source is relevant if the final project uses a Python predictive or segmentation model. In that case, package versions, preprocessing, evaluation, and parameter choices must be documented separately. The software paper does not establish which skills financial employers require or validate a career-readiness scorecard.
+**Reproducible analytical implementation.** Pedregosa et al. describe scikit-learn as a general-purpose Python machine-learning library [@pedregosa2011]. The project uses Python to compare multiple linear regression, Random Forest and an average-salary baseline. The analysis notebook documents preprocessing and checks predictions on held-out posting groups, keeping repeated job descriptions together. The software paper does not establish which skills financial employers require or validate a career-readiness scorecard.
 
-Together, these sources support an industry-scoped, reproducible career benchmark with explicit limits. The proposed contribution is to turn posting evidence and self-assessed skills into interpretable learning and application priorities. The project does not claim to improve a proprietary classification system or demonstrate that acquiring a particular skill causes employment.
+Together, these sources support an industry-scoped, reproducible career benchmark with explicit limits. The project's contribution is to turn posting evidence and self-assessed skills into interpretable learning and application priorities. The recommendations prioritize SQL, Python and BI development, matching experience requirements, using descriptive salary benchmarks and verifying work arrangements. The salary models provide supporting evidence; they do not define a job seeker's readiness. The project does not claim to improve a proprietary classification system or demonstrate that acquiring a particular skill causes employment.
 
-## 4 Analytical expectations and design status
+## Data fields and intended use
 
-The project will explore whether the selected postings reveal recurring combinations of technical tools, business capabilities, and experience requirements. SQL, Python, Excel, visualization tools, statistics, and business analysis are candidate skill categories to examine; their relative importance must be established from the selected records.
+| Variable                    | Description                                                                      |
+| --------------------------- | -------------------------------------------------------------------------------- |
+| `ID`                      | Unique Lightcast job-posting identifier.                                         |
+| `LAST_UPDATED_DATE`       | Date the job posting record was last updated.                                    |
+| `POSTED`                  | Date the job posting was posted.                                                 |
+| `EXPIRED`                 | Date the job posting expired, when available.                                    |
+| `TITLE_RAW`               | Original job title from the Lightcast posting.                                   |
+| `BODY`                    | Job-posting description text.                                                    |
+| `COMPANY_NAME`            | Employer name.                                                                   |
+| `EDUCATION_LEVELS_NAME`   | Education-level information associated with the posting.                         |
+| `MIN_YEARS_EXPERIENCE`    | Minimum years of experience required, when available.                            |
+| `MAX_YEARS_EXPERIENCE`    | Maximum years of experience required, when available.                            |
+| `SALARY`                  | Original salary field.                                                           |
+| `REMOTE_TYPE`             | Lightcast remote-work classification code.                                       |
+| `REMOTE_TYPE_NAME`        | Readable remote-work classification.                                             |
+| `ORIGINAL_PAY_PERIOD`     | Original pay-period label; stored salary amounts are already annualized.         |
+| `SALARY_TO`               | Upper annualized salary endpoint used in the analysis.                           |
+| `SALARY_FROM`             | Lower annualized salary endpoint used in the analysis.                           |
+| `LOCATION`                | Original job location field.                                                     |
+| `CITY_NAME`               | City associated with the posting.                                                |
+| `STATE_NAME`              | State associated with the posting.                                               |
+| `NAICS3`                  | Three-digit NAICS industry subsector code.                                       |
+| `NAICS3_NAME`             | Name of the three-digit NAICS industry subsector.                                |
+| `TITLE`                   | Standardized Lightcast job title.                                                |
+| `TITLE_NAME`              | Named occupational/job-title classification.                                     |
+| `TITLE_CLEAN`             | Cleaned job title field.                                                         |
+| `SKILLS`                  | Lightcast coded skills associated with the posting.                              |
+| `SKILLS_NAME`             | Readable skill names.                                                            |
+| `SPECIALIZED_SKILLS`      | Lightcast specialized skill codes.                                               |
+| `SPECIALIZED_SKILLS_NAME` | Readable specialized skill names.                                                |
+| `COMMON_SKILLS`           | Lightcast common skill codes.                                                    |
+| `COMMON_SKILLS_NAME`      | Readable common skill names.                                                     |
+| `SOFTWARE_SKILLS`         | Lightcast software skill codes.                                                  |
+| `SOFTWARE_SKILLS_NAME`    | Readable software skill names.                                                   |
+| `ONET`                    | O*NET occupation code.                                                           |
+| `ONET_NAME`               | O*NET occupation name.                                                           |
+| `SOC_2021_5`              | Five-digit SOC 2021 occupation code.                                             |
+| `SOC_2021_5_NAME`         | Name of the five-digit SOC 2021 occupation classification.                       |
+| `remote_status`           | Cleaned remote-work classification; missing classifications are labeled Unknown. |
+| `city_clean`              | Cleaned city field.                                                              |
+| `state_clean`             | Cleaned state field.                                                             |
+| `salary_midpoint`         | Average of the two annualized salary endpoints; target of the salary regression. |
+| `industry_scope`          | Analysis industry scope, defined as NAICS 523.                                   |
+| `career_scope`            | Career filter used for the revised core Data Analyst sample.                     |
 
-The analysis will also examine whether disclosed compensation and remote-work patterns vary with experience, location, or detailed industry group. Such comparisons describe associations within the sample. Missing salary information, unequal subgroup sizes, and inconsistent labels may restrict which comparisons are useful.
 
-A career evaluation component will compare posting-derived skill demand with the team's existing self-assessments. Any scorecard will explain its dimensions, scaling, and weighting choices. A self-rating and a skill's posting frequency measure different things, so they should not be subtracted directly without a defined conversion rule. Rankings should be checked for sensitivity to reasonable changes in weights.
+## Study and Product Limitations
 
-These are exploratory expectations, not reported results. This document does not establish a sample size, collection period, salary median, top-skill ranking, or model performance. Those findings must come from the cleaned project dataset and documented analysis. The running case's title retains “2024,” while the working dataset is named `Jobs_2026`; the final report should state the actual observed posting dates and snapshot provenance [@ad688case; @careercompass2026].
-
-## 5 Data fields and intended use
-
-### Posting data
-
-The following fields are drawn from the supplied project filtering code. Their presence and types should be checked against the loaded Parquet schema before analysis. An API response should be mapped separately rather than assumed to have identical fields [@careercompass2026].
-
-| Purpose                                 | Fields                                                                                                                                                                         | Intended use and interpretation control                                                                                     |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| Record identity, dates, and duplicates  | `id`, `posted`, `is_duplicate`, `duplicate_of_id`                                                                                                                      | Document the posting window; check ID uniqueness; report duplicate exclusions and unknown duplicate status.                 |
-| Industry scope                          | `naics_2022_3`, `naics_2022_3_name`, `naics_2022_4`, `naics_2022_4_name`, `naics_2022_5`, `naics_2022_5_name`, `naics_2022_6`, `naics_2022_6_name`             | Filter the three-digit code to 523; retain detailed classifications for within-scope comparisons and consistency checks.    |
-| Career selection and occupation context | `title_raw`, `title_clean`, `soc_2021_5`, `soc_2021_5_name`, `onet`, `onet_name`                                                                                   | Apply the declared title rule; review occupation labels and ambiguous matches; distinguish role from employer industry.     |
-| Employer context and source evidence    | `company_name`, `company_is_staffing`, `url`, `body`                                                                                                                   | Inspect employer and staffing flags; retain posting evidence for reviewing unexpected industry or title matches.            |
-| Skills                                  | `skills_name`, `software_skills_name`, `specialized_skills_name`                                                                                                         | Decode and standardize skill lists; count each skill once per posting; avoid double counting overlapping skill fields.      |
-| Education, experience, and credentials  | `min_years_experience`, `max_years_experience`, `education_levels_name`, `certifications_name`                                                                         | Build interpretable requirement groups; preserve unknown values; do not assume a missing experience requirement means zero. |
-| Compensation                            | `text_salary_from`, `text_salary_to`, `text_pay_frequency`, `text_pay_currency`, `normalized_salary_from`, `normalized_salary_to`, `salary_normalization_status` | Verify currency, pay period, normalization, and valid ranges; report salary coverage and both bounds.                       |
-| Employment and location                 | `remote_type_name`, `employment_type_name`, `city_name`, `state_name`, `parsed_country_iso_abbr`                                                                     | Define geographic scope; compare stated arrangements and employment types; show missing or unknown categories.              |
-| Derived audit fields                    | `career_match_reason`, `analysis_include`                                                                                                                                  | Explain which title matched and which rows enter the analysis.                                                              |
-
-The supplied filtering code includes rows in the analytical subset only when `is_duplicate` is explicitly false. True and null values are excluded from that subset. This rule uses the dataset's flag and does not independently resolve all repeated postings or employer aliases. The number excluded for each reason should be reported.
-
-References
-
-::: {#refs}
-:::
+The findings are exploratory because the sample is small, historical and unevenly distributed across regions and employers. Salary disclosure and missing job requirements further limit generalization. The career-readiness prototype helps organize learning and compare roles; it does not yet verify readiness or predict individual offers reliably. The report's [Limitations](limitations.qmd) section documents these boundaries and the next improvements.

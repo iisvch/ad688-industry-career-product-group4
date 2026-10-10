@@ -1,0 +1,29 @@
+{
+  "source_sha256": "d8aed2cb77da6d83c009d202c2935b4cde22a383766cd5bb4b35fabac97c8f0e",
+  "total_postings": 140,
+  "all_profiles": 102,
+  "model_rows": 86,
+  "model_profiles": 48,
+  "largest_profile_rows": 38,
+  "validation": "5-fold grouped validation; equal total weight per profile",
+  "metrics": [
+    {
+      "Model": "Random Forest",
+      "RMSE": 23780.69305341397,
+      "MAE": 18313.497353041726,
+      "R2": 0.12619556533826037
+    },
+    {
+      "Model": "Multiple linear regression",
+      "RMSE": 25419.183834266314,
+      "MAE": 21621.632335005535,
+      "R2": 0.0016371002245877397
+    },
+    {
+      "Model": "Mean baseline",
+      "RMSE": 25571.852247676376,
+      "MAE": 18981.798264021996,
+      "R2": -0.010391310757646766
+    }
+  ]
+}

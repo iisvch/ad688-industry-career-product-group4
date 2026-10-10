@@ -1,7 +1,12 @@
 ---
-title: "Research introduction"
+title: "Product Framing"
 subtitle: "Project overview, research questions, and industry scope"
 number-sections: true
 ---
 
 {{< include _content/research-rationale.md >}}
+
+## References {.unnumbered}
+
+::: {#refs}
+:::

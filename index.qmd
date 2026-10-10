@@ -1,28 +1,6 @@
 ---
 title: "Data Analytics Careers in Financial Services"
+subtitle: "Group 4 | BU MET AD688"
 ---
 
-## Research and product question
-
-What skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?
-
-NAICS 2022: 523
-
-Target career pathway: Data Analyst / Data Analytics
-
-https://www.naics.com/naics-code-description/?code=523
- 
-Industry label: Securities, Commodity Contracts, and Other Financial Investments and Related Activities
-
-This industry includes organizations involved in securities, investments, financial markets, and related financial activities. It provides a useful setting for evaluating Data Analyst careers because the dataset contains analytics-related positions that can be analyzed across salary, required skills, experience, location, and other career factors.
-
-
-## Read the study
-
-1. [Project Overview](introduction.qmd): rationale, research questions and industry scope.
-2. [Data preparation](data_preparation.qmd): data sources, cleaning, and preparation for analysis.
-3. [Market Baseline](market_baseline.qmd): current state of the financial services job market.
-4. [Skill-gap analysis](skill_gap_analysis.qmd): analysis of skills, experience, and salary gaps for Data Analysts in financial services.
-5. [Career Evaluation](career_evaluation.qmd): analysis of career paths and opportunities in the industry.
-6. [Final recommendations](final_recommendations.qmd)
-
+{{< include _content/index.md >}}
