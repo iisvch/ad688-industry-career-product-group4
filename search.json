@@ -1,373 +1,1219 @@
 [
   {
+    "objectID": "final_report.html",
+    "href": "final_report.html",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "",
+    "text": "Students preparing for Data Analyst careers must connect their current capabilities to the requirements of actual employers. A job title alone does not explain which skills a position requires, how much experience is expected, whether compensation is disclosed, or whether the work arrangement fits a job seeker’s circumstances. This project develops a career evaluation prototype for students and aspiring Data Analysts considering securities, investments, and related financial activities.\nThe target user is a student or early-career job seeker pursuing a Data Analyst / Data Analytics pathway. The primary focus is skill and career readiness. Salary, experience, location, and employment patterns provide supporting evidence for deciding where to apply and what to learn next. This framing follows the AD688 running case, which asks teams to connect an industry-scoped dataset to practical job-seeker decisions.\nReliable industry labels are important because an incorrectly classified employer can distort a sector-specific career benchmark. Chern et al. investigate employer-industry errors arising from employer identification and industry attributes, using posting-derived signals to help detect them (Chern et al. 2018). For this project, the implication is to document how industry membership is selected and to treat potentially inconsistent employer labels as a data-quality limitation.\nThe completed study uses 140 Lightcast postings from May–September 2024, representing 102 distinct employer/title/description profiles. It moves from data preparation and the market baseline to skill gaps, salary analysis and practical career recommendations. Salary is available for 86 postings, representing 48 distinct profiles; the remaining postings still inform the wider market and skill analysis.\n\n\n\n\n\nFinancial Services – Data Analytics\n\n\n\n\n\n\n\nScope component\nSelected scope\n\n\n\n\nTarget career pathway\nData Analyst / Data Analytics\n\n\nNAICS classification revision\n2022\n\n\nSelected dataset code\n523\n\n\nIndustry label\nSecurities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nPrimary analytical focus\nSkill and career readiness\n\n\nSupporting dimensions\nSalary, experience, geography, remote work, and employers\n\n\n\nNAICS 523 covers securities and commodity intermediation, exchanges, and other investment-related services. It is narrower than the full Finance and Insurance sector and does not represent all financial-services employment. NAICS describes the economic activity of an establishment; it does not identify an employee’s occupation (Executive Office of the President, Office of Management and Budget 2022). A Data Analyst title and an employer’s industry code therefore serve different purposes in the cohort definition.\nGroup 4 uses the three-digit subsector to examine Data Analyst opportunities across related investment activities. The findings apply to this selected cohort, rather than all financial-services employment. A separate career-title filter identifies the Data Analyst roles within the industry.\nReference: NAICS 523 industry description.\n\n\n\n\nWhat skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in securities, investments, and related financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?\n\n\n\n\n\nSkills: Which tools should I strengthen and demonstrate in a portfolio?\nExperience: Which roles match my background and stated requirements?\nCompensation: What salary benchmark can help me compare similar roles?\nSearch priorities: Which employers, locations and work arrangements should I investigate?\n\n\n\n\n\nFive sources support the project’s scope, data-quality approach, and interpretation. This is a focused narrative review rather than a systematic review.\nEmployer-industry classification. Goindani et al. examine employer-industry classification using job postings (Goindani et al. 2017). The study provides a methodological reference for using recruitment records to examine employer classification. Its relevance here is to make industry selection explicit and review questionable labels. Classification research provides context for cohort quality; it does not establish skill demand or salary levels in this project’s NAICS 523 sample.\nIndustry-label error detection. Chern et al. use employer names, employer descriptions, job titles, and job descriptions to identify possible industry-classification errors, comparing support vector machine and random forest approaches (Chern et al. 2018). Their findings motivate checking employer and posting information when industry membership is uncertain. The paper’s predictive results concern its own dataset and are not evidence of this project’s accuracy or a requirement to reproduce its models.\nRepresentativeness of online postings. Tsvetkova et al. compare Lightcast vacancies with official sources in Australia, Canada, the United Kingdom, and the United States (Tsvetkova et al. 2024). They identify variation in representativeness across geography, occupation, and industry. This supports reporting the observed posting sample and its coverage rather than equating posting counts with all vacancies or employment. Their results do not provide a correction factor for the MET Career Compass dataset.\nIndustry definition and analytical boundaries. The 2022 NAICS manual supplies the classification framework used to define the selected subsector (Executive Office of the President, Office of Management and Budget 2022). It supports keeping employer industry distinct from career pathway and retaining detailed industry labels for interpretation. This prevents a financial-services label from being used as a substitute for a Data Analyst title filter.\nReproducible analytical implementation. Pedregosa et al. describe scikit-learn as a general-purpose Python machine-learning library (Pedregosa et al. 2011). The project uses Python to compare multiple linear regression, Random Forest and an average-salary baseline. The analysis notebook documents preprocessing and checks predictions on held-out posting groups, keeping repeated job descriptions together. The software paper does not establish which skills financial employers require or validate a career-readiness scorecard.\nTogether, these sources support an industry-scoped, reproducible career benchmark with explicit limits. The project’s contribution is to turn posting evidence and self-assessed skills into interpretable learning and application priorities. The recommendations prioritize SQL, Python and BI development, matching experience requirements, using descriptive salary benchmarks and verifying work arrangements. The salary models provide supporting evidence; they do not define a job seeker’s readiness. The project does not claim to improve a proprietary classification system or demonstrate that acquiring a particular skill causes employment.\n\n\n\n\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nID\nUnique Lightcast job-posting identifier.\n\n\nLAST_UPDATED_DATE\nDate the job posting record was last updated.\n\n\nPOSTED\nDate the job posting was posted.\n\n\nEXPIRED\nDate the job posting expired, when available.\n\n\nTITLE_RAW\nOriginal job title from the Lightcast posting.\n\n\nBODY\nJob-posting description text.\n\n\nCOMPANY_NAME\nEmployer name.\n\n\nEDUCATION_LEVELS_NAME\nEducation-level information associated with the posting.\n\n\nMIN_YEARS_EXPERIENCE\nMinimum years of experience required, when available.\n\n\nMAX_YEARS_EXPERIENCE\nMaximum years of experience required, when available.\n\n\nSALARY\nOriginal salary field.\n\n\nREMOTE_TYPE\nLightcast remote-work classification code.\n\n\nREMOTE_TYPE_NAME\nReadable remote-work classification.\n\n\nORIGINAL_PAY_PERIOD\nOriginal pay-period label; stored salary amounts are already annualized.\n\n\nSALARY_TO\nUpper annualized salary endpoint used in the analysis.\n\n\nSALARY_FROM\nLower annualized salary endpoint used in the analysis.\n\n\nLOCATION\nOriginal job location field.\n\n\nCITY_NAME\nCity associated with the posting.\n\n\nSTATE_NAME\nState associated with the posting.\n\n\nNAICS3\nThree-digit NAICS industry subsector code.\n\n\nNAICS3_NAME\nName of the three-digit NAICS industry subsector.\n\n\nTITLE\nStandardized Lightcast job title.\n\n\nTITLE_NAME\nNamed occupational/job-title classification.\n\n\nTITLE_CLEAN\nCleaned job title field.\n\n\nSKILLS\nLightcast coded skills associated with the posting.\n\n\nSKILLS_NAME\nReadable skill names.\n\n\nSPECIALIZED_SKILLS\nLightcast specialized skill codes.\n\n\nSPECIALIZED_SKILLS_NAME\nReadable specialized skill names.\n\n\nCOMMON_SKILLS\nLightcast common skill codes.\n\n\nCOMMON_SKILLS_NAME\nReadable common skill names.\n\n\nSOFTWARE_SKILLS\nLightcast software skill codes.\n\n\nSOFTWARE_SKILLS_NAME\nReadable software skill names.\n\n\nONET\nO*NET occupation code.\n\n\nONET_NAME\nO*NET occupation name.\n\n\nSOC_2021_5\nFive-digit SOC 2021 occupation code.\n\n\nSOC_2021_5_NAME\nName of the five-digit SOC 2021 occupation classification.\n\n\nremote_status\nCleaned remote-work classification; missing classifications are labeled Unknown.\n\n\ncity_clean\nCleaned city field.\n\n\nstate_clean\nCleaned state field.\n\n\nsalary_midpoint\nAverage of the two annualized salary endpoints; target of the salary regression.\n\n\nindustry_scope\nAnalysis industry scope, defined as NAICS 523.\n\n\ncareer_scope\nCareer filter used for the revised core Data Analyst sample.\n\n\n\n\n\n\nThe findings are exploratory because the sample is small, historical and unevenly distributed across regions and employers. Salary disclosure and missing job requirements further limit generalization. The career-readiness prototype helps organize learning and compare roles; it does not yet verify readiness or predict individual offers reliably. The report’s Limitations section documents these boundaries and the next improvements.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#research-rationale",
+    "href": "final_report.html#research-rationale",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "",
+    "text": "Students preparing for Data Analyst careers must connect their current capabilities to the requirements of actual employers. A job title alone does not explain which skills a position requires, how much experience is expected, whether compensation is disclosed, or whether the work arrangement fits a job seeker’s circumstances. This project develops a career evaluation prototype for students and aspiring Data Analysts considering securities, investments, and related financial activities.\nThe target user is a student or early-career job seeker pursuing a Data Analyst / Data Analytics pathway. The primary focus is skill and career readiness. Salary, experience, location, and employment patterns provide supporting evidence for deciding where to apply and what to learn next. This framing follows the AD688 running case, which asks teams to connect an industry-scoped dataset to practical job-seeker decisions.\nReliable industry labels are important because an incorrectly classified employer can distort a sector-specific career benchmark. Chern et al. investigate employer-industry errors arising from employer identification and industry attributes, using posting-derived signals to help detect them (Chern et al. 2018). For this project, the implication is to document how industry membership is selected and to treat potentially inconsistent employer labels as a data-quality limitation.\nThe completed study uses 140 Lightcast postings from May–September 2024, representing 102 distinct employer/title/description profiles. It moves from data preparation and the market baseline to skill gaps, salary analysis and practical career recommendations. Salary is available for 86 postings, representing 48 distinct profiles; the remaining postings still inform the wider market and skill analysis.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#scope-and-research-questions",
+    "href": "final_report.html#scope-and-research-questions",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "",
+    "text": "Financial Services – Data Analytics\n\n\n\n\n\n\n\nScope component\nSelected scope\n\n\n\n\nTarget career pathway\nData Analyst / Data Analytics\n\n\nNAICS classification revision\n2022\n\n\nSelected dataset code\n523\n\n\nIndustry label\nSecurities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nPrimary analytical focus\nSkill and career readiness\n\n\nSupporting dimensions\nSalary, experience, geography, remote work, and employers\n\n\n\nNAICS 523 covers securities and commodity intermediation, exchanges, and other investment-related services. It is narrower than the full Finance and Insurance sector and does not represent all financial-services employment. NAICS describes the economic activity of an establishment; it does not identify an employee’s occupation (Executive Office of the President, Office of Management and Budget 2022). A Data Analyst title and an employer’s industry code therefore serve different purposes in the cohort definition.\nGroup 4 uses the three-digit subsector to examine Data Analyst opportunities across related investment activities. The findings apply to this selected cohort, rather than all financial-services employment. A separate career-title filter identifies the Data Analyst roles within the industry.\nReference: NAICS 523 industry description.\n\n\n\n\nWhat skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in securities, investments, and related financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?\n\n\n\n\n\nSkills: Which tools should I strengthen and demonstrate in a portfolio?\nExperience: Which roles match my background and stated requirements?\nCompensation: What salary benchmark can help me compare similar roles?\nSearch priorities: Which employers, locations and work arrangements should I investigate?",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#short-literature-review",
+    "href": "final_report.html#short-literature-review",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "",
+    "text": "Five sources support the project’s scope, data-quality approach, and interpretation. This is a focused narrative review rather than a systematic review.\nEmployer-industry classification. Goindani et al. examine employer-industry classification using job postings (Goindani et al. 2017). The study provides a methodological reference for using recruitment records to examine employer classification. Its relevance here is to make industry selection explicit and review questionable labels. Classification research provides context for cohort quality; it does not establish skill demand or salary levels in this project’s NAICS 523 sample.\nIndustry-label error detection. Chern et al. use employer names, employer descriptions, job titles, and job descriptions to identify possible industry-classification errors, comparing support vector machine and random forest approaches (Chern et al. 2018). Their findings motivate checking employer and posting information when industry membership is uncertain. The paper’s predictive results concern its own dataset and are not evidence of this project’s accuracy or a requirement to reproduce its models.\nRepresentativeness of online postings. Tsvetkova et al. compare Lightcast vacancies with official sources in Australia, Canada, the United Kingdom, and the United States (Tsvetkova et al. 2024). They identify variation in representativeness across geography, occupation, and industry. This supports reporting the observed posting sample and its coverage rather than equating posting counts with all vacancies or employment. Their results do not provide a correction factor for the MET Career Compass dataset.\nIndustry definition and analytical boundaries. The 2022 NAICS manual supplies the classification framework used to define the selected subsector (Executive Office of the President, Office of Management and Budget 2022). It supports keeping employer industry distinct from career pathway and retaining detailed industry labels for interpretation. This prevents a financial-services label from being used as a substitute for a Data Analyst title filter.\nReproducible analytical implementation. Pedregosa et al. describe scikit-learn as a general-purpose Python machine-learning library (Pedregosa et al. 2011). The project uses Python to compare multiple linear regression, Random Forest and an average-salary baseline. The analysis notebook documents preprocessing and checks predictions on held-out posting groups, keeping repeated job descriptions together. The software paper does not establish which skills financial employers require or validate a career-readiness scorecard.\nTogether, these sources support an industry-scoped, reproducible career benchmark with explicit limits. The project’s contribution is to turn posting evidence and self-assessed skills into interpretable learning and application priorities. The recommendations prioritize SQL, Python and BI development, matching experience requirements, using descriptive salary benchmarks and verifying work arrangements. The salary models provide supporting evidence; they do not define a job seeker’s readiness. The project does not claim to improve a proprietary classification system or demonstrate that acquiring a particular skill causes employment.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#data-fields-and-intended-use",
+    "href": "final_report.html#data-fields-and-intended-use",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "",
+    "text": "Variable\nDescription\n\n\n\n\nID\nUnique Lightcast job-posting identifier.\n\n\nLAST_UPDATED_DATE\nDate the job posting record was last updated.\n\n\nPOSTED\nDate the job posting was posted.\n\n\nEXPIRED\nDate the job posting expired, when available.\n\n\nTITLE_RAW\nOriginal job title from the Lightcast posting.\n\n\nBODY\nJob-posting description text.\n\n\nCOMPANY_NAME\nEmployer name.\n\n\nEDUCATION_LEVELS_NAME\nEducation-level information associated with the posting.\n\n\nMIN_YEARS_EXPERIENCE\nMinimum years of experience required, when available.\n\n\nMAX_YEARS_EXPERIENCE\nMaximum years of experience required, when available.\n\n\nSALARY\nOriginal salary field.\n\n\nREMOTE_TYPE\nLightcast remote-work classification code.\n\n\nREMOTE_TYPE_NAME\nReadable remote-work classification.\n\n\nORIGINAL_PAY_PERIOD\nOriginal pay-period label; stored salary amounts are already annualized.\n\n\nSALARY_TO\nUpper annualized salary endpoint used in the analysis.\n\n\nSALARY_FROM\nLower annualized salary endpoint used in the analysis.\n\n\nLOCATION\nOriginal job location field.\n\n\nCITY_NAME\nCity associated with the posting.\n\n\nSTATE_NAME\nState associated with the posting.\n\n\nNAICS3\nThree-digit NAICS industry subsector code.\n\n\nNAICS3_NAME\nName of the three-digit NAICS industry subsector.\n\n\nTITLE\nStandardized Lightcast job title.\n\n\nTITLE_NAME\nNamed occupational/job-title classification.\n\n\nTITLE_CLEAN\nCleaned job title field.\n\n\nSKILLS\nLightcast coded skills associated with the posting.\n\n\nSKILLS_NAME\nReadable skill names.\n\n\nSPECIALIZED_SKILLS\nLightcast specialized skill codes.\n\n\nSPECIALIZED_SKILLS_NAME\nReadable specialized skill names.\n\n\nCOMMON_SKILLS\nLightcast common skill codes.\n\n\nCOMMON_SKILLS_NAME\nReadable common skill names.\n\n\nSOFTWARE_SKILLS\nLightcast software skill codes.\n\n\nSOFTWARE_SKILLS_NAME\nReadable software skill names.\n\n\nONET\nO*NET occupation code.\n\n\nONET_NAME\nO*NET occupation name.\n\n\nSOC_2021_5\nFive-digit SOC 2021 occupation code.\n\n\nSOC_2021_5_NAME\nName of the five-digit SOC 2021 occupation classification.\n\n\nremote_status\nCleaned remote-work classification; missing classifications are labeled Unknown.\n\n\ncity_clean\nCleaned city field.\n\n\nstate_clean\nCleaned state field.\n\n\nsalary_midpoint\nAverage of the two annualized salary endpoints; target of the salary regression.\n\n\nindustry_scope\nAnalysis industry scope, defined as NAICS 523.\n\n\ncareer_scope\nCareer filter used for the revised core Data Analyst sample.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#study-and-product-limitations",
+    "href": "final_report.html#study-and-product-limitations",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "",
+    "text": "The findings are exploratory because the sample is small, historical and unevenly distributed across regions and employers. Salary disclosure and missing job requirements further limit generalization. The career-readiness prototype helps organize learning and compare roles; it does not yet verify readiness or predict individual offers reliably. The report’s Limitations section documents these boundaries and the next improvements.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#step-2-objective",
+    "href": "final_report.html#step-2-objective",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "2.1 Step 2 Objective",
+    "text": "2.1 Step 2 Objective\nThis step prepares the career-market data used to evaluate opportunities for Data Analyst careers within the selected financial-services industry.\nThe analysis is anchored to:\n\nCareer pathway: Data Analyst / Data Analytics\nNAICS: 523\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe objective is to create a cleaned, reproducible dataset that can be used to evaluate job availability, compensation, experience requirements, work arrangements, geography, employers, and skills.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#data-source",
+    "href": "final_report.html#data-source",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "2.2 Data Source",
+    "text": "2.2 Data Source\nThe analysis uses the professor-approved Lightcast job-postings dataset provided through the team’s Google Drive dataset.\nThe dataset contains job-posting information including job titles, employers, locations, salary information, experience requirements, education, remote-work classifications, skills, occupation classifications, and NAICS industry classifications.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#industry-filter",
+    "href": "final_report.html#industry-filter",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "2.3 Industry Filter",
+    "text": "2.3 Industry Filter\nThe analysis is restricted to NAICS 523, the three-digit NAICS subsector:\n\nSecurities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe Lightcast dataset contains 942 job postings classified under NAICS 523.\nUsing the three-digit NAICS3 field ensures that the analysis covers the full selected NAICS subsector rather than treating 523000 as a separate six-digit industry code.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#career-filter",
+    "href": "final_report.html#career-filter",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "2.4 Career Filter",
+    "text": "2.4 Career Filter\nThe career pathway is Data Analyst / Data Analytics.\nA title-based filter was used to identify postings containing Data Analyst terminology. Clearly unrelated specialized categories were excluded when the title indicated a maintenance, cybersecurity, academic, internship, platform-services, CV-22, or SC2 role.\nThe resulting core career-market dataset contains 140 postings.\nThis core dataset is used as the baseline for Step 2. Closely related analytics roles may be incorporated into the broader Step 3 skill-gap analysis where appropriate.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#cleaning-decisions",
+    "href": "final_report.html#cleaning-decisions",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "2.5 Cleaning Decisions",
+    "text": "2.5 Cleaning Decisions\n\n2.5.1 Duplicate Records\nPostings were checked using the Lightcast ID field. No duplicate IDs were removed from the 140-posting analytical dataset.\n\n\n2.5.2 Salary\nSalary fields were converted to numeric values where possible. Hourly and monthly amounts were annualized during the earlier preparation, so the stored endpoints are used without another conversion. The original pay-period label can remain unchanged.\nMissing salary values were retained as missing rather than converted to zero.\nA salary midpoint was calculated when both the lower and upper salary values were available:\n\\[\nSalary\\ Midpoint =\n\\frac{Salary\\ From + Salary\\ To}{2}\n\\]\nThere were 86 postings with a usable salary midpoint.\nAcross the 86 posting rows, the observed annual salary midpoint ranged from $24,960 to $160,000, with a median of $93,850. After counting repeated employer/title/description profiles once, the median across 48 salary profiles is approximately $92,300.\nBecause salary information is not available for every posting, these figures describe the subset of postings reporting usable salary ranges.\n\n\n2.5.3 Experience\nMinimum and maximum experience requirements were retained separately.\nNegative or invalid experience values were treated as missing.\nA minimum experience requirement was available for 112 of the 140 postings.\nAmong postings with reported minimum experience, the median requirement was 5 years, with an average of approximately 4.1 years.\nMaximum experience was substantially less complete and was therefore not imputed.\n\n\n2.5.4 Remote Work\nRemote-work classifications were retained from the Lightcast data.\nThe cleaned categories are:\n\nRemote\nHybrid Remote\nNot Remote\nUnknown\n\nOf the 140 postings:\n\n54 were classified as Remote\n12 were classified as Hybrid Remote\n3 were classified as Not Remote\n71 had an unknown classification\n\nUnknown values were retained because an unavailable classification does not necessarily mean that the position is onsite.\n\n\n2.5.5 Location\nCity and state information were retained for geographic analysis.\nNo postings were missing the cleaned city or state fields in the analytical dataset.\nThe location data were used to identify the leading hiring states and locations represented in the sample.\n\n\n2.5.6 Education and Skills\nEducation and skill fields were retained from the Lightcast dataset.\nMissing values were not converted into assumptions about required education or skills.\nThese fields provide the foundation for the later skill-gap analysis.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#final-analytical-dataset",
+    "href": "final_report.html#final-analytical-dataset",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "2.6 Final Analytical Dataset",
+    "text": "2.6 Final Analytical Dataset\nThe cleaned Step 2 dataset contains:\n\n140 job postings\n52 employers\n62 distinct job titles\n36 original analytical variables\nAdditional cleaned variables for remote status, location, salary midpoint, industry scope, and career scope\n\nThe cleaned dataset is stored as:\ndata/career_market_panel.csv\nThe corresponding variable documentation is stored as:\ndata/data_dictionary.csv",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#step-2-limitations",
+    "href": "final_report.html#step-2-limitations",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "2.7 Step 2 Limitations",
+    "text": "2.7 Step 2 Limitations\nSeveral data-quality limitations should be considered when interpreting the results.\nFirst, salary information is unavailable for 54 of the 140 postings.\nSecond, minimum experience is unavailable for 28 postings, while maximum experience is unavailable for most postings.\nThird, 71 postings do not have a classified remote-work arrangement.\nFinally, the dataset represents job postings rather than unique underlying job openings or hiring demand. Multiple postings may represent similar positions or repeated recruiting activity.\nThese limitations are documented rather than addressed through aggressive imputation so that the baseline remains transparent and reproducible.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#market-baseline",
+    "href": "final_report.html#market-baseline",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "3.1 Market Baseline",
+    "text": "3.1 Market Baseline\nThis page provides an exploratory baseline of the career market for Data Analyst roles within NAICS 523 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities.\nThe revised analysis uses the professor-approved Lightcast job-postings dataset and includes postings classified within the NAICS 523 subsector.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#industry-scope",
+    "href": "final_report.html#industry-scope",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "3.2 Industry Scope",
+    "text": "3.2 Industry Scope\nThe analysis is restricted to:\n\nNAICS: 523\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\nCareer pathway: Data Analyst / Data Analytics\n\nThe revised dataset contains 140 postings after applying the career-title filter and excluding clearly unrelated roles.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#job-volume-by-title",
+    "href": "final_report.html#job-volume-by-title",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "3.3 Job Volume by Title",
+    "text": "3.3 Job Volume by Title\n\n\n\nJob volume by title\n\n\nThe Data Analyst sample contains a range of analyst titles, including Product Data Analyst, Data Analyst, Data Analyst II, Senior Data Analyst, and other specialized analyst positions.\nProduct Data Analyst is the most frequent title in the revised sample.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#top-employers",
+    "href": "final_report.html#top-employers",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "3.4 Top Employers",
+    "text": "3.4 Top Employers\n\n\n\nTop employers\n\n\nThe largest employer represented in the revised sample is Lincoln Financial Group, followed by The Vanguard Group and Fidelity Investments.\nThis concentration indicates that some employers contribute substantially more postings than others and should be considered when interpreting overall market demand.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#hiring-locations",
+    "href": "final_report.html#hiring-locations",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "3.5 Hiring Locations",
+    "text": "3.5 Hiring Locations\n\n\n\nTop hiring locations\n\n\nThe revised sample is geographically distributed across multiple states.\nThe largest state concentrations are Massachusetts, North Carolina, Pennsylvania, Texas, and Arizona.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#remote-work-1",
+    "href": "final_report.html#remote-work-1",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "3.6 Remote Work",
+    "text": "3.6 Remote Work\n\n\n\nRemote work status\n\n\nThe revised sample contains:\n\n54 Remote\n12 Hybrid Remote\n3 Not Remote\n71 Unknown\n\nBecause more than half of the postings have an unknown remote classification, the results should not be interpreted as a complete estimate of remote-work availability.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#salary-distribution",
+    "href": "final_report.html#salary-distribution",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "3.7 Salary Distribution",
+    "text": "3.7 Salary Distribution\n\n\n\nSalary distribution\n\n\nA usable salary midpoint could be calculated for 86 of the 140 postings.\nThe annual salary midpoint distribution across the 86 posting rows has:\n\nMean: $90,860.55\nMedian: $93,850\nMinimum: $24,960\nMaximum: $160,000\n\nSalary information was retained as missing when salary endpoints were unavailable rather than treating missing salary as zero. The final analytics also reports 48 distinct salary profiles, with a median of approximately $92,300. The two medians use different counting units: posting rows and distinct profiles.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#experience-requirements",
+    "href": "final_report.html#experience-requirements",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "3.8 Experience Requirements",
+    "text": "3.8 Experience Requirements\n\n\n\nExperience requirements\n\n\nMinimum experience information was available for 112 postings.\nAmong postings with a reported minimum experience requirement:\n\nMean: 4.11 years\nMedian: 5 years\nMinimum: 0 years\nMaximum: 12 years\n\nMaximum experience requirements were frequently missing, so the analysis focuses on the minimum experience field.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#data-quality-and-limitations",
+    "href": "final_report.html#data-quality-and-limitations",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "3.9 Data Quality and Limitations",
+    "text": "3.9 Data Quality and Limitations\nThe revised analysis provides a substantially larger career-specific sample than the original MET API analysis.\nThe original Step 2 analysis was limited to 400 retrieved NAICS 523000 records and identified only two direct Data Analyst matches. The revised analysis uses the Lightcast dataset approved for the project and the three-digit NAICS 523 subsector.\nThe career filter was intentionally expanded to capture relevant Data Analyst titles while excluding clearly unrelated categories such as maintenance, cybersecurity, academic roles, internships, and other specialized positions that did not fit the project’s intended career pathway.\nMissing salary, experience, and remote-work information was retained and explicitly reported rather than being converted into misleading values.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#summary",
+    "href": "final_report.html#summary",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "3.10 Summary",
+    "text": "3.10 Summary\nThe revised baseline provides a broader view of Data Analyst opportunities within financial services. The market includes multiple employers, geographic locations, salary ranges, experience requirements, and work arrangements.\nThese results provide the foundation for the next stage of the project: Step 3 skill-gap analysis and expanded EDA.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#skill-gap-analysis",
+    "href": "final_report.html#skill-gap-analysis",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "4.1 Skill Gap Analysis",
+    "text": "4.1 Skill Gap Analysis\nThis page compares the skills requested in Data Analyst job postings within NAICS 523 with the current self-assessed skill levels of the project team.\nThe analysis uses the revised 140-posting Data Analyst dataset developed in Step 2 and focuses on skills that can be meaningfully compared with the team’s current capabilities.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#team-skill-self-assessment",
+    "href": "final_report.html#team-skill-self-assessment",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "4.2 Team Skill Self-Assessment",
+    "text": "4.2 Team Skill Self-Assessment\nEach team member rated current proficiency using a five-point scale:\n\n1 — Beginner\n2 — Basic Knowledge\n3 — Intermediate\n4 — Advanced\n5 — Expert\n\nThe assessment covers technical, analytical, visualization, cloud, and business-analysis skills relevant to the Data Analyst career pathway.\n\n\n\nTeam skill self-assessment\n\n\nThe team reports relatively strong capabilities in Excel, data visualization, statistics, and business analysis.\nAverage proficiency is lower in Python, SQL, machine learning, PySpark / Big Data, and AWS / Cloud.\nThe heatmap also shows variation across team members. Some members report stronger business and spreadsheet skills, while others report relatively stronger statistics, visualization, or data-cleaning capabilities.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#market-skill-demand",
+    "href": "final_report.html#market-skill-demand",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "4.3 Market Skill Demand",
+    "text": "4.3 Market Skill Demand\nSkill demand was calculated from the 140 Data Analyst postings by identifying the percentage of job postings containing each skill.\nThe most frequently requested skills in the revised dataset include:\n\nData Analysis — 69.3%\nCommunication — 60.7%\nTableau — 55.7%\nSQL — 50.0%\nPython — 37.1%\nExcel — 23.6%\nData Visualization — 19.3%\nStatistics — 10.7%\nMachine Learning — 9.3%\nAmazon Web Services — 7.1%\n\nThese results indicate that employers value a combination of analytical, technical, visualization, and communication capabilities.\nSQL, Tableau, and Python stand out as especially important technical skills for the target Data Analyst pathway.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#skill-priority-matrix",
+    "href": "final_report.html#skill-priority-matrix",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "4.4 Skill Priority Matrix",
+    "text": "4.4 Skill Priority Matrix\nThe following matrix compares market demand with the team’s average self-assessed proficiency.\n\n\n\nSkill priority matrix\n\n\nThe horizontal axis represents the percentage of job postings containing each skill.\nThe vertical axis represents the team’s average proficiency on the 1–5 self-assessment scale.\nThe dashed lines represent the median market demand and median team proficiency across the comparable skills.\nSkills in the lower-right portion of the chart represent the most important development opportunities because they combine relatively high employer demand with relatively lower current proficiency.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#key-skill-gaps",
+    "href": "final_report.html#key-skill-gaps",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "4.5 Key Skill Gaps",
+    "text": "4.5 Key Skill Gaps\nSQL is the clearest priority area.\nSQL appears in 50.0% of the Data Analyst postings, while the team’s average proficiency is approximately 2.33 out of 5.\nThis suggests that stronger SQL capability could directly improve alignment with current market requirements.\nPython is another important development area.\nPython appears in 37.1% of postings, while the team reports an average proficiency of approximately 2.33 out of 5.\nImproving Python skills would strengthen the team’s ability to perform data cleaning, analysis, automation, and reproducible analytical workflows.\nPower BI / Tableau also remains important because Tableau appears in 55.7% of the postings.\nThe team’s average proficiency in this area is approximately 3.33 out of 5, indicating a moderate level of capability but continued room for development.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#team-strengths",
+    "href": "final_report.html#team-strengths",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "4.6 Team Strengths",
+    "text": "4.6 Team Strengths\nThe team reports relatively strong capability in several areas.\nExcel has an average proficiency above 4 out of 5 and remains relevant across many analytical workflows.\nData Visualization is another team strength, with all three members reporting advanced proficiency.\nThe team also reports comparatively strong capabilities in statistics and business analysis.\nThese strengths can support the development of weaker technical areas by allowing team members to focus on translating analysis into clear business insights and visual communication.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#individual-development-priorities",
+    "href": "final_report.html#individual-development-priorities",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "4.7 Individual Development Priorities",
+    "text": "4.7 Individual Development Priorities\nBased on the combination of market demand and self-assessed proficiency, the highest-priority development areas are:\n\n4.7.1 Taiqi\n\nSQL — High Priority\nPython — High Priority\nPower BI / Tableau — Medium Priority\n\nTaiqi should continue developing SQL and Python while building on existing strengths in Excel, visualization, and business analysis.\n\n\n4.7.2 Joseph\n\nSQL — High Priority\nPython — High Priority\nPower BI / Tableau — High Priority\n\nJoseph’s strongest development opportunity is increasing practical experience with SQL, Python, and business-intelligence tools.\n\n\n4.7.3 Igor\n\nSQL — High Priority\nPython — High Priority\nPower BI / Tableau — High Priority\n\nIgor reports strong Excel and business-analysis skills, while SQL and Python represent important opportunities to strengthen technical alignment with the job market.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#improvement-plan",
+    "href": "final_report.html#improvement-plan",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "4.8 Improvement Plan",
+    "text": "4.8 Improvement Plan\nThe team should prioritize practical development in three areas:\n\nSQL\n\nPractice joins, common table expressions, window functions, aggregation, and analytical queries.\nApply SQL to realistic business and job-market datasets.\n\nPython\n\nStrengthen pandas, data cleaning, exploratory analysis, visualization, and automation.\nContinue using notebooks and project-based exercises.\n\nPower BI / Tableau\n\nBuild interactive dashboards using filters, calculated fields, drill-downs, and clear business storytelling.\nPractice translating analytical findings into decision-oriented visualizations.\n\n\nSecondary development areas include machine learning, cloud platforms, and big-data tools.\nThese skills currently appear less frequently in the sample than SQL, Python, and Tableau, but they may become increasingly useful for more advanced analytics roles.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#team-collaboration",
+    "href": "final_report.html#team-collaboration",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "4.9 Team Collaboration",
+    "text": "4.9 Team Collaboration\nThe team can reduce skill gaps by sharing technical resources and using project work as structured practice.\nPossible approaches include:\n\nreviewing one another’s SQL queries and Python notebooks;\nsharing visualization and dashboard techniques;\ndividing analytical tasks based on individual strengths;\ndocumenting useful coding patterns and resources in the shared repository;\nusing future project stages to practice weaker technical skills.\n\nMembers with stronger Excel, visualization, statistics, and business-analysis skills can support the team in those areas while strengthening their own SQL, Python, and cloud capabilities.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#limitations",
+    "href": "final_report.html#limitations",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "4.10 Limitations",
+    "text": "4.10 Limitations\nThe skill comparison has several limitations.\nMarket demand is based on the percentage of job postings containing each skill, while team proficiency is based on self-assessment.\nThese measures are not directly equivalent and should not be interpreted as a statistical difference.\nInstead, the comparison is used as a practical prioritization framework to identify skills that are both important in the job market and relatively underdeveloped within the team.\nThe analysis is also limited to the revised 140-posting Data Analyst sample within NAICS 523 and therefore does not represent the entire Data Analyst labor market.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#summary-1",
+    "href": "final_report.html#summary-1",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "4.11 Summary",
+    "text": "4.11 Summary\nThe Step 3 skill-gap analysis identifies a clear distinction between current team strengths and market-driven development priorities.\nThe team is relatively strong in Excel, visualization, statistics, and business analysis.\nHowever, SQL, Python, and business-intelligence tools represent the most important areas for continued development because they combine substantial market demand with lower or moderate current proficiency.\nThese findings provide a practical foundation for the team’s future learning priorities and later career recommendations.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#purpose",
+    "href": "final_report.html#purpose",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "5.1 Purpose",
+    "text": "5.1 Purpose\nCan experience, location, remote status and required skills help explain differences in advertised salaries?\nWe compare multiple linear regression and Random Forest with a simple average-salary baseline. The aim is to judge whether a model adds useful information to the salary benchmarks from the market baseline.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#data-used",
+    "href": "final_report.html#data-used",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "5.2 Data Used",
+    "text": "5.2 Data Used\n\n140 Data Analyst postings in NAICS 523, posted between May and September 2024.\n86 postings with a valid salary midpoint, representing 48 distinct posting profiles.\n54 postings without salary remain in the wider market and skill analysis, but cannot be used to evaluate salary predictions.\nThe target is salary_midpoint, the average of the lower and upper annualized salary endpoints. Hourly and monthly amounts were already converted during preparation and are used without another conversion.\n\nThe predictors are minimum experience, remote status, city, state and eight skill indicators: SQL, Python, Excel, Power BI / Tableau, statistics, visualization, machine learning and AWS. Salary endpoints are excluded from the predictors because they define the target.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#how-the-models-were-checked",
+    "href": "final_report.html#how-the-models-were-checked",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "5.3 How the Models Were Checked",
+    "text": "5.3 How the Models Were Checked\n\nDivide the data into five validation parts.\nTrain a fresh model on four parts and predict salaries for the remaining part; repeat until every posting has been checked once.\nKeep copies of the same employer/title/description together, so the model is checked on jobs it has not already seen.\nGive each posting profile equal total weight, preventing a job advertised in many cities from dominating the results.\nFill missing experience using training data only; keep unknown remote status as its own category.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#main-results",
+    "href": "final_report.html#main-results",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "5.4 Main Results",
+    "text": "5.4 Main Results\nThe mean-salary baseline predicts the same training average for every validation job. It is a simple benchmark used to judge whether the two predictive models add value.\nLower RMSE and MAE mean smaller salary errors. Higher R² means the model explains more of the salary variation in held-out data; it is not an accuracy percentage.\n\n\n\nModel\nRMSE\nMAE\nR²\n\n\n\n\nRandom Forest\n$23,781\n$18,313\n0.126\n\n\nMultiple linear regression\n$25,419\n$21,622\n0.002\n\n\nMean-salary baseline\n$25,572\n$18,982\n−0.010\n\n\n\n\n\n\nSalary-model comparison using grouped validation\n\n\n\nRandom Forest performs best, reducing RMSE by about 7% compared with the baseline.\nIts average absolute error is still about $18,300. The model provides limited support for a precise individual salary estimate.\nLinear regression performs close to the baseline, suggesting that a simple linear relationship captures little of the observed salary variation.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#which-factor-contributed-most",
+    "href": "final_report.html#which-factor-contributed-most",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "5.5 Which Factor Contributed Most?",
+    "text": "5.5 Which Factor Contributed Most?\n\n\n\nFactors contributing to Random Forest salary predictions\n\n\n\nMinimum experience is the strongest predictive signal in the Random Forest comparison.\nSkill, remote and location indicators contribute less consistently to salary prediction in this small sample.\nThese are associations between job requirements and compensation. They do not show that learning a particular skill causes a pay increase.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#what-this-means-for-a-job-seeker",
+    "href": "final_report.html#what-this-means-for-a-job-seeker",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "5.6 What This Means for a Job Seeker",
+    "text": "5.6 What This Means for a Job Seeker\n\nUse advertised salary ranges and the sample benchmarks as reference points.\nCompare roles with similar experience requirements before comparing compensation.\nPrioritize skills using employer demand and your own skill gaps; a weak salary predictor can still be an important job requirement.\nTreat model estimates as exploratory. The sample is small, historical and limited to salary-disclosing postings.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#limitations-1",
+    "href": "final_report.html#limitations-1",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "5.7 Limitations",
+    "text": "5.7 Limitations\n\nSmall salary sample: 86 postings represent only 48 profiles, so results are uncertain.\nUneven regional and employer coverage: the selected historical sample does not establish national salary expectations or reliable regional pay differences.\nMissing and imperfect data: salaries, experience and remote status are incomplete; annualized salary values can still contain source errors.\nLimited model usefulness: MAE is about $18,300 and R² is 0.126. There is no independent final test, and predictive associations do not establish causal pay effects.\n\nUse actual advertised ranges and comparable roles when making decisions. See Limitations for the full report section and product boundaries.\nContinue to Career Recommendations for the practical learning and job-search priorities.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#where-to-focus",
+    "href": "final_report.html#where-to-focus",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "6.1 Where to Focus",
+    "text": "6.1 Where to Focus\nFor students and early-career applicants pursuing Data Analyst roles in securities, investments and related financial activities, the clearest priorities are:\n\nStrengthen SQL, Python and business-intelligence skills.\nTarget roles that match your experience.\nUse salary benchmarks to compare opportunities.\nConfirm location and remote requirements in each posting.\n\nThese recommendations combine the data preparation, market baseline, skill-gap analysis and salary analysis. The evidence covers 140 postings from May–September 2024, representing 102 distinct employer/title/description profiles. It is a historical snapshot, not a list of current vacancies.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#build-the-skills-employers-request",
+    "href": "final_report.html#build-the-skills-employers-request",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "6.2 1. Build the Skills Employers Request",
+    "text": "6.2 1. Build the Skills Employers Request\n\n\n\nSkill demand across posting rows and distinct posting profiles\n\n\nAfter counting repeated descriptions once, the leading skills among the eight technical groups examined are:\n\n\n\n\n\n\n\n\nSkill\nShare of distinct profiles\nPractical evidence to build\n\n\n\n\nSQL\n67.6%\nQueries using joins, aggregation and window functions to answer business questions.\n\n\nPython\n51.0%\nA reproducible notebook that cleans data, analyzes patterns and explains the findings.\n\n\nPower BI / Tableau\n50.0%\nA dashboard with useful filters, clear measures and a short business explanation.\n\n\n\nPercentages use 102 distinct profiles. The BI group includes either Power BI or Tableau; the two bars in the chart show how repeated postings affect demand counts.\nThe original skill-gap analysis also found Data Analysis in 69.3% and Communication in 60.7% of the 140 postings. Show that you can explain what the numbers mean and recommend a practical action, alongside demonstrating the tools.\nFor Group 4, the self-assessment identifies strengths in Excel, visualization, statistics and business analysis, with lower average ratings in SQL and Python (2.33/5). The development priorities remain:\n\nTaiqi: SQL and Python first; continue improving BI skills.\nJoseph and Igor: SQL, Python and BI first.\nBuild on existing strengths to produce clear, business-focused work. These ratings are self-assessments, not verified proficiency scores.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#target-roles-that-fit-your-experience",
+    "href": "final_report.html#target-roles-that-fit-your-experience",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "6.3 2. Target Roles That Fit Your Experience",
+    "text": "6.3 2. Target Roles That Fit Your Experience\n\n\n\nReported minimum experience requirements for 112 of the 140 postings\n\n\n\n26 postings, representing 25 profiles, require 0–2 years of minimum experience. Start by reviewing these roles and relevant junior or associate titles.\n79 postings require 3–5 years. Read the responsibilities carefully before deciding whether your previous work meets the requirement.\n28 postings omit minimum experience. Check the description; missing information does not mean no experience is required.\n\nMatch your application to the actual responsibilities and required skills, rather than relying on the title alone.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#use-salary-as-a-benchmark",
+    "href": "final_report.html#use-salary-as-a-benchmark",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "6.4 3. Use Salary as a Benchmark",
+    "text": "6.4 3. Use Salary as a Benchmark\n\n\n\nAnnual salary midpoints across postings and distinct posting profiles\n\n\n\nSalary is available for 86 postings, representing 48 distinct profiles.\nThe distinct-profile median annual midpoint is approximately $92,300.\nThe middle 50% of profile midpoints falls roughly between $72,000 and $100,000.\nThis describes roles with different experience levels; it is not an entry-level salary expectation or an individual offer range.\n\nCompare each employer’s advertised range with similar roles, experience requirements and location. The best salary model still has an average absolute error of about $18,300, so the descriptive benchmark is more useful than treating a predicted number as a precise offer expectation.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#search-across-employers-and-work-arrangements",
+    "href": "final_report.html#search-across-employers-and-work-arrangements",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "6.5 4. Search Across Employers and Work Arrangements",
+    "text": "6.5 4. Search Across Employers and Work Arrangements\n\n\n\nStates with the most distinct posting profiles in the sample\n\n\n\nMassachusetts, North Carolina and Pennsylvania lead the sample by distinct profiles. Use them as starting points for employer research, alongside locations that fit your circumstances.\nLincoln Financial Group, Vanguard and Fidelity Investments are prominent in the market baseline. Use these names to explore relevant roles, while also considering other employers.\n54 postings are classified as remote, but 71 have an unknown arrangement. Verify attendance and location requirements directly in the posting.\nA job advertised in several cities may be one opening. Compare descriptions and requirements before treating every listing as a separate opportunity.\n\nThese patterns show where the historical sample advertised roles; they do not establish which employers are hiring today or which location offers the best cost-adjusted salary.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#a-practical-next-step",
+    "href": "final_report.html#a-practical-next-step",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "6.6 A Practical Next Step",
+    "text": "6.6 A Practical Next Step\nBuild one finance-related portfolio project that combines the three priority tools:\n\nUse SQL to organize the data and calculate meaningful business measures.\nUse Python to clean, analyze and visualize the results.\nUse Power BI or Tableau to present a dashboard and explain the decisions it supports.\nAdd the project to your CV and tailor the application to the skills and experience in each target role.\n\nFor the career-readiness prototype, put these decisions first: show skill matches, learning priorities, experience fit and salary benchmarks with sample sizes. The study supports practical preparation and a more focused search; it does not guarantee a job offer or a salary increase.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#limitations-of-these-recommendations",
+    "href": "final_report.html#limitations-of-these-recommendations",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "6.7 Limitations of These Recommendations",
+    "text": "6.7 Limitations of These Recommendations\n\nThe small 2024 sample and uneven regional coverage do not support firm conclusions about the full or current labor market.\nMissing salary, experience and remote information can bias comparisons; repeated advertising can inflate apparent opportunity counts.\nTeam skill ratings are self-assessments, and the salary model remains too uncertain for precise personal predictions.\nThe prototype provides preparation and search guidance. It does not yet track live vacancies, verify readiness, or measure hiring outcomes.\n\nThe full Limitations section explains these boundaries and the next improvements.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#limits-of-the-evidence",
+    "href": "final_report.html#limits-of-the-evidence",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "7.1 Limits of the Evidence",
+    "text": "7.1 Limits of the Evidence\n\nSmall, selected sample. The study uses 140 Data Analyst postings in NAICS 523, representing 102 employer/title/description profiles. Salary analysis uses only 86 postings and 48 profiles. These findings are exploratory and do not support firm conclusions for the full Data Analyst market.\nUneven geographic coverage. The data includes several states, but locations and employers are not evenly represented. Regional patterns describe this sample; they do not establish national demand, the best relocation choice, or salary differences after cost of living.\nHistorical and incomplete records. The postings cover May–September 2024. Salary is missing for 54 postings, minimum experience for 28, and remote classification for 71. Missing information may affect which roles appear in each analysis.\nPostings are not confirmed openings or offers. One job can be advertised in several locations. Exact-text grouping reduces repeated counts but may miss similar reposts. Salary endpoints were annualized during preparation, but source discrepancies can remain; the low Ariel Investments value needs review.\nModest predictive performance. Random Forest performs slightly better than the mean-salary benchmark, with MAE about $18,300 and R² 0.126. The models were compared using the same cross-validation results, with no separate final test. Predictions are too uncertain to serve as precise individual salary estimates.\nSkills and pay are not causal measures. Skill mentions describe posting requirements. Team proficiency is self-assessed, and the eight technical groups do not cover every skill. Neither demand percentages nor model importance establish hiring probability or a pay increase from learning a skill.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_report.html#product-boundaries-and-next-steps",
+    "href": "final_report.html#product-boundaries-and-next-steps",
+    "title": "Data Analyst Careers in Financial Services",
+    "section": "7.2 Product Boundaries and Next Steps",
+    "text": "7.2 Product Boundaries and Next Steps\nThe prototype supports learning priorities, experience fit, employer research and salary benchmarks. It does not yet provide live vacancy tracking, verified readiness scores, personalized offer predictions, or evidence that its advice improves hiring outcomes.\nTo strengthen the product:\n\nCollect more recent, independent postings across states and employers, and verify salary values.\nAssess skills through practical tasks and gather feedback from students using the recommendations.\nEvaluate models on new employers or a later time period before offering individual salary estimates.",
+    "crumbs": [
+      "Home",
+      "Final Report"
+    ]
+  },
+  {
+    "objectID": "final_recommendations.html",
+    "href": "final_recommendations.html",
+    "title": "Career Recommendations",
+    "section": "",
+    "text": "For students and early-career applicants pursuing Data Analyst roles in securities, investments and related financial activities, the clearest priorities are:\n\nStrengthen SQL, Python and business-intelligence skills.\nTarget roles that match your experience.\nUse salary benchmarks to compare opportunities.\nConfirm location and remote requirements in each posting.\n\nThese recommendations combine the data preparation, market baseline, skill-gap analysis and salary analysis. The evidence covers 140 postings from May–September 2024, representing 102 distinct employer/title/description profiles. It is a historical snapshot, not a list of current vacancies.",
+    "crumbs": [
+      "Home",
+      "6. Recommendations"
+    ]
+  },
+  {
+    "objectID": "final_recommendations.html#where-to-focus",
+    "href": "final_recommendations.html#where-to-focus",
+    "title": "Career Recommendations",
+    "section": "",
+    "text": "For students and early-career applicants pursuing Data Analyst roles in securities, investments and related financial activities, the clearest priorities are:\n\nStrengthen SQL, Python and business-intelligence skills.\nTarget roles that match your experience.\nUse salary benchmarks to compare opportunities.\nConfirm location and remote requirements in each posting.\n\nThese recommendations combine the data preparation, market baseline, skill-gap analysis and salary analysis. The evidence covers 140 postings from May–September 2024, representing 102 distinct employer/title/description profiles. It is a historical snapshot, not a list of current vacancies.",
+    "crumbs": [
+      "Home",
+      "6. Recommendations"
+    ]
+  },
+  {
+    "objectID": "final_recommendations.html#build-the-skills-employers-request",
+    "href": "final_recommendations.html#build-the-skills-employers-request",
+    "title": "Career Recommendations",
+    "section": "1. Build the Skills Employers Request",
+    "text": "1. Build the Skills Employers Request\n\n\n\nSkill demand across posting rows and distinct posting profiles\n\n\nAfter counting repeated descriptions once, the leading skills among the eight technical groups examined are:\n\n\n\n\n\n\n\n\nSkill\nShare of distinct profiles\nPractical evidence to build\n\n\n\n\nSQL\n67.6%\nQueries using joins, aggregation and window functions to answer business questions.\n\n\nPython\n51.0%\nA reproducible notebook that cleans data, analyzes patterns and explains the findings.\n\n\nPower BI / Tableau\n50.0%\nA dashboard with useful filters, clear measures and a short business explanation.\n\n\n\nPercentages use 102 distinct profiles. The BI group includes either Power BI or Tableau; the two bars in the chart show how repeated postings affect demand counts.\nThe original skill-gap analysis also found Data Analysis in 69.3% and Communication in 60.7% of the 140 postings. Show that you can explain what the numbers mean and recommend a practical action, alongside demonstrating the tools.\nFor Group 4, the self-assessment identifies strengths in Excel, visualization, statistics and business analysis, with lower average ratings in SQL and Python (2.33/5). The development priorities remain:\n\nTaiqi: SQL and Python first; continue improving BI skills.\nJoseph and Igor: SQL, Python and BI first.\nBuild on existing strengths to produce clear, business-focused work. These ratings are self-assessments, not verified proficiency scores.",
+    "crumbs": [
+      "Home",
+      "6. Recommendations"
+    ]
+  },
+  {
+    "objectID": "final_recommendations.html#target-roles-that-fit-your-experience",
+    "href": "final_recommendations.html#target-roles-that-fit-your-experience",
+    "title": "Career Recommendations",
+    "section": "2. Target Roles That Fit Your Experience",
+    "text": "2. Target Roles That Fit Your Experience\n\n\n\nReported minimum experience requirements for 112 of the 140 postings\n\n\n\n26 postings, representing 25 profiles, require 0–2 years of minimum experience. Start by reviewing these roles and relevant junior or associate titles.\n79 postings require 3–5 years. Read the responsibilities carefully before deciding whether your previous work meets the requirement.\n28 postings omit minimum experience. Check the description; missing information does not mean no experience is required.\n\nMatch your application to the actual responsibilities and required skills, rather than relying on the title alone.",
+    "crumbs": [
+      "Home",
+      "6. Recommendations"
+    ]
+  },
+  {
+    "objectID": "final_recommendations.html#use-salary-as-a-benchmark",
+    "href": "final_recommendations.html#use-salary-as-a-benchmark",
+    "title": "Career Recommendations",
+    "section": "3. Use Salary as a Benchmark",
+    "text": "3. Use Salary as a Benchmark\n\n\n\nAnnual salary midpoints across postings and distinct posting profiles\n\n\n\nSalary is available for 86 postings, representing 48 distinct profiles.\nThe distinct-profile median annual midpoint is approximately $92,300.\nThe middle 50% of profile midpoints falls roughly between $72,000 and $100,000.\nThis describes roles with different experience levels; it is not an entry-level salary expectation or an individual offer range.\n\nCompare each employer’s advertised range with similar roles, experience requirements and location. The best salary model still has an average absolute error of about $18,300, so the descriptive benchmark is more useful than treating a predicted number as a precise offer expectation.",
+    "crumbs": [
+      "Home",
+      "6. Recommendations"
+    ]
+  },
+  {
+    "objectID": "final_recommendations.html#search-across-employers-and-work-arrangements",
+    "href": "final_recommendations.html#search-across-employers-and-work-arrangements",
+    "title": "Career Recommendations",
+    "section": "4. Search Across Employers and Work Arrangements",
+    "text": "4. Search Across Employers and Work Arrangements\n\n\n\nStates with the most distinct posting profiles in the sample\n\n\n\nMassachusetts, North Carolina and Pennsylvania lead the sample by distinct profiles. Use them as starting points for employer research, alongside locations that fit your circumstances.\nLincoln Financial Group, Vanguard and Fidelity Investments are prominent in the market baseline. Use these names to explore relevant roles, while also considering other employers.\n54 postings are classified as remote, but 71 have an unknown arrangement. Verify attendance and location requirements directly in the posting.\nA job advertised in several cities may be one opening. Compare descriptions and requirements before treating every listing as a separate opportunity.\n\nThese patterns show where the historical sample advertised roles; they do not establish which employers are hiring today or which location offers the best cost-adjusted salary.",
+    "crumbs": [
+      "Home",
+      "6. Recommendations"
+    ]
+  },
+  {
+    "objectID": "final_recommendations.html#a-practical-next-step",
+    "href": "final_recommendations.html#a-practical-next-step",
+    "title": "Career Recommendations",
+    "section": "A Practical Next Step",
+    "text": "A Practical Next Step\nBuild one finance-related portfolio project that combines the three priority tools:\n\nUse SQL to organize the data and calculate meaningful business measures.\nUse Python to clean, analyze and visualize the results.\nUse Power BI or Tableau to present a dashboard and explain the decisions it supports.\nAdd the project to your CV and tailor the application to the skills and experience in each target role.\n\nFor the career-readiness prototype, put these decisions first: show skill matches, learning priorities, experience fit and salary benchmarks with sample sizes. The study supports practical preparation and a more focused search; it does not guarantee a job offer or a salary increase.",
+    "crumbs": [
+      "Home",
+      "6. Recommendations"
+    ]
+  },
+  {
+    "objectID": "final_recommendations.html#limitations-of-these-recommendations",
+    "href": "final_recommendations.html#limitations-of-these-recommendations",
+    "title": "Career Recommendations",
+    "section": "Limitations of These Recommendations",
+    "text": "Limitations of These Recommendations\n\nThe small 2024 sample and uneven regional coverage do not support firm conclusions about the full or current labor market.\nMissing salary, experience and remote information can bias comparisons; repeated advertising can inflate apparent opportunity counts.\nTeam skill ratings are self-assessments, and the salary model remains too uncertain for precise personal predictions.\nThe prototype provides preparation and search guidance. It does not yet track live vacancies, verify readiness, or measure hiring outcomes.\n\nThe full Limitations section explains these boundaries and the next improvements.",
+    "crumbs": [
+      "Home",
+      "6. Recommendations"
+    ]
+  },
+  {
     "objectID": "skill_gap_analysis.html",
     "href": "skill_gap_analysis.html",
     "title": "Skill Gap Analysis",
     "section": "",
-    "text": "This page compares the skills requested in Data Analyst job postings within NAICS 523 with the current self-assessed skill levels of the project team.\nThe analysis uses the revised 140-posting Data Analyst dataset developed in Step 2 and focuses on skills that can be meaningfully compared with the team’s current capabilities."
+    "text": "This page compares the skills requested in Data Analyst job postings within NAICS 523 with the current self-assessed skill levels of the project team.\nThe analysis uses the revised 140-posting Data Analyst dataset developed in Step 2 and focuses on skills that can be meaningfully compared with the team’s current capabilities.",
+    "crumbs": [
+      "Home",
+      "4. Skill-Gap Analysis"
+    ]
   },
   {
     "objectID": "skill_gap_analysis.html#skill-gap-analysis",
     "href": "skill_gap_analysis.html#skill-gap-analysis",
     "title": "Skill Gap Analysis",
     "section": "",
-    "text": "This page compares the skills requested in Data Analyst job postings within NAICS 523 with the current self-assessed skill levels of the project team.\nThe analysis uses the revised 140-posting Data Analyst dataset developed in Step 2 and focuses on skills that can be meaningfully compared with the team’s current capabilities."
+    "text": "This page compares the skills requested in Data Analyst job postings within NAICS 523 with the current self-assessed skill levels of the project team.\nThe analysis uses the revised 140-posting Data Analyst dataset developed in Step 2 and focuses on skills that can be meaningfully compared with the team’s current capabilities.",
+    "crumbs": [
+      "Home",
+      "4. Skill-Gap Analysis"
+    ]
   },
   {
     "objectID": "skill_gap_analysis.html#team-skill-self-assessment",
     "href": "skill_gap_analysis.html#team-skill-self-assessment",
     "title": "Skill Gap Analysis",
     "section": "Team Skill Self-Assessment",
-    "text": "Team Skill Self-Assessment\nEach team member rated current proficiency using a five-point scale:\n\n1 — Beginner\n2 — Basic Knowledge\n3 — Intermediate\n4 — Advanced\n5 — Expert\n\nThe assessment covers technical, analytical, visualization, cloud, and business-analysis skills relevant to the Data Analyst career pathway.\n\n\n\nTeam skill self-assessment\n\n\nThe team reports relatively strong capabilities in Excel, data visualization, statistics, and business analysis.\nAverage proficiency is lower in Python, SQL, machine learning, PySpark / Big Data, and AWS / Cloud.\nThe heatmap also shows variation across team members. Some members report stronger business and spreadsheet skills, while others report relatively stronger statistics, visualization, or data-cleaning capabilities."
+    "text": "Team Skill Self-Assessment\nEach team member rated current proficiency using a five-point scale:\n\n1 — Beginner\n2 — Basic Knowledge\n3 — Intermediate\n4 — Advanced\n5 — Expert\n\nThe assessment covers technical, analytical, visualization, cloud, and business-analysis skills relevant to the Data Analyst career pathway.\n\n\n\nTeam skill self-assessment\n\n\nThe team reports relatively strong capabilities in Excel, data visualization, statistics, and business analysis.\nAverage proficiency is lower in Python, SQL, machine learning, PySpark / Big Data, and AWS / Cloud.\nThe heatmap also shows variation across team members. Some members report stronger business and spreadsheet skills, while others report relatively stronger statistics, visualization, or data-cleaning capabilities.",
+    "crumbs": [
+      "Home",
+      "4. Skill-Gap Analysis"
+    ]
   },
   {
     "objectID": "skill_gap_analysis.html#market-skill-demand",
     "href": "skill_gap_analysis.html#market-skill-demand",
     "title": "Skill Gap Analysis",
     "section": "Market Skill Demand",
-    "text": "Market Skill Demand\nSkill demand was calculated from the 140 Data Analyst postings by identifying the percentage of job postings containing each skill.\nThe most frequently requested skills in the revised dataset include:\n\nData Analysis — 69.3%\nCommunication — 60.7%\nTableau — 55.7%\nSQL — 50.0%\nPython — 37.1%\nExcel — 23.6%\nData Visualization — 19.3%\nStatistics — 10.7%\nMachine Learning — 9.3%\nAmazon Web Services — 7.1%\n\nThese results indicate that employers value a combination of analytical, technical, visualization, and communication capabilities.\nSQL, Tableau, and Python stand out as especially important technical skills for the target Data Analyst pathway."
+    "text": "Market Skill Demand\nSkill demand was calculated from the 140 Data Analyst postings by identifying the percentage of job postings containing each skill.\nThe most frequently requested skills in the revised dataset include:\n\nData Analysis — 69.3%\nCommunication — 60.7%\nTableau — 55.7%\nSQL — 50.0%\nPython — 37.1%\nExcel — 23.6%\nData Visualization — 19.3%\nStatistics — 10.7%\nMachine Learning — 9.3%\nAmazon Web Services — 7.1%\n\nThese results indicate that employers value a combination of analytical, technical, visualization, and communication capabilities.\nSQL, Tableau, and Python stand out as especially important technical skills for the target Data Analyst pathway.",
+    "crumbs": [
+      "Home",
+      "4. Skill-Gap Analysis"
+    ]
   },
   {
     "objectID": "skill_gap_analysis.html#skill-priority-matrix",
     "href": "skill_gap_analysis.html#skill-priority-matrix",
     "title": "Skill Gap Analysis",
     "section": "Skill Priority Matrix",
-    "text": "Skill Priority Matrix\nThe following matrix compares market demand with the team’s average self-assessed proficiency.\n\n\n\nSkill priority matrix\n\n\nThe horizontal axis represents the percentage of job postings containing each skill.\nThe vertical axis represents the team’s average proficiency on the 1–5 self-assessment scale.\nThe dashed lines represent the median market demand and median team proficiency across the comparable skills.\nSkills in the lower-right portion of the chart represent the most important development opportunities because they combine relatively high employer demand with relatively lower current proficiency."
+    "text": "Skill Priority Matrix\nThe following matrix compares market demand with the team’s average self-assessed proficiency.\n\n\n\nSkill priority matrix\n\n\nThe horizontal axis represents the percentage of job postings containing each skill.\nThe vertical axis represents the team’s average proficiency on the 1–5 self-assessment scale.\nThe dashed lines represent the median market demand and median team proficiency across the comparable skills.\nSkills in the lower-right portion of the chart represent the most important development opportunities because they combine relatively high employer demand with relatively lower current proficiency.",
+    "crumbs": [
+      "Home",
+      "4. Skill-Gap Analysis"
+    ]
   },
   {
     "objectID": "skill_gap_analysis.html#key-skill-gaps",
     "href": "skill_gap_analysis.html#key-skill-gaps",
     "title": "Skill Gap Analysis",
     "section": "Key Skill Gaps",
-    "text": "Key Skill Gaps\nSQL is the clearest priority area.\nSQL appears in 50.0% of the Data Analyst postings, while the team’s average proficiency is approximately 2.33 out of 5.\nThis suggests that stronger SQL capability could directly improve alignment with current market requirements.\nPython is another important development area.\nPython appears in 37.1% of postings, while the team reports an average proficiency of approximately 2.33 out of 5.\nImproving Python skills would strengthen the team’s ability to perform data cleaning, analysis, automation, and reproducible analytical workflows.\nPower BI / Tableau also remains important because Tableau appears in 55.7% of the postings.\nThe team’s average proficiency in this area is approximately 3.33 out of 5, indicating a moderate level of capability but continued room for development."
+    "text": "Key Skill Gaps\nSQL is the clearest priority area.\nSQL appears in 50.0% of the Data Analyst postings, while the team’s average proficiency is approximately 2.33 out of 5.\nThis suggests that stronger SQL capability could directly improve alignment with current market requirements.\nPython is another important development area.\nPython appears in 37.1% of postings, while the team reports an average proficiency of approximately 2.33 out of 5.\nImproving Python skills would strengthen the team’s ability to perform data cleaning, analysis, automation, and reproducible analytical workflows.\nPower BI / Tableau also remains important because Tableau appears in 55.7% of the postings.\nThe team’s average proficiency in this area is approximately 3.33 out of 5, indicating a moderate level of capability but continued room for development.",
+    "crumbs": [
+      "Home",
+      "4. Skill-Gap Analysis"
+    ]
   },
   {
     "objectID": "skill_gap_analysis.html#team-strengths",
     "href": "skill_gap_analysis.html#team-strengths",
     "title": "Skill Gap Analysis",
     "section": "Team Strengths",
-    "text": "Team Strengths\nThe team reports relatively strong capability in several areas.\nExcel has an average proficiency above 4 out of 5 and remains relevant across many analytical workflows.\nData Visualization is another team strength, with all three members reporting advanced proficiency.\nThe team also reports comparatively strong capabilities in statistics and business analysis.\nThese strengths can support the development of weaker technical areas by allowing team members to focus on translating analysis into clear business insights and visual communication."
+    "text": "Team Strengths\nThe team reports relatively strong capability in several areas.\nExcel has an average proficiency above 4 out of 5 and remains relevant across many analytical workflows.\nData Visualization is another team strength, with all three members reporting advanced proficiency.\nThe team also reports comparatively strong capabilities in statistics and business analysis.\nThese strengths can support the development of weaker technical areas by allowing team members to focus on translating analysis into clear business insights and visual communication.",
+    "crumbs": [
+      "Home",
+      "4. Skill-Gap Analysis"
+    ]
   },
   {
     "objectID": "skill_gap_analysis.html#individual-development-priorities",
     "href": "skill_gap_analysis.html#individual-development-priorities",
     "title": "Skill Gap Analysis",
     "section": "Individual Development Priorities",
-    "text": "Individual Development Priorities\nBased on the combination of market demand and self-assessed proficiency, the highest-priority development areas are:\n\nTaiqi\n\nSQL — High Priority\nPython — High Priority\nPower BI / Tableau — Medium Priority\n\nTaiqi should continue developing SQL and Python while building on existing strengths in Excel, visualization, and business analysis.\n\n\nJoseph\n\nSQL — High Priority\nPython — High Priority\nPower BI / Tableau — High Priority\n\nJoseph’s strongest development opportunity is increasing practical experience with SQL, Python, and business-intelligence tools.\n\n\nIgor\n\nSQL — High Priority\nPython — High Priority\nPower BI / Tableau — High Priority\n\nIgor reports strong Excel and business-analysis skills, while SQL and Python represent important opportunities to strengthen technical alignment with the job market."
+    "text": "Individual Development Priorities\nBased on the combination of market demand and self-assessed proficiency, the highest-priority development areas are:\n\nTaiqi\n\nSQL — High Priority\nPython — High Priority\nPower BI / Tableau — Medium Priority\n\nTaiqi should continue developing SQL and Python while building on existing strengths in Excel, visualization, and business analysis.\n\n\nJoseph\n\nSQL — High Priority\nPython — High Priority\nPower BI / Tableau — High Priority\n\nJoseph’s strongest development opportunity is increasing practical experience with SQL, Python, and business-intelligence tools.\n\n\nIgor\n\nSQL — High Priority\nPython — High Priority\nPower BI / Tableau — High Priority\n\nIgor reports strong Excel and business-analysis skills, while SQL and Python represent important opportunities to strengthen technical alignment with the job market.",
+    "crumbs": [
+      "Home",
+      "4. Skill-Gap Analysis"
+    ]
   },
   {
     "objectID": "skill_gap_analysis.html#improvement-plan",
     "href": "skill_gap_analysis.html#improvement-plan",
     "title": "Skill Gap Analysis",
     "section": "Improvement Plan",
-    "text": "Improvement Plan\nThe team should prioritize practical development in three areas:\n\nSQL\n\nPractice joins, common table expressions, window functions, aggregation, and analytical queries.\nApply SQL to realistic business and job-market datasets.\n\nPython\n\nStrengthen pandas, data cleaning, exploratory analysis, visualization, and automation.\nContinue using notebooks and project-based exercises.\n\nPower BI / Tableau\n\nBuild interactive dashboards using filters, calculated fields, drill-downs, and clear business storytelling.\nPractice translating analytical findings into decision-oriented visualizations.\n\n\nSecondary development areas include machine learning, cloud platforms, and big-data tools.\nThese skills currently appear less frequently in the sample than SQL, Python, and Tableau, but they may become increasingly useful for more advanced analytics roles."
+    "text": "Improvement Plan\nThe team should prioritize practical development in three areas:\n\nSQL\n\nPractice joins, common table expressions, window functions, aggregation, and analytical queries.\nApply SQL to realistic business and job-market datasets.\n\nPython\n\nStrengthen pandas, data cleaning, exploratory analysis, visualization, and automation.\nContinue using notebooks and project-based exercises.\n\nPower BI / Tableau\n\nBuild interactive dashboards using filters, calculated fields, drill-downs, and clear business storytelling.\nPractice translating analytical findings into decision-oriented visualizations.\n\n\nSecondary development areas include machine learning, cloud platforms, and big-data tools.\nThese skills currently appear less frequently in the sample than SQL, Python, and Tableau, but they may become increasingly useful for more advanced analytics roles.",
+    "crumbs": [
+      "Home",
+      "4. Skill-Gap Analysis"
+    ]
   },
   {
     "objectID": "skill_gap_analysis.html#team-collaboration",
     "href": "skill_gap_analysis.html#team-collaboration",
     "title": "Skill Gap Analysis",
     "section": "Team Collaboration",
-    "text": "Team Collaboration\nThe team can reduce skill gaps by sharing technical resources and using project work as structured practice.\nPossible approaches include:\n\nreviewing one another’s SQL queries and Python notebooks;\nsharing visualization and dashboard techniques;\ndividing analytical tasks based on individual strengths;\ndocumenting useful coding patterns and resources in the shared repository;\nusing future project stages to practice weaker technical skills.\n\nMembers with stronger Excel, visualization, statistics, and business-analysis skills can support the team in those areas while strengthening their own SQL, Python, and cloud capabilities."
+    "text": "Team Collaboration\nThe team can reduce skill gaps by sharing technical resources and using project work as structured practice.\nPossible approaches include:\n\nreviewing one another’s SQL queries and Python notebooks;\nsharing visualization and dashboard techniques;\ndividing analytical tasks based on individual strengths;\ndocumenting useful coding patterns and resources in the shared repository;\nusing future project stages to practice weaker technical skills.\n\nMembers with stronger Excel, visualization, statistics, and business-analysis skills can support the team in those areas while strengthening their own SQL, Python, and cloud capabilities.",
+    "crumbs": [
+      "Home",
+      "4. Skill-Gap Analysis"
+    ]
   },
   {
     "objectID": "skill_gap_analysis.html#limitations",
     "href": "skill_gap_analysis.html#limitations",
     "title": "Skill Gap Analysis",
     "section": "Limitations",
-    "text": "Limitations\nThe skill comparison has several limitations.\nMarket demand is based on the percentage of job postings containing each skill, while team proficiency is based on self-assessment.\nThese measures are not directly equivalent and should not be interpreted as a statistical difference.\nInstead, the comparison is used as a practical prioritization framework to identify skills that are both important in the job market and relatively underdeveloped within the team.\nThe analysis is also limited to the revised 140-posting Data Analyst sample within NAICS 523 and therefore does not represent the entire Data Analyst labor market."
+    "text": "Limitations\nThe skill comparison has several limitations.\nMarket demand is based on the percentage of job postings containing each skill, while team proficiency is based on self-assessment.\nThese measures are not directly equivalent and should not be interpreted as a statistical difference.\nInstead, the comparison is used as a practical prioritization framework to identify skills that are both important in the job market and relatively underdeveloped within the team.\nThe analysis is also limited to the revised 140-posting Data Analyst sample within NAICS 523 and therefore does not represent the entire Data Analyst labor market.",
+    "crumbs": [
+      "Home",
+      "4. Skill-Gap Analysis"
+    ]
   },
   {
     "objectID": "skill_gap_analysis.html#summary",
     "href": "skill_gap_analysis.html#summary",
     "title": "Skill Gap Analysis",
     "section": "Summary",
-    "text": "Summary\nThe Step 3 skill-gap analysis identifies a clear distinction between current team strengths and market-driven development priorities.\nThe team is relatively strong in Excel, visualization, statistics, and business analysis.\nHowever, SQL, Python, and business-intelligence tools represent the most important areas for continued development because they combine substantial market demand with lower or moderate current proficiency.\nThese findings provide a practical foundation for the team’s future learning priorities and later career recommendations."
-  },
-  {
-    "objectID": "introduction.html",
-    "href": "introduction.html",
-    "title": "Research introduction",
-    "section": "",
-    "text": "Students preparing for Data Analyst careers must connect their current capabilities to the requirements of actual employers. A job title alone does not explain which skills a position requires, how much experience is expected, whether compensation is disclosed, or whether the work arrangement fits a job seeker’s circumstances. This project develops a career evaluation prototype for students and aspiring Data Analysts considering securities, investments, and related financial activities.\nThe target user is a student or early-career job seeker pursuing a Data Analyst / Data Analytics pathway. The primary focus is skill and career readiness. Salary, experience, location, and employment patterns provide supporting evidence for deciding where to apply and what to learn next. This framing follows the AD688 running case, which asks teams to connect an industry-scoped dataset to practical job-seeker decisions [@ad688case].\nReliable industry labels are important because an incorrectly classified employer can distort a sector-specific career benchmark. Chern et al. investigate employer-industry errors arising from employer identification and industry attributes, using posting-derived signals to help detect them [@chern2018]. For this project, the implication is to document how industry membership is selected and to treat potentially inconsistent employer labels as a data-quality limitation.\nThe selected industry provides a setting in which to examine whether technical tools, analytical methods, and business knowledge appear together in Data Analyst postings. Which skills recur most often, and whether they are associated with particular salary or experience bands, are questions for the analysis rather than established findings.\n\n\n\n\n\nFinancial Services – Data Analytics\n\n\n\n\n\n\n\nScope component\nSelected scope\n\n\n\n\nTarget career pathway\nData Analyst / Data Analytics\n\n\nNAICS classification revision\n2022\n\n\nSelected dataset code\n523\n\n\nClassification level\nThree-digit subsector within sector 52, Finance and Insurance\n\n\nIndustry label\nSecurities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nPrimary analytical focus\nSkill and career readiness\n\n\nSupporting dimensions\nSalary, experience, geography, remote work, and employment type\n\n\n\nNAICS 523 covers securities and commodity intermediation, exchanges, and other investment-related services. It is narrower than the full Finance and Insurance sector and does not represent all financial-services employment. NAICS describes the economic activity of an establishment; it does not identify an employee’s occupation [@naics2022]. A Data Analyst title and an employer’s industry code therefore serve different purposes in the cohort definition.\nThe course guide prefers four- or six-digit industry codes where possible [@ad688case]. Group 4 uses the selected three-digit subsector to examine Data Analyst opportunities across related investment activities, while retaining more detailed codes for within-scope comparisons. The report should acknowledge the wider scope and avoid treating its subindustries as interchangeable.\nThe primary industry filter is naics_2022_3 = '523'. The group notes also use the notation 523000; this project uses 523 consistently for the three-digit scope. A six-digit dataset value beginning with 523 can support a cross-check, but should not be assumed to provide an identical cohort when fields are incomplete or inconsistent.\nReference: NAICS 523 industry description.\n\n\n\n\nWhat skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in securities, investments, and related financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?\n\n\n\n\n\nRQ1 — Skills and requirements: Which technical, software, business, and specialized skills recur in the selected postings, and how do stated education and experience requirements vary?\nRQ2 — Opportunity patterns: How do disclosed salary ranges, locations, remote-work arrangements, and employment types vary within the selected industry-career cohort?\nRQ3 — Career readiness: How do the observed skill requirements compare with the team’s self-assessed capabilities, and which learning priorities follow from a transparent comparison?\n\nThe career cohort will require both the industry filter and a documented title match in title_raw or title_clean. The current title rule recognizes Data Analyst and selected explicit variants, including Data & Insights Analyst, Data Analytics Analyst, and Analyst – Data Analysis. It can retain senior titles and can miss roles expressed differently. Experience and seniority must therefore be assessed separately; the cohort should not automatically be described as entry-level.\n\n\n\n\nFive sources support the project’s scope, data-quality approach, and interpretation. This is a focused narrative review rather than a systematic review.\nEmployer-industry classification. Goindani et al. examine employer-industry classification using job postings [@goindani2017]. The study provides a methodological reference for using recruitment records to examine employer classification. Its relevance here is to make industry selection explicit and review questionable labels. Classification research provides context for cohort quality; it does not establish skill demand or salary levels in this project’s NAICS 523 sample.\nIndustry-label error detection. Chern et al. use employer names, employer descriptions, job titles, and job descriptions to identify possible industry-classification errors, comparing support vector machine and random forest approaches [@chern2018]. Their findings motivate checking employer and posting information when industry membership is uncertain. The paper’s predictive results concern its own dataset and are not evidence of this project’s accuracy or a requirement to reproduce its models.\nRepresentativeness of online postings. Tsvetkova et al. compare Lightcast vacancies with official sources in Australia, Canada, the United Kingdom, and the United States [@tsvetkova2024]. They identify variation in representativeness across geography, occupation, and industry. This supports reporting the observed posting sample and its coverage rather than equating posting counts with all vacancies or employment. Their results do not provide a correction factor for the MET Career Compass dataset.\nIndustry definition and analytical boundaries. The 2022 NAICS manual supplies the classification framework used to define the selected subsector [@naics2022]. It supports keeping employer industry distinct from career pathway and retaining detailed industry labels for interpretation. This prevents a financial-services label from being used as a substitute for a Data Analyst title filter.\nReproducible analytical implementation. Pedregosa et al. describe scikit-learn as a general-purpose Python machine-learning library [@pedregosa2011]. The source is relevant if the final project uses a Python predictive or segmentation model. In that case, package versions, preprocessing, evaluation, and parameter choices must be documented separately. The software paper does not establish which skills financial employers require or validate a career-readiness scorecard.\nTogether, these sources support an industry-scoped, reproducible career benchmark with explicit limits. The proposed contribution is to turn posting evidence and self-assessed skills into interpretable learning and application priorities. The project does not claim to improve a proprietary classification system or demonstrate that acquiring a particular skill causes employment.\n\n\n\nThe project will explore whether the selected postings reveal recurring combinations of technical tools, business capabilities, and experience requirements. SQL, Python, Excel, visualization tools, statistics, and business analysis are candidate skill categories to examine; their relative importance must be established from the selected records.\nThe analysis will also examine whether disclosed compensation and remote-work patterns vary with experience, location, or detailed industry group. Such comparisons describe associations within the sample. Missing salary information, unequal subgroup sizes, and inconsistent labels may restrict which comparisons are useful.\nA career evaluation component will compare posting-derived skill demand with the team’s existing self-assessments. Any scorecard will explain its dimensions, scaling, and weighting choices. A self-rating and a skill’s posting frequency measure different things, so they should not be subtracted directly without a defined conversion rule. Rankings should be checked for sensitivity to reasonable changes in weights.\nThese are exploratory expectations, not reported results. This document does not establish a sample size, collection period, salary median, top-skill ranking, or model performance. Those findings must come from the cleaned project dataset and documented analysis. The running case’s title retains “2024,” while the working dataset is named Jobs_2026; the final report should state the actual observed posting dates and snapshot provenance [@ad688case; @careercompass2026].\n\n\n\n\n\nThe following fields are drawn from the supplied project filtering code. Their presence and types should be checked against the loaded Parquet schema before analysis. An API response should be mapped separately rather than assumed to have identical fields [@careercompass2026].\n\n\n\n\n\n\n\n\nPurpose\nFields\nIntended use and interpretation control\n\n\n\n\nRecord identity, dates, and duplicates\nid, posted, is_duplicate, duplicate_of_id\nDocument the posting window; check ID uniqueness; report duplicate exclusions and unknown duplicate status.\n\n\nIndustry scope\nnaics_2022_3, naics_2022_3_name, naics_2022_4, naics_2022_4_name, naics_2022_5, naics_2022_5_name, naics_2022_6, naics_2022_6_name\nFilter the three-digit code to 523; retain detailed classifications for within-scope comparisons and consistency checks.\n\n\nCareer selection and occupation context\ntitle_raw, title_clean, soc_2021_5, soc_2021_5_name, onet, onet_name\nApply the declared title rule; review occupation labels and ambiguous matches; distinguish role from employer industry.\n\n\nEmployer context and source evidence\ncompany_name, company_is_staffing, url, body\nInspect employer and staffing flags; retain posting evidence for reviewing unexpected industry or title matches.\n\n\nSkills\nskills_name, software_skills_name, specialized_skills_name\nDecode and standardize skill lists; count each skill once per posting; avoid double counting overlapping skill fields.\n\n\nEducation, experience, and credentials\nmin_years_experience, max_years_experience, education_levels_name, certifications_name\nBuild interpretable requirement groups; preserve unknown values; do not assume a missing experience requirement means zero.\n\n\nCompensation\ntext_salary_from, text_salary_to, text_pay_frequency, text_pay_currency, normalized_salary_from, normalized_salary_to, salary_normalization_status\nVerify currency, pay period, normalization, and valid ranges; report salary coverage and both bounds.\n\n\nEmployment and location\nremote_type_name, employment_type_name, city_name, state_name, parsed_country_iso_abbr\nDefine geographic scope; compare stated arrangements and employment types; show missing or unknown categories.\n\n\nDerived audit fields\ncareer_match_reason, analysis_include\nExplain which title matched and which rows enter the analysis.\n\n\n\nThe supplied filtering code includes rows in the analytical subset only when is_duplicate is explicitly false. True and null values are excluded from that subset. This rule uses the dataset’s flag and does not independently resolve all repeated postings or employer aliases. The number excluded for each reason should be reported.\nReferences"
-  },
-  {
-    "objectID": "introduction.html#research-rationale",
-    "href": "introduction.html#research-rationale",
-    "title": "Research introduction",
-    "section": "",
-    "text": "Students preparing for Data Analyst careers must connect their current capabilities to the requirements of actual employers. A job title alone does not explain which skills a position requires, how much experience is expected, whether compensation is disclosed, or whether the work arrangement fits a job seeker’s circumstances. This project develops a career evaluation prototype for students and aspiring Data Analysts considering securities, investments, and related financial activities.\nThe target user is a student or early-career job seeker pursuing a Data Analyst / Data Analytics pathway. The primary focus is skill and career readiness. Salary, experience, location, and employment patterns provide supporting evidence for deciding where to apply and what to learn next. This framing follows the AD688 running case, which asks teams to connect an industry-scoped dataset to practical job-seeker decisions [@ad688case].\nReliable industry labels are important because an incorrectly classified employer can distort a sector-specific career benchmark. Chern et al. investigate employer-industry errors arising from employer identification and industry attributes, using posting-derived signals to help detect them [@chern2018]. For this project, the implication is to document how industry membership is selected and to treat potentially inconsistent employer labels as a data-quality limitation.\nThe selected industry provides a setting in which to examine whether technical tools, analytical methods, and business knowledge appear together in Data Analyst postings. Which skills recur most often, and whether they are associated with particular salary or experience bands, are questions for the analysis rather than established findings."
-  },
-  {
-    "objectID": "introduction.html#scope-and-research-questions",
-    "href": "introduction.html#scope-and-research-questions",
-    "title": "Research introduction",
-    "section": "",
-    "text": "Financial Services – Data Analytics\n\n\n\n\n\n\n\nScope component\nSelected scope\n\n\n\n\nTarget career pathway\nData Analyst / Data Analytics\n\n\nNAICS classification revision\n2022\n\n\nSelected dataset code\n523\n\n\nClassification level\nThree-digit subsector within sector 52, Finance and Insurance\n\n\nIndustry label\nSecurities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nPrimary analytical focus\nSkill and career readiness\n\n\nSupporting dimensions\nSalary, experience, geography, remote work, and employment type\n\n\n\nNAICS 523 covers securities and commodity intermediation, exchanges, and other investment-related services. It is narrower than the full Finance and Insurance sector and does not represent all financial-services employment. NAICS describes the economic activity of an establishment; it does not identify an employee’s occupation [@naics2022]. A Data Analyst title and an employer’s industry code therefore serve different purposes in the cohort definition.\nThe course guide prefers four- or six-digit industry codes where possible [@ad688case]. Group 4 uses the selected three-digit subsector to examine Data Analyst opportunities across related investment activities, while retaining more detailed codes for within-scope comparisons. The report should acknowledge the wider scope and avoid treating its subindustries as interchangeable.\nThe primary industry filter is naics_2022_3 = '523'. The group notes also use the notation 523000; this project uses 523 consistently for the three-digit scope. A six-digit dataset value beginning with 523 can support a cross-check, but should not be assumed to provide an identical cohort when fields are incomplete or inconsistent.\nReference: NAICS 523 industry description.\n\n\n\n\nWhat skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in securities, investments, and related financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?\n\n\n\n\n\nRQ1 — Skills and requirements: Which technical, software, business, and specialized skills recur in the selected postings, and how do stated education and experience requirements vary?\nRQ2 — Opportunity patterns: How do disclosed salary ranges, locations, remote-work arrangements, and employment types vary within the selected industry-career cohort?\nRQ3 — Career readiness: How do the observed skill requirements compare with the team’s self-assessed capabilities, and which learning priorities follow from a transparent comparison?\n\nThe career cohort will require both the industry filter and a documented title match in title_raw or title_clean. The current title rule recognizes Data Analyst and selected explicit variants, including Data & Insights Analyst, Data Analytics Analyst, and Analyst – Data Analysis. It can retain senior titles and can miss roles expressed differently. Experience and seniority must therefore be assessed separately; the cohort should not automatically be described as entry-level."
-  },
-  {
-    "objectID": "introduction.html#short-literature-review",
-    "href": "introduction.html#short-literature-review",
-    "title": "Research introduction",
-    "section": "",
-    "text": "Five sources support the project’s scope, data-quality approach, and interpretation. This is a focused narrative review rather than a systematic review.\nEmployer-industry classification. Goindani et al. examine employer-industry classification using job postings [@goindani2017]. The study provides a methodological reference for using recruitment records to examine employer classification. Its relevance here is to make industry selection explicit and review questionable labels. Classification research provides context for cohort quality; it does not establish skill demand or salary levels in this project’s NAICS 523 sample.\nIndustry-label error detection. Chern et al. use employer names, employer descriptions, job titles, and job descriptions to identify possible industry-classification errors, comparing support vector machine and random forest approaches [@chern2018]. Their findings motivate checking employer and posting information when industry membership is uncertain. The paper’s predictive results concern its own dataset and are not evidence of this project’s accuracy or a requirement to reproduce its models.\nRepresentativeness of online postings. Tsvetkova et al. compare Lightcast vacancies with official sources in Australia, Canada, the United Kingdom, and the United States [@tsvetkova2024]. They identify variation in representativeness across geography, occupation, and industry. This supports reporting the observed posting sample and its coverage rather than equating posting counts with all vacancies or employment. Their results do not provide a correction factor for the MET Career Compass dataset.\nIndustry definition and analytical boundaries. The 2022 NAICS manual supplies the classification framework used to define the selected subsector [@naics2022]. It supports keeping employer industry distinct from career pathway and retaining detailed industry labels for interpretation. This prevents a financial-services label from being used as a substitute for a Data Analyst title filter.\nReproducible analytical implementation. Pedregosa et al. describe scikit-learn as a general-purpose Python machine-learning library [@pedregosa2011]. The source is relevant if the final project uses a Python predictive or segmentation model. In that case, package versions, preprocessing, evaluation, and parameter choices must be documented separately. The software paper does not establish which skills financial employers require or validate a career-readiness scorecard.\nTogether, these sources support an industry-scoped, reproducible career benchmark with explicit limits. The proposed contribution is to turn posting evidence and self-assessed skills into interpretable learning and application priorities. The project does not claim to improve a proprietary classification system or demonstrate that acquiring a particular skill causes employment."
-  },
-  {
-    "objectID": "introduction.html#analytical-expectations-and-design-status",
-    "href": "introduction.html#analytical-expectations-and-design-status",
-    "title": "Research introduction",
-    "section": "",
-    "text": "The project will explore whether the selected postings reveal recurring combinations of technical tools, business capabilities, and experience requirements. SQL, Python, Excel, visualization tools, statistics, and business analysis are candidate skill categories to examine; their relative importance must be established from the selected records.\nThe analysis will also examine whether disclosed compensation and remote-work patterns vary with experience, location, or detailed industry group. Such comparisons describe associations within the sample. Missing salary information, unequal subgroup sizes, and inconsistent labels may restrict which comparisons are useful.\nA career evaluation component will compare posting-derived skill demand with the team’s existing self-assessments. Any scorecard will explain its dimensions, scaling, and weighting choices. A self-rating and a skill’s posting frequency measure different things, so they should not be subtracted directly without a defined conversion rule. Rankings should be checked for sensitivity to reasonable changes in weights.\nThese are exploratory expectations, not reported results. This document does not establish a sample size, collection period, salary median, top-skill ranking, or model performance. Those findings must come from the cleaned project dataset and documented analysis. The running case’s title retains “2024,” while the working dataset is named Jobs_2026; the final report should state the actual observed posting dates and snapshot provenance [@ad688case; @careercompass2026]."
-  },
-  {
-    "objectID": "introduction.html#data-fields-and-intended-use",
-    "href": "introduction.html#data-fields-and-intended-use",
-    "title": "Research introduction",
-    "section": "",
-    "text": "The following fields are drawn from the supplied project filtering code. Their presence and types should be checked against the loaded Parquet schema before analysis. An API response should be mapped separately rather than assumed to have identical fields [@careercompass2026].\n\n\n\n\n\n\n\n\nPurpose\nFields\nIntended use and interpretation control\n\n\n\n\nRecord identity, dates, and duplicates\nid, posted, is_duplicate, duplicate_of_id\nDocument the posting window; check ID uniqueness; report duplicate exclusions and unknown duplicate status.\n\n\nIndustry scope\nnaics_2022_3, naics_2022_3_name, naics_2022_4, naics_2022_4_name, naics_2022_5, naics_2022_5_name, naics_2022_6, naics_2022_6_name\nFilter the three-digit code to 523; retain detailed classifications for within-scope comparisons and consistency checks.\n\n\nCareer selection and occupation context\ntitle_raw, title_clean, soc_2021_5, soc_2021_5_name, onet, onet_name\nApply the declared title rule; review occupation labels and ambiguous matches; distinguish role from employer industry.\n\n\nEmployer context and source evidence\ncompany_name, company_is_staffing, url, body\nInspect employer and staffing flags; retain posting evidence for reviewing unexpected industry or title matches.\n\n\nSkills\nskills_name, software_skills_name, specialized_skills_name\nDecode and standardize skill lists; count each skill once per posting; avoid double counting overlapping skill fields.\n\n\nEducation, experience, and credentials\nmin_years_experience, max_years_experience, education_levels_name, certifications_name\nBuild interpretable requirement groups; preserve unknown values; do not assume a missing experience requirement means zero.\n\n\nCompensation\ntext_salary_from, text_salary_to, text_pay_frequency, text_pay_currency, normalized_salary_from, normalized_salary_to, salary_normalization_status\nVerify currency, pay period, normalization, and valid ranges; report salary coverage and both bounds.\n\n\nEmployment and location\nremote_type_name, employment_type_name, city_name, state_name, parsed_country_iso_abbr\nDefine geographic scope; compare stated arrangements and employment types; show missing or unknown categories.\n\n\nDerived audit fields\ncareer_match_reason, analysis_include\nExplain which title matched and which rows enter the analysis.\n\n\n\nThe supplied filtering code includes rows in the analytical subset only when is_duplicate is explicitly false. True and null values are excluded from that subset. This rule uses the dataset’s flag and does not independently resolve all repeated postings or employer aliases. The number excluded for each reason should be reported.\nReferences"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
+    "text": "Summary\nThe Step 3 skill-gap analysis identifies a clear distinction between current team strengths and market-driven development priorities.\nThe team is relatively strong in Excel, visualization, statistics, and business analysis.\nHowever, SQL, Python, and business-intelligence tools represent the most important areas for continued development because they combine substantial market demand with lower or moderate current proficiency.\nThese findings provide a practical foundation for the team’s future learning priorities and later career recommendations.",
+    "crumbs": [
+      "Home",
+      "4. Skill-Gap Analysis"
+    ]
   },
   {
     "objectID": "data_preparation.html",
     "href": "data_preparation.html",
     "title": "Data Preparation",
     "section": "",
-    "text": "This step prepares the career-market data used to evaluate opportunities for Data Analyst careers within the selected financial-services industry.\nThe analysis is anchored to:\n\nCareer pathway: Data Analyst / Data Analytics\nNAICS: 523\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe objective is to create a cleaned, reproducible dataset that can be used to evaluate job availability, compensation, experience requirements, work arrangements, geography, employers, and skills."
+    "text": "This step prepares the career-market data used to evaluate opportunities for Data Analyst careers within the selected financial-services industry.\nThe analysis is anchored to:\n\nCareer pathway: Data Analyst / Data Analytics\nNAICS: 523\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe objective is to create a cleaned, reproducible dataset that can be used to evaluate job availability, compensation, experience requirements, work arrangements, geography, employers, and skills.",
+    "crumbs": [
+      "Home",
+      "2. Scope and Data"
+    ]
   },
   {
     "objectID": "data_preparation.html#step-2-objective",
     "href": "data_preparation.html#step-2-objective",
     "title": "Data Preparation",
     "section": "",
-    "text": "This step prepares the career-market data used to evaluate opportunities for Data Analyst careers within the selected financial-services industry.\nThe analysis is anchored to:\n\nCareer pathway: Data Analyst / Data Analytics\nNAICS: 523\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe objective is to create a cleaned, reproducible dataset that can be used to evaluate job availability, compensation, experience requirements, work arrangements, geography, employers, and skills."
+    "text": "This step prepares the career-market data used to evaluate opportunities for Data Analyst careers within the selected financial-services industry.\nThe analysis is anchored to:\n\nCareer pathway: Data Analyst / Data Analytics\nNAICS: 523\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe objective is to create a cleaned, reproducible dataset that can be used to evaluate job availability, compensation, experience requirements, work arrangements, geography, employers, and skills.",
+    "crumbs": [
+      "Home",
+      "2. Scope and Data"
+    ]
   },
   {
     "objectID": "data_preparation.html#data-source",
     "href": "data_preparation.html#data-source",
     "title": "Data Preparation",
     "section": "Data Source",
-    "text": "Data Source\nThe analysis uses the professor-approved Lightcast job-postings dataset provided through the team’s Google Drive dataset.\nThe dataset contains job-posting information including job titles, employers, locations, salary information, experience requirements, education, remote-work classifications, skills, occupation classifications, and NAICS industry classifications."
+    "text": "Data Source\nThe analysis uses the professor-approved Lightcast job-postings dataset provided through the team’s Google Drive dataset.\nThe dataset contains job-posting information including job titles, employers, locations, salary information, experience requirements, education, remote-work classifications, skills, occupation classifications, and NAICS industry classifications.",
+    "crumbs": [
+      "Home",
+      "2. Scope and Data"
+    ]
   },
   {
     "objectID": "data_preparation.html#industry-filter",
     "href": "data_preparation.html#industry-filter",
     "title": "Data Preparation",
     "section": "Industry Filter",
-    "text": "Industry Filter\nThe analysis is restricted to NAICS 523, the three-digit NAICS subsector:\n\nSecurities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe Lightcast dataset contains 942 job postings classified under NAICS 523.\nUsing the three-digit NAICS3 field ensures that the analysis covers the full selected NAICS subsector rather than treating 523000 as a separate six-digit industry code."
+    "text": "Industry Filter\nThe analysis is restricted to NAICS 523, the three-digit NAICS subsector:\n\nSecurities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe Lightcast dataset contains 942 job postings classified under NAICS 523.\nUsing the three-digit NAICS3 field ensures that the analysis covers the full selected NAICS subsector rather than treating 523000 as a separate six-digit industry code.",
+    "crumbs": [
+      "Home",
+      "2. Scope and Data"
+    ]
   },
   {
     "objectID": "data_preparation.html#career-filter",
     "href": "data_preparation.html#career-filter",
     "title": "Data Preparation",
     "section": "Career Filter",
-    "text": "Career Filter\nThe career pathway is Data Analyst / Data Analytics.\nA title-based filter was used to identify postings containing Data Analyst terminology. Clearly unrelated specialized categories were excluded when the title indicated a maintenance, cybersecurity, academic, internship, platform-services, CV-22, or SC2 role.\nThe resulting core career-market dataset contains 140 postings.\nThis core dataset is used as the baseline for Step 2. Closely related analytics roles may be incorporated into the broader Step 3 skill-gap analysis where appropriate."
+    "text": "Career Filter\nThe career pathway is Data Analyst / Data Analytics.\nA title-based filter was used to identify postings containing Data Analyst terminology. Clearly unrelated specialized categories were excluded when the title indicated a maintenance, cybersecurity, academic, internship, platform-services, CV-22, or SC2 role.\nThe resulting core career-market dataset contains 140 postings.\nThis core dataset is used as the baseline for Step 2. Closely related analytics roles may be incorporated into the broader Step 3 skill-gap analysis where appropriate.",
+    "crumbs": [
+      "Home",
+      "2. Scope and Data"
+    ]
   },
   {
     "objectID": "data_preparation.html#cleaning-decisions",
     "href": "data_preparation.html#cleaning-decisions",
     "title": "Data Preparation",
     "section": "Cleaning Decisions",
-    "text": "Cleaning Decisions\n\nDuplicate Records\nPostings were checked using the Lightcast ID field. No duplicate IDs were removed from the 140-posting analytical dataset.\n\n\nSalary\nSalary fields were converted to numeric values where possible.\nMissing salary values were retained as missing rather than converted to zero.\nA salary midpoint was calculated when both the lower and upper salary values were available:\n\\[\nSalary\\ Midpoint =\n\\frac{Salary\\ From + Salary\\ To}{2}\n\\]\nThere were 86 postings with a usable salary midpoint.\nThe observed salary midpoint ranged from $24,960 to $160,000, with a median of $93,850.\nBecause salary information is not available for every posting, these figures describe the subset of postings reporting usable salary ranges.\n\n\nExperience\nMinimum and maximum experience requirements were retained separately.\nNegative or invalid experience values were treated as missing.\nA minimum experience requirement was available for 112 of the 140 postings.\nAmong postings with reported minimum experience, the median requirement was 5 years, with an average of approximately 4.1 years.\nMaximum experience was substantially less complete and was therefore not imputed.\n\n\nRemote Work\nRemote-work classifications were retained from the Lightcast data.\nThe cleaned categories are:\n\nRemote\nHybrid Remote\nNot Remote\nUnknown\n\nOf the 140 postings:\n\n54 were classified as Remote\n12 were classified as Hybrid Remote\n3 were classified as Not Remote\n71 had an unknown classification\n\nUnknown values were retained because an unavailable classification does not necessarily mean that the position is onsite.\n\n\nLocation\nCity and state information were retained for geographic analysis.\nNo postings were missing the cleaned city or state fields in the analytical dataset.\nThe location data were used to identify the leading hiring states and locations represented in the sample.\n\n\nEducation and Skills\nEducation and skill fields were retained from the Lightcast dataset.\nMissing values were not converted into assumptions about required education or skills.\nThese fields provide the foundation for the later skill-gap analysis."
+    "text": "Cleaning Decisions\n\nDuplicate Records\nPostings were checked using the Lightcast ID field. No duplicate IDs were removed from the 140-posting analytical dataset.\n\n\nSalary\nSalary fields were converted to numeric values where possible. Hourly and monthly amounts were annualized during the earlier preparation, so the stored endpoints are used without another conversion. The original pay-period label can remain unchanged.\nMissing salary values were retained as missing rather than converted to zero.\nA salary midpoint was calculated when both the lower and upper salary values were available:\n\\[\nSalary\\ Midpoint =\n\\frac{Salary\\ From + Salary\\ To}{2}\n\\]\nThere were 86 postings with a usable salary midpoint.\nAcross the 86 posting rows, the observed annual salary midpoint ranged from $24,960 to $160,000, with a median of $93,850. After counting repeated employer/title/description profiles once, the median across 48 salary profiles is approximately $92,300.\nBecause salary information is not available for every posting, these figures describe the subset of postings reporting usable salary ranges.\n\n\nExperience\nMinimum and maximum experience requirements were retained separately.\nNegative or invalid experience values were treated as missing.\nA minimum experience requirement was available for 112 of the 140 postings.\nAmong postings with reported minimum experience, the median requirement was 5 years, with an average of approximately 4.1 years.\nMaximum experience was substantially less complete and was therefore not imputed.\n\n\nRemote Work\nRemote-work classifications were retained from the Lightcast data.\nThe cleaned categories are:\n\nRemote\nHybrid Remote\nNot Remote\nUnknown\n\nOf the 140 postings:\n\n54 were classified as Remote\n12 were classified as Hybrid Remote\n3 were classified as Not Remote\n71 had an unknown classification\n\nUnknown values were retained because an unavailable classification does not necessarily mean that the position is onsite.\n\n\nLocation\nCity and state information were retained for geographic analysis.\nNo postings were missing the cleaned city or state fields in the analytical dataset.\nThe location data were used to identify the leading hiring states and locations represented in the sample.\n\n\nEducation and Skills\nEducation and skill fields were retained from the Lightcast dataset.\nMissing values were not converted into assumptions about required education or skills.\nThese fields provide the foundation for the later skill-gap analysis.",
+    "crumbs": [
+      "Home",
+      "2. Scope and Data"
+    ]
   },
   {
     "objectID": "data_preparation.html#final-analytical-dataset",
     "href": "data_preparation.html#final-analytical-dataset",
     "title": "Data Preparation",
     "section": "Final Analytical Dataset",
-    "text": "Final Analytical Dataset\nThe cleaned Step 2 dataset contains:\n\n140 job postings\n52 employers\n62 distinct job titles\n36 original analytical variables\nAdditional cleaned variables for remote status, location, salary midpoint, industry scope, and career scope\n\nThe cleaned dataset is stored as:\ndata/career_market_panel.csv\nThe corresponding variable documentation is stored as:\ndata/data_dictionary.csv"
+    "text": "Final Analytical Dataset\nThe cleaned Step 2 dataset contains:\n\n140 job postings\n52 employers\n62 distinct job titles\n36 original analytical variables\nAdditional cleaned variables for remote status, location, salary midpoint, industry scope, and career scope\n\nThe cleaned dataset is stored as:\ndata/career_market_panel.csv\nThe corresponding variable documentation is stored as:\ndata/data_dictionary.csv",
+    "crumbs": [
+      "Home",
+      "2. Scope and Data"
+    ]
   },
   {
     "objectID": "data_preparation.html#step-2-limitations",
     "href": "data_preparation.html#step-2-limitations",
     "title": "Data Preparation",
     "section": "Step 2 Limitations",
-    "text": "Step 2 Limitations\nSeveral data-quality limitations should be considered when interpreting the results.\nFirst, salary information is unavailable for 54 of the 140 postings.\nSecond, minimum experience is unavailable for 28 postings, while maximum experience is unavailable for most postings.\nThird, 71 postings do not have a classified remote-work arrangement.\nFinally, the dataset represents job postings rather than unique underlying job openings or hiring demand. Multiple postings may represent similar positions or repeated recruiting activity.\nThese limitations are documented rather than addressed through aggressive imputation so that the baseline remains transparent and reproducible."
+    "text": "Step 2 Limitations\nSeveral data-quality limitations should be considered when interpreting the results.\nFirst, salary information is unavailable for 54 of the 140 postings.\nSecond, minimum experience is unavailable for 28 postings, while maximum experience is unavailable for most postings.\nThird, 71 postings do not have a classified remote-work arrangement.\nFinally, the dataset represents job postings rather than unique underlying job openings or hiring demand. Multiple postings may represent similar positions or repeated recruiting activity.\nThese limitations are documented rather than addressed through aggressive imputation so that the baseline remains transparent and reproducible.",
+    "crumbs": [
+      "Home",
+      "2. Scope and Data"
+    ]
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Data Analytics Careers in Financial Services",
     "section": "",
-    "text": "What skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?\nNAICS 2022: 523\nTarget career pathway: Data Analyst / Data Analytics\nhttps://www.naics.com/naics-code-description/?code=523\nIndustry label: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\nThis industry includes organizations involved in securities, investments, financial markets, and related financial activities. It provides a useful setting for evaluating Data Analyst careers because the dataset contains analytics-related positions that can be analyzed across salary, required skills, experience, location, and other career factors."
+    "text": "Which skills should you strengthen, which roles fit your experience, and what salary information can help you compare opportunities?\nThis project helps students and early-career job seekers explore the Data Analyst / Data Analytics pathway within NAICS 523 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities.\nWe connect employer requirements with skill self-assessment, experience, compensation and work arrangements to turn job-posting evidence into a practical career-readiness plan.",
+    "crumbs": [
+      "Home"
+    ]
   },
   {
-    "objectID": "index.html#research-and-product-question",
-    "href": "index.html#research-and-product-question",
+    "objectID": "index.html#make-your-next-career-step-more-focused",
+    "href": "index.html#make-your-next-career-step-more-focused",
     "title": "Data Analytics Careers in Financial Services",
     "section": "",
-    "text": "What skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?\nNAICS 2022: 523\nTarget career pathway: Data Analyst / Data Analytics\nhttps://www.naics.com/naics-code-description/?code=523\nIndustry label: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\nThis industry includes organizations involved in securities, investments, financial markets, and related financial activities. It provides a useful setting for evaluating Data Analyst careers because the dataset contains analytics-related positions that can be analyzed across salary, required skills, experience, location, and other career factors."
+    "text": "Which skills should you strengthen, which roles fit your experience, and what salary information can help you compare opportunities?\nThis project helps students and early-career job seekers explore the Data Analyst / Data Analytics pathway within NAICS 523 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities.\nWe connect employer requirements with skill self-assessment, experience, compensation and work arrangements to turn job-posting evidence into a practical career-readiness plan.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#the-most-useful-findings",
+    "href": "index.html#the-most-useful-findings",
+    "title": "Data Analytics Careers in Financial Services",
+    "section": "The Most Useful Findings",
+    "text": "The Most Useful Findings\n\nLearn SQL, Python and BI tools first: they combine substantial employer demand with the main development needs identified in the team’s skill assessment.\nMatch the experience requirement: 26 postings, representing 25 profiles, list 0–2 years of minimum experience.\nUse salary benchmarks: the median annual midpoint across 48 distinct salary profiles is about $92,300. The salary model remains exploratory.\nVerify remote and location details: more than half of the postings have an unknown remote classification, and one job may be advertised in several cities.\n\nThe study uses 140 Lightcast postings from May–September 2024, representing 102 distinct posting profiles. Salary is available for 86 postings. These findings describe a selected historical sample, rather than the full or current labor market.",
+    "crumbs": [
+      "Home"
+    ]
   },
   {
     "objectID": "index.html#read-the-study",
     "href": "index.html#read-the-study",
     "title": "Data Analytics Careers in Financial Services",
-    "section": "Read the study",
-    "text": "Read the study\n\nProject Overview: rationale, research questions and industry scope.\nData preparation: data sources, cleaning, and preparation for analysis.\nMarket Baseline: current state of the financial services job market.\nSkill-gap analysis: analysis of skills, experience, and salary gaps for Data Analysts in financial services.\nCareer Evaluation: analysis of career paths and opportunities in the industry.\nFinal recommendations"
+    "section": "Read the Study",
+    "text": "Read the Study\nRead the Final Report for all seven required sections in one document, or explore the pages below.\n\nProduct Framing — who the study serves, the research questions and the industry scope.\nScope and Data — how the 140-posting dataset was selected and cleaned.\nMarket Baseline — employers, locations, salary disclosure and experience requirements.\nSkill Gap Analysis — employer requirements compared with the team’s current skills.\nFinal Analytics: Salary Models — whether the data supports useful salary predictions.\nCareer Recommendations — what to learn, which roles to review and how to prepare a stronger application.\nLimitations — where the sample, model and career-readiness product need improvement.\n\nStart with Career Recommendations for the practical actions, or follow the study from the beginning to see the evidence behind them.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "introduction.html",
+    "href": "introduction.html",
+    "title": "Product Framing",
+    "section": "",
+    "text": "Students preparing for Data Analyst careers must connect their current capabilities to the requirements of actual employers. A job title alone does not explain which skills a position requires, how much experience is expected, whether compensation is disclosed, or whether the work arrangement fits a job seeker’s circumstances. This project develops a career evaluation prototype for students and aspiring Data Analysts considering securities, investments, and related financial activities.\nThe target user is a student or early-career job seeker pursuing a Data Analyst / Data Analytics pathway. The primary focus is skill and career readiness. Salary, experience, location, and employment patterns provide supporting evidence for deciding where to apply and what to learn next. This framing follows the AD688 running case, which asks teams to connect an industry-scoped dataset to practical job-seeker decisions.\nReliable industry labels are important because an incorrectly classified employer can distort a sector-specific career benchmark. Chern et al. investigate employer-industry errors arising from employer identification and industry attributes, using posting-derived signals to help detect them (Chern et al. 2018). For this project, the implication is to document how industry membership is selected and to treat potentially inconsistent employer labels as a data-quality limitation.\nThe completed study uses 140 Lightcast postings from May–September 2024, representing 102 distinct employer/title/description profiles. It moves from data preparation and the market baseline to skill gaps, salary analysis and practical career recommendations. Salary is available for 86 postings, representing 48 distinct profiles; the remaining postings still inform the wider market and skill analysis.",
+    "crumbs": [
+      "Home",
+      "1. Product Framing"
+    ]
+  },
+  {
+    "objectID": "introduction.html#research-rationale",
+    "href": "introduction.html#research-rationale",
+    "title": "Product Framing",
+    "section": "",
+    "text": "Students preparing for Data Analyst careers must connect their current capabilities to the requirements of actual employers. A job title alone does not explain which skills a position requires, how much experience is expected, whether compensation is disclosed, or whether the work arrangement fits a job seeker’s circumstances. This project develops a career evaluation prototype for students and aspiring Data Analysts considering securities, investments, and related financial activities.\nThe target user is a student or early-career job seeker pursuing a Data Analyst / Data Analytics pathway. The primary focus is skill and career readiness. Salary, experience, location, and employment patterns provide supporting evidence for deciding where to apply and what to learn next. This framing follows the AD688 running case, which asks teams to connect an industry-scoped dataset to practical job-seeker decisions.\nReliable industry labels are important because an incorrectly classified employer can distort a sector-specific career benchmark. Chern et al. investigate employer-industry errors arising from employer identification and industry attributes, using posting-derived signals to help detect them (Chern et al. 2018). For this project, the implication is to document how industry membership is selected and to treat potentially inconsistent employer labels as a data-quality limitation.\nThe completed study uses 140 Lightcast postings from May–September 2024, representing 102 distinct employer/title/description profiles. It moves from data preparation and the market baseline to skill gaps, salary analysis and practical career recommendations. Salary is available for 86 postings, representing 48 distinct profiles; the remaining postings still inform the wider market and skill analysis.",
+    "crumbs": [
+      "Home",
+      "1. Product Framing"
+    ]
+  },
+  {
+    "objectID": "introduction.html#scope-and-research-questions",
+    "href": "introduction.html#scope-and-research-questions",
+    "title": "Product Framing",
+    "section": "2 Scope and research questions",
+    "text": "2 Scope and research questions\n\n2.1 Industry and career scope selection\nFinancial Services – Data Analytics\n\n\n\n\n\n\n\nScope component\nSelected scope\n\n\n\n\nTarget career pathway\nData Analyst / Data Analytics\n\n\nNAICS classification revision\n2022\n\n\nSelected dataset code\n523\n\n\nIndustry label\nSecurities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nPrimary analytical focus\nSkill and career readiness\n\n\nSupporting dimensions\nSalary, experience, geography, remote work, and employers\n\n\n\nNAICS 523 covers securities and commodity intermediation, exchanges, and other investment-related services. It is narrower than the full Finance and Insurance sector and does not represent all financial-services employment. NAICS describes the economic activity of an establishment; it does not identify an employee’s occupation (Executive Office of the President, Office of Management and Budget 2022). A Data Analyst title and an employer’s industry code therefore serve different purposes in the cohort definition.\nGroup 4 uses the three-digit subsector to examine Data Analyst opportunities across related investment activities. The findings apply to this selected cohort, rather than all financial-services employment. A separate career-title filter identifies the Data Analyst roles within the industry.\nReference: NAICS 523 industry description.\n\n\n2.2 Primary project question\n\nWhat skills, experience levels, salary opportunities, and employment patterns should aspiring Data Analysts understand when pursuing careers in securities, investments, and related financial services (NAICS 523), and how can job seekers use these factors to evaluate their career readiness and identify areas for upskilling?\n\n\n\n2.3 Job-seeker decisions\n\nSkills: Which tools should I strengthen and demonstrate in a portfolio?\nExperience: Which roles match my background and stated requirements?\nCompensation: What salary benchmark can help me compare similar roles?\nSearch priorities: Which employers, locations and work arrangements should I investigate?",
+    "crumbs": [
+      "Home",
+      "1. Product Framing"
+    ]
+  },
+  {
+    "objectID": "introduction.html#short-literature-review",
+    "href": "introduction.html#short-literature-review",
+    "title": "Product Framing",
+    "section": "3 Short literature review",
+    "text": "3 Short literature review\nFive sources support the project’s scope, data-quality approach, and interpretation. This is a focused narrative review rather than a systematic review.\nEmployer-industry classification. Goindani et al. examine employer-industry classification using job postings (Goindani et al. 2017). The study provides a methodological reference for using recruitment records to examine employer classification. Its relevance here is to make industry selection explicit and review questionable labels. Classification research provides context for cohort quality; it does not establish skill demand or salary levels in this project’s NAICS 523 sample.\nIndustry-label error detection. Chern et al. use employer names, employer descriptions, job titles, and job descriptions to identify possible industry-classification errors, comparing support vector machine and random forest approaches (Chern et al. 2018). Their findings motivate checking employer and posting information when industry membership is uncertain. The paper’s predictive results concern its own dataset and are not evidence of this project’s accuracy or a requirement to reproduce its models.\nRepresentativeness of online postings. Tsvetkova et al. compare Lightcast vacancies with official sources in Australia, Canada, the United Kingdom, and the United States (Tsvetkova et al. 2024). They identify variation in representativeness across geography, occupation, and industry. This supports reporting the observed posting sample and its coverage rather than equating posting counts with all vacancies or employment. Their results do not provide a correction factor for the MET Career Compass dataset.\nIndustry definition and analytical boundaries. The 2022 NAICS manual supplies the classification framework used to define the selected subsector (Executive Office of the President, Office of Management and Budget 2022). It supports keeping employer industry distinct from career pathway and retaining detailed industry labels for interpretation. This prevents a financial-services label from being used as a substitute for a Data Analyst title filter.\nReproducible analytical implementation. Pedregosa et al. describe scikit-learn as a general-purpose Python machine-learning library (Pedregosa et al. 2011). The project uses Python to compare multiple linear regression, Random Forest and an average-salary baseline. The analysis notebook documents preprocessing and checks predictions on held-out posting groups, keeping repeated job descriptions together. The software paper does not establish which skills financial employers require or validate a career-readiness scorecard.\nTogether, these sources support an industry-scoped, reproducible career benchmark with explicit limits. The project’s contribution is to turn posting evidence and self-assessed skills into interpretable learning and application priorities. The recommendations prioritize SQL, Python and BI development, matching experience requirements, using descriptive salary benchmarks and verifying work arrangements. The salary models provide supporting evidence; they do not define a job seeker’s readiness. The project does not claim to improve a proprietary classification system or demonstrate that acquiring a particular skill causes employment.",
+    "crumbs": [
+      "Home",
+      "1. Product Framing"
+    ]
+  },
+  {
+    "objectID": "introduction.html#data-fields-and-intended-use",
+    "href": "introduction.html#data-fields-and-intended-use",
+    "title": "Product Framing",
+    "section": "4 Data fields and intended use",
+    "text": "4 Data fields and intended use\n\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nID\nUnique Lightcast job-posting identifier.\n\n\nLAST_UPDATED_DATE\nDate the job posting record was last updated.\n\n\nPOSTED\nDate the job posting was posted.\n\n\nEXPIRED\nDate the job posting expired, when available.\n\n\nTITLE_RAW\nOriginal job title from the Lightcast posting.\n\n\nBODY\nJob-posting description text.\n\n\nCOMPANY_NAME\nEmployer name.\n\n\nEDUCATION_LEVELS_NAME\nEducation-level information associated with the posting.\n\n\nMIN_YEARS_EXPERIENCE\nMinimum years of experience required, when available.\n\n\nMAX_YEARS_EXPERIENCE\nMaximum years of experience required, when available.\n\n\nSALARY\nOriginal salary field.\n\n\nREMOTE_TYPE\nLightcast remote-work classification code.\n\n\nREMOTE_TYPE_NAME\nReadable remote-work classification.\n\n\nORIGINAL_PAY_PERIOD\nOriginal pay-period label; stored salary amounts are already annualized.\n\n\nSALARY_TO\nUpper annualized salary endpoint used in the analysis.\n\n\nSALARY_FROM\nLower annualized salary endpoint used in the analysis.\n\n\nLOCATION\nOriginal job location field.\n\n\nCITY_NAME\nCity associated with the posting.\n\n\nSTATE_NAME\nState associated with the posting.\n\n\nNAICS3\nThree-digit NAICS industry subsector code.\n\n\nNAICS3_NAME\nName of the three-digit NAICS industry subsector.\n\n\nTITLE\nStandardized Lightcast job title.\n\n\nTITLE_NAME\nNamed occupational/job-title classification.\n\n\nTITLE_CLEAN\nCleaned job title field.\n\n\nSKILLS\nLightcast coded skills associated with the posting.\n\n\nSKILLS_NAME\nReadable skill names.\n\n\nSPECIALIZED_SKILLS\nLightcast specialized skill codes.\n\n\nSPECIALIZED_SKILLS_NAME\nReadable specialized skill names.\n\n\nCOMMON_SKILLS\nLightcast common skill codes.\n\n\nCOMMON_SKILLS_NAME\nReadable common skill names.\n\n\nSOFTWARE_SKILLS\nLightcast software skill codes.\n\n\nSOFTWARE_SKILLS_NAME\nReadable software skill names.\n\n\nONET\nO*NET occupation code.\n\n\nONET_NAME\nO*NET occupation name.\n\n\nSOC_2021_5\nFive-digit SOC 2021 occupation code.\n\n\nSOC_2021_5_NAME\nName of the five-digit SOC 2021 occupation classification.\n\n\nremote_status\nCleaned remote-work classification; missing classifications are labeled Unknown.\n\n\ncity_clean\nCleaned city field.\n\n\nstate_clean\nCleaned state field.\n\n\nsalary_midpoint\nAverage of the two annualized salary endpoints; target of the salary regression.\n\n\nindustry_scope\nAnalysis industry scope, defined as NAICS 523.\n\n\ncareer_scope\nCareer filter used for the revised core Data Analyst sample.",
+    "crumbs": [
+      "Home",
+      "1. Product Framing"
+    ]
+  },
+  {
+    "objectID": "introduction.html#study-and-product-limitations",
+    "href": "introduction.html#study-and-product-limitations",
+    "title": "Product Framing",
+    "section": "5 Study and Product Limitations",
+    "text": "5 Study and Product Limitations\nThe findings are exploratory because the sample is small, historical and unevenly distributed across regions and employers. Salary disclosure and missing job requirements further limit generalization. The career-readiness prototype helps organize learning and compare roles; it does not yet verify readiness or predict individual offers reliably. The report’s Limitations section documents these boundaries and the next improvements.",
+    "crumbs": [
+      "Home",
+      "1. Product Framing"
+    ]
+  },
+  {
+    "objectID": "introduction.html#references",
+    "href": "introduction.html#references",
+    "title": "Product Framing",
+    "section": "References",
+    "text": "References\n\n\nChern, Alan, Qiaoling Liu, Josh Chao, Mahak Goindani, and Faizan Javed. 2018. “Automatically Detecting Errors in Employer Industry Classification Using Job Postings.” Data Science and Engineering 3: 221–31. https://doi.org/10.1007/s41019-018-0071-7.\n\n\nExecutive Office of the President, Office of Management and Budget. 2022. North American Industry Classification System: United States, 2022. https://www.census.gov/naics/reference_files_tools/2022_NAICS_Manual.pdf.\n\n\nGoindani, Mahak, Qiaoling Liu, Josh Chao, and Valentin Jijkoun. 2017. “Employer Industry Classification Using Job Postings.” 2017 IEEE International Conference on Data Mining Workshops (ICDMW). https://doi.org/10.1109/ICDMW.2017.30.\n\n\nPedregosa, Fabian, Gaël Varoquaux, Alexandre Gramfort, et al. 2011. “Scikit-Learn: Machine Learning in Python.” Journal of Machine Learning Research 12 (85): 2825–30. https://www.jmlr.org/papers/v12/pedregosa11a.html.\n\n\nTsvetkova, Alexandra, Elettra D’Amico, Alexander Lembcke, Polina Knutsson, and Wessel Vermeulen. 2024. How Well Do Online Job Postings Match National Sources in Large English Speaking Countries? Benchmarking Lightcast Data Against Statistical Sources Across Regions, Sectors and Occupations. OECD Local Economic and Employment Development (LEED) Papers 2024/01. OECD Publishing. https://doi.org/10.1787/c17cae09-en.",
+    "crumbs": [
+      "Home",
+      "1. Product Framing"
+    ]
   },
   {
     "objectID": "market_baseline.html",
     "href": "market_baseline.html",
     "title": "Market Baseline",
     "section": "",
-    "text": "This page provides an exploratory baseline of the career market for Data Analyst roles within NAICS 523 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities.\nThe revised analysis uses the professor-approved Lightcast job-postings dataset and includes postings classified within the NAICS 523 subsector."
+    "text": "This page provides an exploratory baseline of the career market for Data Analyst roles within NAICS 523 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities.\nThe revised analysis uses the professor-approved Lightcast job-postings dataset and includes postings classified within the NAICS 523 subsector.",
+    "crumbs": [
+      "Home",
+      "3. Market Baseline"
+    ]
   },
   {
     "objectID": "market_baseline.html#market-baseline",
     "href": "market_baseline.html#market-baseline",
     "title": "Market Baseline",
     "section": "",
-    "text": "This page provides an exploratory baseline of the career market for Data Analyst roles within NAICS 523 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities.\nThe revised analysis uses the professor-approved Lightcast job-postings dataset and includes postings classified within the NAICS 523 subsector."
+    "text": "This page provides an exploratory baseline of the career market for Data Analyst roles within NAICS 523 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities.\nThe revised analysis uses the professor-approved Lightcast job-postings dataset and includes postings classified within the NAICS 523 subsector.",
+    "crumbs": [
+      "Home",
+      "3. Market Baseline"
+    ]
   },
   {
     "objectID": "market_baseline.html#industry-scope",
     "href": "market_baseline.html#industry-scope",
     "title": "Market Baseline",
     "section": "Industry Scope",
-    "text": "Industry Scope\nThe analysis is restricted to:\n\nNAICS: 523\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\nCareer pathway: Data Analyst / Data Analytics\n\nThe revised dataset contains 140 postings after applying the career-title filter and excluding clearly unrelated roles."
+    "text": "Industry Scope\nThe analysis is restricted to:\n\nNAICS: 523\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\nCareer pathway: Data Analyst / Data Analytics\n\nThe revised dataset contains 140 postings after applying the career-title filter and excluding clearly unrelated roles.",
+    "crumbs": [
+      "Home",
+      "3. Market Baseline"
+    ]
   },
   {
     "objectID": "market_baseline.html#job-volume-by-title",
     "href": "market_baseline.html#job-volume-by-title",
     "title": "Market Baseline",
     "section": "Job Volume by Title",
-    "text": "Job Volume by Title\n\n\n\nJob volume by title\n\n\nThe Data Analyst sample contains a range of analyst titles, including Product Data Analyst, Data Analyst, Data Analyst II, Senior Data Analyst, and other specialized analyst positions.\nProduct Data Analyst is the most frequent title in the revised sample."
+    "text": "Job Volume by Title\n\n\n\nJob volume by title\n\n\nThe Data Analyst sample contains a range of analyst titles, including Product Data Analyst, Data Analyst, Data Analyst II, Senior Data Analyst, and other specialized analyst positions.\nProduct Data Analyst is the most frequent title in the revised sample.",
+    "crumbs": [
+      "Home",
+      "3. Market Baseline"
+    ]
   },
   {
     "objectID": "market_baseline.html#top-employers",
     "href": "market_baseline.html#top-employers",
     "title": "Market Baseline",
     "section": "Top Employers",
-    "text": "Top Employers\n\n\n\nTop employers\n\n\nThe largest employer represented in the revised sample is Lincoln Financial Group, followed by The Vanguard Group and Fidelity Investments.\nThis concentration indicates that some employers contribute substantially more postings than others and should be considered when interpreting overall market demand."
+    "text": "Top Employers\n\n\n\nTop employers\n\n\nThe largest employer represented in the revised sample is Lincoln Financial Group, followed by The Vanguard Group and Fidelity Investments.\nThis concentration indicates that some employers contribute substantially more postings than others and should be considered when interpreting overall market demand.",
+    "crumbs": [
+      "Home",
+      "3. Market Baseline"
+    ]
   },
   {
     "objectID": "market_baseline.html#hiring-locations",
     "href": "market_baseline.html#hiring-locations",
     "title": "Market Baseline",
     "section": "Hiring Locations",
-    "text": "Hiring Locations\n\n\n\nTop hiring locations\n\n\nThe revised sample is geographically distributed across multiple states.\nThe largest state concentrations are Massachusetts, North Carolina, Pennsylvania, Texas, and Arizona."
+    "text": "Hiring Locations\n\n\n\nTop hiring locations\n\n\nThe revised sample is geographically distributed across multiple states.\nThe largest state concentrations are Massachusetts, North Carolina, Pennsylvania, Texas, and Arizona.",
+    "crumbs": [
+      "Home",
+      "3. Market Baseline"
+    ]
   },
   {
     "objectID": "market_baseline.html#remote-work",
     "href": "market_baseline.html#remote-work",
     "title": "Market Baseline",
     "section": "Remote Work",
-    "text": "Remote Work\n\n\n\nRemote work status\n\n\nThe revised sample contains:\n\n54 Remote\n12 Hybrid Remote\n3 Not Remote\n71 Unknown\n\nBecause more than half of the postings have an unknown remote classification, the results should not be interpreted as a complete estimate of remote-work availability."
+    "text": "Remote Work\n\n\n\nRemote work status\n\n\nThe revised sample contains:\n\n54 Remote\n12 Hybrid Remote\n3 Not Remote\n71 Unknown\n\nBecause more than half of the postings have an unknown remote classification, the results should not be interpreted as a complete estimate of remote-work availability.",
+    "crumbs": [
+      "Home",
+      "3. Market Baseline"
+    ]
   },
   {
     "objectID": "market_baseline.html#salary-distribution",
     "href": "market_baseline.html#salary-distribution",
     "title": "Market Baseline",
     "section": "Salary Distribution",
-    "text": "Salary Distribution\n\n\n\nSalary distribution\n\n\nA usable salary midpoint could be calculated for 86 of the 140 postings.\nThe salary midpoint distribution has:\n\nMean: $90,860.55\nMedian: $93,850\nMinimum: $24,960\nMaximum: $160,000\n\nSalary information was retained as missing when salary endpoints were unavailable rather than treating missing salary as zero."
+    "text": "Salary Distribution\n\n\n\nSalary distribution\n\n\nA usable salary midpoint could be calculated for 86 of the 140 postings.\nThe annual salary midpoint distribution across the 86 posting rows has:\n\nMean: $90,860.55\nMedian: $93,850\nMinimum: $24,960\nMaximum: $160,000\n\nSalary information was retained as missing when salary endpoints were unavailable rather than treating missing salary as zero. The final analytics also reports 48 distinct salary profiles, with a median of approximately $92,300. The two medians use different counting units: posting rows and distinct profiles.",
+    "crumbs": [
+      "Home",
+      "3. Market Baseline"
+    ]
   },
   {
     "objectID": "market_baseline.html#experience-requirements",
     "href": "market_baseline.html#experience-requirements",
     "title": "Market Baseline",
     "section": "Experience Requirements",
-    "text": "Experience Requirements\n\n\n\nExperience requirements\n\n\nMinimum experience information was available for 112 postings.\nAmong postings with a reported minimum experience requirement:\n\nMean: 4.11 years\nMedian: 5 years\nMinimum: 0 years\nMaximum: 12 years\n\nMaximum experience requirements were frequently missing, so the analysis focuses on the minimum experience field."
+    "text": "Experience Requirements\n\n\n\nExperience requirements\n\n\nMinimum experience information was available for 112 postings.\nAmong postings with a reported minimum experience requirement:\n\nMean: 4.11 years\nMedian: 5 years\nMinimum: 0 years\nMaximum: 12 years\n\nMaximum experience requirements were frequently missing, so the analysis focuses on the minimum experience field.",
+    "crumbs": [
+      "Home",
+      "3. Market Baseline"
+    ]
   },
   {
     "objectID": "market_baseline.html#data-quality-and-limitations",
     "href": "market_baseline.html#data-quality-and-limitations",
     "title": "Market Baseline",
     "section": "Data Quality and Limitations",
-    "text": "Data Quality and Limitations\nThe revised analysis provides a substantially larger career-specific sample than the original MET API analysis.\nThe original Step 2 analysis was limited to 400 retrieved NAICS 523000 records and identified only two direct Data Analyst matches. The revised analysis uses the Lightcast dataset approved for the project and the three-digit NAICS 523 subsector.\nThe career filter was intentionally expanded to capture relevant Data Analyst titles while excluding clearly unrelated categories such as maintenance, cybersecurity, academic roles, internships, and other specialized positions that did not fit the project’s intended career pathway.\nMissing salary, experience, and remote-work information was retained and explicitly reported rather than being converted into misleading values."
+    "text": "Data Quality and Limitations\nThe revised analysis provides a substantially larger career-specific sample than the original MET API analysis.\nThe original Step 2 analysis was limited to 400 retrieved NAICS 523000 records and identified only two direct Data Analyst matches. The revised analysis uses the Lightcast dataset approved for the project and the three-digit NAICS 523 subsector.\nThe career filter was intentionally expanded to capture relevant Data Analyst titles while excluding clearly unrelated categories such as maintenance, cybersecurity, academic roles, internships, and other specialized positions that did not fit the project’s intended career pathway.\nMissing salary, experience, and remote-work information was retained and explicitly reported rather than being converted into misleading values.",
+    "crumbs": [
+      "Home",
+      "3. Market Baseline"
+    ]
   },
   {
     "objectID": "market_baseline.html#summary",
     "href": "market_baseline.html#summary",
     "title": "Market Baseline",
     "section": "Summary",
-    "text": "Summary\nThe revised baseline provides a broader view of Data Analyst opportunities within financial services. The market includes multiple employers, geographic locations, salary ranges, experience requirements, and work arrangements.\nThese results provide the foundation for the next stage of the project: Step 3 skill-gap analysis and expanded EDA."
+    "text": "Summary\nThe revised baseline provides a broader view of Data Analyst opportunities within financial services. The market includes multiple employers, geographic locations, salary ranges, experience requirements, and work arrangements.\nThese results provide the foundation for the next stage of the project: Step 3 skill-gap analysis and expanded EDA.",
+    "crumbs": [
+      "Home",
+      "3. Market Baseline"
+    ]
   },
   {
-    "objectID": "old_data_preparation.html",
-    "href": "old_data_preparation.html",
-    "title": "Data Preparation",
+    "objectID": "ml_methods.html",
+    "href": "ml_methods.html",
+    "title": "Salary Analysis and ML Methods",
     "section": "",
-    "text": "title: “Data Preparation” subtitle: “Step 2 — Data Preparation and Career-Market Scope” —"
+    "text": "Can experience, location, remote status and required skills help explain differences in advertised salaries?\nWe compare multiple linear regression and Random Forest with a simple average-salary baseline. The aim is to judge whether a model adds useful information to the salary benchmarks from the market baseline.",
+    "crumbs": [
+      "Home",
+      "5. Final Analytics"
+    ]
   },
   {
-    "objectID": "old_data_preparation.html#cat-data_preparation.qmd-eof",
-    "href": "old_data_preparation.html#cat-data_preparation.qmd-eof",
-    "title": "Data Preparation",
+    "objectID": "ml_methods.html#purpose",
+    "href": "ml_methods.html#purpose",
+    "title": "Salary Analysis and ML Methods",
     "section": "",
-    "text": "title: “Data Preparation” subtitle: “Step 2 — Data Preparation and Career-Market Scope” —"
+    "text": "Can experience, location, remote status and required skills help explain differences in advertised salaries?\nWe compare multiple linear regression and Random Forest with a simple average-salary baseline. The aim is to judge whether a model adds useful information to the salary benchmarks from the market baseline.",
+    "crumbs": [
+      "Home",
+      "5. Final Analytics"
+    ]
   },
   {
-    "objectID": "old_data_preparation.html#step-2-objective",
-    "href": "old_data_preparation.html#step-2-objective",
-    "title": "Data Preparation",
-    "section": "Step 2 Objective",
-    "text": "Step 2 Objective\nThis step prepares the career-market data used to evaluate opportunities for Data Analysts in financial services. The analysis is anchored to the project’s selected industry and career pathway:\n\nTarget career: Data Analyst / Data Analytics\nNAICS: 523000\nIndustry: Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\nThe goal is to create a reproducible dataset that can be used to examine job availability, compensation, location, work arrangements, and employer characteristics."
+    "objectID": "ml_methods.html#data-used",
+    "href": "ml_methods.html#data-used",
+    "title": "Salary Analysis and ML Methods",
+    "section": "Data Used",
+    "text": "Data Used\n\n140 Data Analyst postings in NAICS 523, posted between May and September 2024.\n86 postings with a valid salary midpoint, representing 48 distinct posting profiles.\n54 postings without salary remain in the wider market and skill analysis, but cannot be used to evaluate salary predictions.\nThe target is salary_midpoint, the average of the lower and upper annualized salary endpoints. Hourly and monthly amounts were already converted during preparation and are used without another conversion.\n\nThe predictors are minimum experience, remote status, city, state and eight skill indicators: SQL, Python, Excel, Power BI / Tableau, statistics, visualization, machine learning and AWS. Salary endpoints are excluded from the predictors because they define the target.",
+    "crumbs": [
+      "Home",
+      "5. Final Analytics"
+    ]
   },
   {
-    "objectID": "old_data_preparation.html#data-source",
-    "href": "old_data_preparation.html#data-source",
-    "title": "Data Preparation",
-    "section": "Data Source",
-    "text": "Data Source\nThe project uses the MET Career Compass Employability API. The API provides job-posting information including job titles, employers, locations, salary fields, remote status, occupation classifications, NAICS classifications, skills, and job descriptions.\nThe API data used for this analysis was retrieved on October 5, 2026. The API reported a latest data refresh date of October 3, 2026 and identified the dataset as met-career-pathways-jobs."
+    "objectID": "ml_methods.html#how-the-models-were-checked",
+    "href": "ml_methods.html#how-the-models-were-checked",
+    "title": "Salary Analysis and ML Methods",
+    "section": "How the Models Were Checked",
+    "text": "How the Models Were Checked\n\nDivide the data into five validation parts.\nTrain a fresh model on four parts and predict salaries for the remaining part; repeat until every posting has been checked once.\nKeep copies of the same employer/title/description together, so the model is checked on jobs it has not already seen.\nGive each posting profile equal total weight, preventing a job advertised in many cities from dominating the results.\nFill missing experience using training data only; keep unknown remote status as its own category.",
+    "crumbs": [
+      "Home",
+      "5. Final Analytics"
+    ]
   },
   {
-    "objectID": "old_data_preparation.html#industry-filter",
-    "href": "old_data_preparation.html#industry-filter",
-    "title": "Data Preparation",
-    "section": "Industry Filter",
-    "text": "Industry Filter\nThe first stage of the data preparation process restricted the job postings to:\nNAICS 523000 — Securities, Commodity Contracts, and Other Financial Investments and Related Activities\nThe API returned 400 records matching this NAICS code before subsequent pagination requests timed out. All 400 retrieved records were verified to contain NAICS code 523000.\nThis industry restriction was retained throughout the analysis so that the project remained focused on financial-services employment opportunities rather than the overall labor market."
+    "objectID": "ml_methods.html#main-results",
+    "href": "ml_methods.html#main-results",
+    "title": "Salary Analysis and ML Methods",
+    "section": "Main Results",
+    "text": "Main Results\nThe mean-salary baseline predicts the same training average for every validation job. It is a simple benchmark used to judge whether the two predictive models add value.\nLower RMSE and MAE mean smaller salary errors. Higher R² means the model explains more of the salary variation in held-out data; it is not an accuracy percentage.\n\n\n\nModel\nRMSE\nMAE\nR²\n\n\n\n\nRandom Forest\n$23,781\n$18,313\n0.126\n\n\nMultiple linear regression\n$25,419\n$21,622\n0.002\n\n\nMean-salary baseline\n$25,572\n$18,982\n−0.010\n\n\n\n\n\n\nSalary-model comparison using grouped validation\n\n\n\nRandom Forest performs best, reducing RMSE by about 7% compared with the baseline.\nIts average absolute error is still about $18,300. The model provides limited support for a precise individual salary estimate.\nLinear regression performs close to the baseline, suggesting that a simple linear relationship captures little of the observed salary variation.",
+    "crumbs": [
+      "Home",
+      "5. Final Analytics"
+    ]
   },
   {
-    "objectID": "old_data_preparation.html#career-filter",
-    "href": "old_data_preparation.html#career-filter",
-    "title": "Data Preparation",
-    "section": "Career Filter",
-    "text": "Career Filter\nThe target career pathway for Group 4 is Data Analyst / Data Analytics.\nSeveral possible approaches were evaluated using the available occupation and job-title fields.\n\nOccupation Classification Review\nThe MET data includes SOC and O*NET occupation classifications. SOC 15-2051 was initially considered because it is labeled Data Scientists.\nHowever, the first 400 NAICS 523000 records demonstrated that this classification was too broad for the project’s specific Data Analyst pathway. For example, records classified under SOC 15-2051 included Android developers, iOS developers, mobile application developers, mobile engineers, and other roles that do not represent the target Data Analyst career.\nTherefore, SOC 15-2051 was not used as a direct proxy for Data Analyst jobs.\n\n\nTitle-Based Career Filter\nThe final target-career filter uses explicit Data Analyst/Data & Insights Analyst terminology in the job title.\nThe inclusion logic identifies titles containing:\n\nData Analyst\nData & Insights Analyst\n\nThis approach was selected because it provides a more direct connection to the team’s stated career pathway than the broader occupation classifications observed in the data.\nThe resulting target-career dataset contains 2 postings:\n\n\n\n\n\n\n\n\nJob\nEmployer\nLocation\n\n\n\n\nData & Insights Analyst (EMEA)\nGreenparkcontent\nLondon, United Kingdom\n\n\nAdvanced Data & Insights Analyst - Deposits Line of Business\nU.S. Bank\nCharlotte, North Carolina"
+    "objectID": "ml_methods.html#which-factor-contributed-most",
+    "href": "ml_methods.html#which-factor-contributed-most",
+    "title": "Salary Analysis and ML Methods",
+    "section": "Which Factor Contributed Most?",
+    "text": "Which Factor Contributed Most?\n\n\n\nFactors contributing to Random Forest salary predictions\n\n\n\nMinimum experience is the strongest predictive signal in the Random Forest comparison.\nSkill, remote and location indicators contribute less consistently to salary prediction in this small sample.\nThese are associations between job requirements and compensation. They do not show that learning a particular skill causes a pay increase.",
+    "crumbs": [
+      "Home",
+      "5. Final Analytics"
+    ]
   },
   {
-    "objectID": "old_data_preparation.html#data-retrieval-limitation",
-    "href": "old_data_preparation.html#data-retrieval-limitation",
-    "title": "Data Preparation",
-    "section": "Data Retrieval Limitation",
-    "text": "Data Retrieval Limitation\nThe MET API successfully returned the first 400 records for NAICS 523000. Requests beginning at offset 400 consistently timed out, including requests for a single record.\nBecause the additional records could not be retrieved reliably, the project does not claim that the 400 records represent the complete NAICS 523000 labor market.\nInstead, the retrieved records are treated as an accessible analytical sample from the MET Career Compass dataset.\nThis limitation is important when interpreting market-level results."
+    "objectID": "ml_methods.html#what-this-means-for-a-job-seeker",
+    "href": "ml_methods.html#what-this-means-for-a-job-seeker",
+    "title": "Salary Analysis and ML Methods",
+    "section": "What This Means for a Job Seeker",
+    "text": "What This Means for a Job Seeker\n\nUse advertised salary ranges and the sample benchmarks as reference points.\nCompare roles with similar experience requirements before comparing compensation.\nPrioritize skills using employer demand and your own skill gaps; a weak salary predictor can still be an important job requirement.\nTreat model estimates as exploratory. The sample is small, historical and limited to salary-disclosing postings.",
+    "crumbs": [
+      "Home",
+      "5. Final Analytics"
+    ]
   },
   {
-    "objectID": "old_data_preparation.html#cleaning-decisions",
-    "href": "old_data_preparation.html#cleaning-decisions",
-    "title": "Data Preparation",
-    "section": "Cleaning Decisions",
-    "text": "Cleaning Decisions\n\nDuplicate Records\nJob postings were checked using the MET job_id field.\nNo duplicate job IDs were identified among the 400 retrieved records.\n\n\nNAICS\nThe naics_code field was converted to text and stripped of leading/trailing whitespace. Records were retained only when the resulting value equaled 523000.\nAll 400 retrieved records passed this verification.\n\n\nDates\nPosting and expiration dates were converted to datetime values where available. Invalid or unavailable dates were treated as missing.\n\n\nSalary\nAnnual and hourly salary fields were converted to numeric values. Missing salary values were retained as missing rather than being replaced with zero.\nA missing salary does not imply that the position is unpaid; it indicates that a usable salary value was not available in the retrieved posting data.\n\n\nLocation\nLocation, city, state, and state-code fields were converted to consistent text values. Missing location fields were retained as missing.\n\n\nRemote Status\nRemote-status values were standardized to text categories such as remote, hybrid, onsite, or unknown. Missing or unavailable classifications were retained as unknown rather than inferred from the job description.\n\n\nSkills\nThe API’s skills information was retained because skills will be used in later stages of the project to evaluate the capabilities associated with the target career pathway.\n\n\nOccupation Fields\nSOC, O*NET, and occupation-family fields were retained for comparison and validation. However, the analysis does not assume that a broad occupation classification is equivalent to the team’s specific Data Analyst career pathway."
+    "objectID": "ml_methods.html#limitations",
+    "href": "ml_methods.html#limitations",
+    "title": "Salary Analysis and ML Methods",
+    "section": "Limitations",
+    "text": "Limitations\n\nSmall salary sample: 86 postings represent only 48 profiles, so results are uncertain.\nUneven regional and employer coverage: the selected historical sample does not establish national salary expectations or reliable regional pay differences.\nMissing and imperfect data: salaries, experience and remote status are incomplete; annualized salary values can still contain source errors.\nLimited model usefulness: MAE is about $18,300 and R² is 0.126. There is no independent final test, and predictive associations do not establish causal pay effects.\n\nUse actual advertised ranges and comparable roles when making decisions. See Limitations for the full report section and product boundaries.\nContinue to Career Recommendations for the practical learning and job-search priorities.",
+    "crumbs": [
+      "Home",
+      "5. Final Analytics"
+    ]
   },
   {
-    "objectID": "old_data_preparation.html#output-dataset",
-    "href": "old_data_preparation.html#output-dataset",
-    "title": "Data Preparation",
-    "section": "Output Dataset",
-    "text": "Output Dataset\nThe cleaned target-career dataset is:\ndata/career_market_panel.csv\nThe dataset contains the two postings that directly match the project’s Data Analyst/Data & Insights Analyst title criteria.\nA broader raw industry dataset is retained as:\ndata/raw_naics_523000.json\nThis raw dataset contains the 400 retrieved NAICS 523000 postings and provides the source data for industry-level exploration.\nA variable-level data dictionary is available at:\ndata/data_dictionary.csv"
+    "objectID": "limitations.html",
+    "href": "limitations.html",
+    "title": "Limitations",
+    "section": "",
+    "text": "Small, selected sample. The study uses 140 Data Analyst postings in NAICS 523, representing 102 employer/title/description profiles. Salary analysis uses only 86 postings and 48 profiles. These findings are exploratory and do not support firm conclusions for the full Data Analyst market.\nUneven geographic coverage. The data includes several states, but locations and employers are not evenly represented. Regional patterns describe this sample; they do not establish national demand, the best relocation choice, or salary differences after cost of living.\nHistorical and incomplete records. The postings cover May–September 2024. Salary is missing for 54 postings, minimum experience for 28, and remote classification for 71. Missing information may affect which roles appear in each analysis.\nPostings are not confirmed openings or offers. One job can be advertised in several locations. Exact-text grouping reduces repeated counts but may miss similar reposts. Salary endpoints were annualized during preparation, but source discrepancies can remain; the low Ariel Investments value needs review.\nModest predictive performance. Random Forest performs slightly better than the mean-salary benchmark, with MAE about $18,300 and R² 0.126. The models were compared using the same cross-validation results, with no separate final test. Predictions are too uncertain to serve as precise individual salary estimates.\nSkills and pay are not causal measures. Skill mentions describe posting requirements. Team proficiency is self-assessed, and the eight technical groups do not cover every skill. Neither demand percentages nor model importance establish hiring probability or a pay increase from learning a skill.",
+    "crumbs": [
+      "Home",
+      "7. Limitations"
+    ]
   },
   {
-    "objectID": "old_data_preparation.html#data-preparation-summary",
-    "href": "old_data_preparation.html#data-preparation-summary",
-    "title": "Data Preparation",
-    "section": "Data Preparation Summary",
-    "text": "Data Preparation Summary\nThe Step 2 preparation process can be summarized as:\n\nRetrieve MET Career Compass job data.\nRestrict records to NAICS 523000.\nVerify the NAICS classification.\nReview occupation classifications and job titles.\nReject SOC 15-2051 as a direct Data Analyst proxy because of substantial classification noise.\nApply a direct Data Analyst/Data & Insights Analyst title filter.\nRemove duplicate job IDs.\nStandardize dates, salary, location, remote-status, and occupation fields.\nExport the cleaned target-career dataset.\nRetain the broader NAICS dataset for market-level exploratory analysis."
+    "objectID": "limitations.html#limits-of-the-evidence",
+    "href": "limitations.html#limits-of-the-evidence",
+    "title": "Limitations",
+    "section": "",
+    "text": "Small, selected sample. The study uses 140 Data Analyst postings in NAICS 523, representing 102 employer/title/description profiles. Salary analysis uses only 86 postings and 48 profiles. These findings are exploratory and do not support firm conclusions for the full Data Analyst market.\nUneven geographic coverage. The data includes several states, but locations and employers are not evenly represented. Regional patterns describe this sample; they do not establish national demand, the best relocation choice, or salary differences after cost of living.\nHistorical and incomplete records. The postings cover May–September 2024. Salary is missing for 54 postings, minimum experience for 28, and remote classification for 71. Missing information may affect which roles appear in each analysis.\nPostings are not confirmed openings or offers. One job can be advertised in several locations. Exact-text grouping reduces repeated counts but may miss similar reposts. Salary endpoints were annualized during preparation, but source discrepancies can remain; the low Ariel Investments value needs review.\nModest predictive performance. Random Forest performs slightly better than the mean-salary benchmark, with MAE about $18,300 and R² 0.126. The models were compared using the same cross-validation results, with no separate final test. Predictions are too uncertain to serve as precise individual salary estimates.\nSkills and pay are not causal measures. Skill mentions describe posting requirements. Team proficiency is self-assessed, and the eight technical groups do not cover every skill. Neither demand percentages nor model importance establish hiring probability or a pay increase from learning a skill.",
+    "crumbs": [
+      "Home",
+      "7. Limitations"
+    ]
   },
   {
-    "objectID": "old_data_preparation.html#step-2-limitations",
-    "href": "old_data_preparation.html#step-2-limitations",
-    "title": "Data Preparation",
-    "section": "Step 2 Limitations",
-    "text": "Step 2 Limitations\nThe primary limitation is API pagination. The API returned 400 NAICS 523000 records, but requests beginning at offset 400 repeatedly timed out.\nA second limitation is the small number of direct Data Analyst/Data & Insights Analyst postings within the accessible sample. Therefore, salary, remote-work, and other target-career statistics should be interpreted cautiously rather than generalized to the entire Data Analyst labor market.\nThe broader 400-record NAICS 523000 sample will provide additional industry context for the market-baseline analysis."
-  },
-  {
-    "objectID": "old_data_preparation.html#conclusion",
-    "href": "old_data_preparation.html#conclusion",
-    "title": "Data Preparation",
-    "section": "Conclusion",
-    "text": "Conclusion\nThe data-preparation stage establishes a reproducible industry and career scope for the project. The analysis remains anchored to NAICS 523000 and the team’s Data Analyst/Data Analytics pathway.\nThe resulting datasets provide the foundation for the next stage: exploratory analysis of the financial-services market and evaluation of the skills, compensation, locations, and employment patterns relevant to aspiring Data Analysts. EOF"
+    "objectID": "limitations.html#product-boundaries-and-next-steps",
+    "href": "limitations.html#product-boundaries-and-next-steps",
+    "title": "Limitations",
+    "section": "Product Boundaries and Next Steps",
+    "text": "Product Boundaries and Next Steps\nThe prototype supports learning priorities, experience fit, employer research and salary benchmarks. It does not yet provide live vacancy tracking, verified readiness scores, personalized offer predictions, or evidence that its advice improves hiring outcomes.\nTo strengthen the product:\n\nCollect more recent, independent postings across states and employers, and verify salary values.\nAssess skills through practical tasks and gather feedback from students using the recommendations.\nEvaluate models on new employers or a later time period before offering individual salary estimates.",
+    "crumbs": [
+      "Home",
+      "7. Limitations"
+    ]
   }
 ]
