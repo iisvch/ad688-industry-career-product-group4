@@ -1,5 +1,5 @@
 ---
-title: "Product Framing"
+title: "Project Overview"
 subtitle: "Project overview, research questions, and industry scope"
 number-sections: true
 ---

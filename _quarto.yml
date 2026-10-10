@@ -1,3 +1,5 @@
+
+
 project:
   type: website
   output-dir: _site
@@ -19,10 +21,8 @@ website:
 
   navbar:
     left:
-      - href: index.qmd
-        text: "Home"
       - href: introduction.qmd
-        text: "Product Framing"
+        text: "Project Overview"
       - href: market_baseline.qmd
         text: "Market Baseline"
       - href: final_recommendations.qmd
