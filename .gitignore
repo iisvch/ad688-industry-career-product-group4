@@ -18,9 +18,5 @@ lightcast_job_postings.csv
 data/career_market_panel_new.csv
 data/career_market_panel_old.csv
 data/data_dictionary_old.csv
-check_career_filter.py
-clean_step2.py
-make_data_dictionary.py
-make_revised_figures.py
 
 _site
