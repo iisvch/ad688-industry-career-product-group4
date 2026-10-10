@@ -1,12 +1,18 @@
+name: Quarto Publish
+
 on:
   workflow_dispatch:
   push:
-    branches: main
+    branches:
+      - main
 
-name: Quarto Publish
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-deploy:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -25,9 +31,31 @@ jobs:
       - run: pip install jupyter
       - run: pip install -r requirements.txt
 
-      - name: Render and Publish
+      - name: Render website
+        run: quarto render --to html
+
+      - name: Render Word report in repository root
+        run: |
+          quarto render final_report.qmd --to docx --no-clean
+          test -s final_report.docx
+
+      - name: Save Word report to main
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- final_report.docx
+          if git diff --cached --quiet -- final_report.docx; then
+            echo "Word report is already up to date."
+          else
+            git commit -m "Update generated Word report [skip ci]"
+            git push origin HEAD:main
+          fi
+
+      - name: Publish website
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
+          render: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
