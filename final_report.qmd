@@ -12,7 +12,7 @@ format:
     number-sections: true
 ---
 
-# Product Framing {#sec-product-framing}
+# Project Overview {#sec-project-overview}
 
 {{< include _content/research-rationale.md >}}
 
